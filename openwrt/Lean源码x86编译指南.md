@@ -8,7 +8,13 @@
 
 3. 添加额外源
 
-    参考<https://github.com/kenzok8/openwrt-packages>设置，将```src-git kenzo https://github.com/kenzok8/openwrt-packages```和```src-git kenzo https://github.com/kenzok8/openwrt-packages```添加到feeds.conf.default末尾
+    参考<https://github.com/kenzok8/openwrt-packages>设置，输入
+
+    ```shell
+    sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
+    sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
+    git pull
+    ```
 
 4. 输入
 
