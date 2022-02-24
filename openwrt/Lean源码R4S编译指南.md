@@ -56,6 +56,11 @@
 
 1. 勾选(y)luci-theme-argon
 
+### Network -> WirelessAPD
+
+1. 勾选(y)hostapd
+2. 勾选(y)wpa-supplicant
+
 ### Utilities -> Disc
 
 1. 勾选(y)fdisk
