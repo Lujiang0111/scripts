@@ -42,7 +42,7 @@
 
 ### LuCI -> Themes
 
-1. 勾选(y)luci-theme-argon
+1. 勾选(y)luci-theme-argonne
 
 ### Utilities -> Disc
 
