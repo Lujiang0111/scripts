@@ -54,12 +54,11 @@
 
 ### LuCI -> Themes
 
-1. 勾选(y)luci-theme-argon
+1. 勾选(y)luci-theme-argonne
 
 ### Network -> WirelessAPD
 
 1. 勾选(y)hostapd
-2. 勾选(y)wpa-supplicant
 
 ### Utilities -> Disc
 
