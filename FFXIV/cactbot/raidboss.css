@@ -241,7 +241,7 @@ body {
 }
 
 .timer-bar {
-    height: 18px;
+    height: 36px;
     margin-bottom: 2;
     width: calc(100% - 2px)
 }
