@@ -10,7 +10,7 @@
 
     参考<https://github.com/kenzok8/openwrt-packages>设置，输入
 
-    ```shell
+    ```bash
     sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
     sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
     git pull
@@ -18,7 +18,7 @@
 
 4. 输入
 
-    ```shell
+    ```bash
     ./scripts/feeds update -a
     ./scripts/feeds install -a
     make menuconfig
