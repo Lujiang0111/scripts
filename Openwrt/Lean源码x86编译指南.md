@@ -8,11 +8,13 @@
 
 3. 添加额外源
 
-    参考<https://github.com/kenzok8/openwrt-packages>设置，输入
+    + <https://github.com/kenzok8/openwrt-packages>
+    + <https://github.com/fw876/helloworld>
 
     ```bash
-    sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
-    sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
+    #sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
+    #sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
+    sed -i '$a src-git helloworld https://github.com/fw876/helloworld.git' feeds.conf.default
     git pull
     ```
 
@@ -37,12 +39,12 @@
 
 ### LuCI -> Applications
 
-1. 勾选(y)luci-app-passwall
+1. 勾选(y)luci-app-passwall *(如果添加了kenzok8源）*
 2. 勾选(y)luci-app-transmission
 
 ### LuCI -> Themes
 
-1. 勾选(y)luci-theme-argonne
+1. 勾选(y)luci-theme-argon
 
 ### Utilities -> Disc
 
