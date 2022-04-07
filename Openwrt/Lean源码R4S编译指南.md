@@ -47,12 +47,12 @@
 
 ### Kernel modules -> Wireless Drivers
 
-1. 勾选(y)kmod-rtl8821cu
+1. 勾选(y)kmod-mt76x2u *(NETGEAR A6210)*
+2. 勾选(y)kmod-rtl8821cu *(COMFAST CF-811AC)*
 
 ### LuCI -> Applications
 
 1. 勾选(y)luci-app-passwall *(如果添加了kenzok8源）*
-2. 勾选(y)luci-app-transmission
 
 ### LuCI -> Themes
 
@@ -61,11 +61,7 @@
 ### Network -> WirelessAPD
 
 1. 勾选(y)hostapd
-
-### Utilities -> Disc
-
-1. 勾选(y)fdisk
-2. 勾选(y)parted
+2. 勾选(y)wpa-supplicant
 
 ### Utilities -> Editors
 
@@ -76,6 +72,11 @@
 1. ```make -j8 download V=s``` 下载dl库（国内请尽量全局科学上网）
 2. 若第一次执行有超时导致fail的情况，再次执行```make -j8 download V=s```
 3. ```nohup make -j$(($(nproc) + 1)) V=s &```
+
+## 旁路网关设置说明
+
+1. 网络 -> 接口 -> LAN，设置IPv4地址，子网掩码，网关，广播（.255)，DNS服务器（223.5.5.5），**关闭**DHCP服务。
+2. 网络 -> 防火墙，**取消**启用 SYN-flood 防御，**勾选**LAN区域的IP 动态伪装。
 
 ## tips
 
