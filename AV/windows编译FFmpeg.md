@@ -4,21 +4,21 @@
 
 ## 1. 准备工作
 
-### 1.1 visual studio环境搭建
+### 1.1. visual studio环境搭建
 
 1. 安装vs2015以上的版本：<https://visualstudio.microsoft.com/zh-hans/downloads/>
 
-### 1.2 msys2环境搭建
+### 1.2. msys2环境搭建
 
 1. 下载msys2：<https://www.msys2.org/>
-2. 更新msys2
+2. 更新msys2：
 
     ```bash
     pacman -Syu
     pacman -Su
     ```
 
-3. 下载FFmpeg的依赖库
+3. 下载FFmpeg的依赖库：
 
     ```bash
     # normal msys2 packages
@@ -39,11 +39,11 @@
     msys2_shell.cmd -mingw
     ```
 
-5. 将msys2根目录\usr\bin\link.exe改名为link_msys2.exe，因为会和vs的link.exe重名
+5. 将msys2根目录\usr\bin\link.exe改名为link_msys2.exe，因为会和vs的link.exe重名。
 
 ## 2. msys环境下FFmpeg编译
 
-1. 直接运行msys_vs2017.bat（不要右键用管理员运行，有可能无法正确弹框）
+1. 直接运行msys_vs2017.bat（不要右键用管理员运行，有可能无法正确弹框）。
 
 ### 2.1. FFmpeg 4.0以上版本
 
