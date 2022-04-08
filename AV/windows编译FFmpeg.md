@@ -1,8 +1,14 @@
-# Visual Studio编译FFmpeg
+# windows编译FFmpeg
 
 + 参考文档：<https://www.ffmpeg.org/platform.html#Windows>
 
-## 1.1 msys2环境搭建
+## 1. 准备工作
+
+### 1.1 visual studio环境搭建
+
+1. 安装vs2015以上的版本：<https://visualstudio.microsoft.com/zh-hans/downloads/>
+
+### 1.2 msys2环境搭建
 
 1. 下载msys2：<https://www.msys2.org/>
 2. 更新msys2
@@ -22,7 +28,7 @@
     pacman -S mingw-w64-x86_64-nasm mingw-w64-x86_64-gcc mingw-w64-x86_64-SDL2
     ```
 
-4. 在msys2根目录下创建一个msys_vs2017_x64.bat的文件，具体内容：
+4. 在msys2根目录下创建一个msys_vs2017.bat的文件，具体内容：
 
     ```powershell
     set MSYS2_PATH_TYPE=inherit
@@ -33,9 +39,13 @@
     msys2_shell.cmd -mingw
     ```
 
-5. 将msys2根目录\usr\bin\link.exe改名为link_msys2.exe，因为会和vc的link.exe重名
+5. 将msys2根目录\usr\bin\link.exe改名为link_msys2.exe，因为会和vs的link.exe重名
 
-## 1.2 FFmpeg 4.0以上版本编译
+## 2. msys环境下FFmpeg编译
+
+1. 直接运行msys_vs2017.bat（不要右键用管理员运行，有可能无法正确弹框）
+
+### 2.1. FFmpeg 4.0以上版本
 
 + 下载地址：<https://www.ffmpeg.org/download.html>
 + 编译命令：
@@ -49,7 +59,7 @@
     make clean && make V=1 -j$(nproc) && make install
     ```
 
-## 1.3 FFmpeg 4.0以下版本编译
+### 2.2. FFmpeg 4.0以下版本编译
 
 + 下载地址：<https://www.ffmpeg.org/olddownload.html>
 
@@ -64,7 +74,9 @@
     make clean && make V=1 -j$(nproc) && make install
     ```
 
-### 1.3.1 4.0以下版本常见编译错误
+## 3. 常见问题
+
+### 3.1. FFmpeg4.0以下版本常见编译错误
 
 1. C2001： 常量中有换行符
     + 文件中不能出现中文，一般是config.h的```#define CC_IDENT```行，将中文改为纯英文即可。
