@@ -30,7 +30,7 @@
     call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
     ::vs2022
     ::call "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat"
-    msys2_shell.cmd -mingw64
+    msys2_shell.cmd -mingw
     ```
 
 5. 将msys2根目录\usr\bin\link.exe改名为link_msys2.exe，因为会和vc的link.exe重名
