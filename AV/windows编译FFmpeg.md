@@ -78,11 +78,11 @@
 
 ### 3.1. FFmpeg4.0以下版本常见编译错误
 
-1. C2001： 常量中有换行符
+1. C2001：常量中有换行符
     + 文件中不能出现中文，一般是config.h的```#define CC_IDENT```行，将中文改为纯英文即可。
     + 使用sed修改文件某一行：```sed -i '9c #define CC_IDENT "Microsoft C/C++"' config.h```
 
-2. C4005： “vsnprintf”: 宏重定义
+2. C4005：“vsnprintf”: 宏重定义
     + vs2013及以上版本自带vsnprintf，不需要用avpriv_snprintf了，所以需要将相关地方注释掉。
     + 修改configure文件，将
 
@@ -117,7 +117,7 @@
     esac
     ```
 
-3. LNK2001： avpriv_snprintf
+3. LNK2001：avpriv_snprintf相关错误
     + 将libavutil/internal.h的这几行注释掉即可。
 
     ```c
