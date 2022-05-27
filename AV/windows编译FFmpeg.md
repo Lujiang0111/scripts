@@ -28,7 +28,7 @@
     pacman -S mingw-w64-x86_64-nasm mingw-w64-x86_64-gcc mingw-w64-x86_64-SDL2
     ```
 
-4. 在msys2根目录下创建一个msys_vs2017.bat的文件，具体内容：
+4. 在msys2根目录下创建一个msys_visualstudio.bat的文件，具体内容：
 
     ```powershell
     set MSYS2_PATH_TYPE=inherit
@@ -43,7 +43,7 @@
 
 ## 2. msys环境下FFmpeg编译
 
-1. 直接运行msys_vs2017.bat（不要右键用管理员运行，有可能无法正确弹框）。
+1. 直接运行msys_visualstudio.bat（不要右键用管理员运行，有可能无法正确弹框）。
 
 ### 2.1. FFmpeg 4.0以上版本
 
