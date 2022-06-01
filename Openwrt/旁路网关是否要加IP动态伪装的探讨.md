@@ -4,7 +4,7 @@
 
 + 如果能取消桥接，建议取消桥接，并添加```iptables -t nat -I POSTROUTING -o eth0 -j MASQUERADE```命令。
 
-+ 如果无法取消桥接，建议添加```iptables -t nat -I POSTROUTING -o eth0 -j MASQUERADE```命令。
++ 如果无法取消桥接，建议添加```iptables -t nat -I POSTROUTING -o br-lan -j MASQUERADE```命令。
 
 ## 是否要添加命令
 
