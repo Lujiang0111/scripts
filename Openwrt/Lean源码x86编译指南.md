@@ -39,8 +39,9 @@
 
 ### LuCI -> Applications
 
-1. 勾选(y)luci-app-passwall *(如果添加了kenzok8源）*
-2. 勾选(y)luci-app-transmission
+1. 勾选(y)luci-app-ssr-plus -> Include Trojan
+2. 勾选(y)luci-app-passwall *(如果添加了kenzok8源）*
+3. 勾选(y)luci-app-transmission
 
 ### LuCI -> Themes
 
@@ -49,7 +50,6 @@
 ### Utilities -> Disc
 
 1. 勾选(y)fdisk
-2. 勾选(y)parted
 
 ### Utilities -> Editors
 
