@@ -22,3 +22,8 @@ nohup sh run.sh > /dev/null 2>&1 &
 sync
 echo 3 > /proc/sys/vm/drop_caches
 ```
+
+## 解决ssh连接慢的问题
+
+1. ```vim /etc/ssh/sshd_config```
+2. 修改```#UseDNS yes```为```UseDNS no```
