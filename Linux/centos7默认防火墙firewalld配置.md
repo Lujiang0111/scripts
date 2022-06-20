@@ -57,15 +57,18 @@ firewall-cmd --permanent --add-service=http #http换成想要开放的service
 
         <!-- dash -->
         <port protocol="tcp" port="1901" />
+        <port protocol="tcp" port="1902" />
 
         <!-- rtmp -->
         <port protocol="tcp" port="1935" />
 
         <!-- httpflv -->
         <port protocol="tcp" port="1936" />
+        <port protocol="tcp" port="1937" />
 
         <!-- hls -->
         <port protocol="tcp" port="8888" />
+        <port protocol="tcp" port="8889" />
 
         <!-- udp list -->
         <port protocol="udp" port="18800-30000" />
