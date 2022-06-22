@@ -51,6 +51,9 @@ firewall-cmd --permanent --add-service=http #http换成想要开放的service
         <short>test</short>
         <description>test service file</description>
 
+        <!-- custom -->
+        <port protocol="tcp" port="5656" />
+
         <!-- rtsp -->
         <port protocol="tcp" port="554" />
         <port protocol="udp" port="554" />
@@ -65,6 +68,10 @@ firewall-cmd --permanent --add-service=http #http换成想要开放的service
         <!-- httpflv -->
         <port protocol="tcp" port="1936" />
         <port protocol="tcp" port="1937" />
+
+        <!-- httpts -->
+        <port protocol="tcp" port="8088" />
+        <port protocol="tcp" port="8089" />
 
         <!-- hls -->
         <port protocol="tcp" port="8888" />
