@@ -37,7 +37,7 @@
     在文件最后添加
 
     ```bash
-    # Cannon Point-LP USB 3.1 xHCI Controller                         
+    # Cannon Point-LP USB 3.1 xHCI Controller
     8086  9ded  d3d0     default
     ```
 
