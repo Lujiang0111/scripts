@@ -12,10 +12,9 @@
     + <https://github.com/fw876/helloworld>
 
     ```bash
-    #sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
-    #sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
-    sed -i '$a src-git helloworld https://github.com/fw876/helloworld.git' feeds.conf.default
-    git pull
+    sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
+    sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
+    #sed -i '$a src-git helloworld https://github.com/fw876/helloworld.git' feeds.conf.default
     ```
 
 4. 输入
@@ -40,15 +39,10 @@
 ### LuCI -> Applications
 
 1. 勾选(y)luci-app-passwall *(如果添加了kenzok8源）*
-2. 勾选(y)luci-app-transmission
 
 ### LuCI -> Themes
 
 1. 勾选(y)luci-theme-argon
-
-### Utilities -> Disc
-
-1. 勾选(y)fdisk
 
 ### Utilities -> Editors
 
@@ -57,5 +51,4 @@
 ## 开始编译
 
 1. ```make -j8 download V=s``` 下载dl库（国内请尽量全局科学上网）
-2. 若第一次执行有超时导致fail的情况，再次执行```make -j8 download V=s```
-3. ```nohup make -j$(($(nproc) + 1)) V=s &```
+2. ```nohup make -j$(($(nproc) + 1)) V=s &```

@@ -12,10 +12,9 @@
     + <https://github.com/fw876/helloworld>
 
     ```bash
-    #sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
-    #sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
-    sed -i '$a src-git helloworld https://github.com/fw876/helloworld.git' feeds.conf.default
-    git pull
+    sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
+    sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
+    #sed -i '$a src-git helloworld https://github.com/fw876/helloworld.git' feeds.conf.default
     ```
 
 4. 输入
@@ -30,11 +29,11 @@
 
 ### Target System
 
-勾选(y)Rockchip
+1. 勾选(y)Rockchip
 
 ### Target Profile
 
-勾选(y)FriendlyARM NanoPi R4S
+1. 勾选(y)FriendlyARM NanoPi R4S
 
 ### Target Images
 
@@ -70,8 +69,7 @@
 ## 开始编译
 
 1. ```make -j8 download V=s``` 下载dl库（国内请尽量全局科学上网）
-2. 若第一次执行有超时导致fail的情况，再次执行```make -j8 download V=s```
-3. ```nohup make -j$(($(nproc) + 1)) V=s &```
+2. ```nohup make -j$(($(nproc) + 1)) V=s &```
 
 ## 旁路网关设置说明
 
