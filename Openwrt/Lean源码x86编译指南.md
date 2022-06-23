@@ -73,6 +73,6 @@
 1. 下载dl库，编译固件(国内尽量全局科学上网)
 
     ```bash
-    make -j8 download V=s
-    nohup make -j$(($(nproc) + 1)) V=s &
+    make -j$(nproc) download V=s
+    nohup make -j$($(nproc)) V=s &
     ```
