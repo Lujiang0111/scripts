@@ -92,7 +92,7 @@
 
     ```bash
     make -j$(nproc) download V=s
-    nohup make -j$($(nproc)) V=s &
+    nohup make -j$(nproc) V=s &
     ```
 
 ## 旁路网关设置说明
