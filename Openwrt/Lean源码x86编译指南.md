@@ -28,14 +28,28 @@
 
 4. 添加额外源
 
-    + <https://github.com/kenzok8/openwrt-packages>
-    + <https://github.com/fw876/helloworld>
+    1. 整合版
+        + <https://github.com/kenzok8/openwrt-packages>
 
-    ```bash
-    sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
-    sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
-    #sed -i '$a src-git helloworld https://github.com/fw876/helloworld.git' feeds.conf.default
-    ```
+        ```bash
+        sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
+        sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
+        ```
+
+    2. ssrp独立版
+        + <https://github.com/fw876/helloworld>
+
+        ```bash
+        sed -i '$a src-git helloworld https://github.com/fw876/helloworld.git' feeds.conf.default
+        ```
+
+    3. passwall独立版
+        + <https://github.com/xiaorouji/openwrt-passwall>
+
+        ```bash
+        sed -i 'src-git passwall_packages https://github.com/xiaorouji/openwrt-passwall.git;packages' feeds.conf.default
+        sed -i 'src-git passwall_luci https://github.com/xiaorouji/openwrt-passwall.git;luci' feeds.conf.default
+        ```
 
 5. 更新feeds并选择配置
 
@@ -58,7 +72,7 @@
 
 ### LuCI -> Applications
 
-1. 勾选(y)luci-app-passwall *(如果添加了kenzok8源）*
+1. 勾选相应插件
 
 ### LuCI -> Themes
 
