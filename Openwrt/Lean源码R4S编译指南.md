@@ -78,6 +78,10 @@
 
 1. 取消(n)Enable IPv6 support in packages
 
+### Extra packages
+
+1. 取消(n)automount
+
 ### Kernel modules -> Wireless Drivers
 
 1. 勾选(y)kmod-mt76x2u *(NETGEAR A6210)*
