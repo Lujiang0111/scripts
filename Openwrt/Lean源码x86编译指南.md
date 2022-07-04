@@ -70,6 +70,10 @@
 
 1. 取消(n)Enable IPv6 support in packages
 
+### Extra packages
+
+1. 取消(n)automount
+
 ### LuCI -> Applications
 
 1. 勾选相应插件
