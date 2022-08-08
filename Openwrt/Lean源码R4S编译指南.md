@@ -36,8 +36,10 @@
         + <https://github.com/kenzok8/openwrt-packages>
 
         ```bash
-        sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
-        sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
+        cat <<- EOF >> feeds.conf.default
+        src-git kenzo https://github.com/kenzok8/openwrt-packages
+        src-git small https://github.com/kenzok8/small
+        EOF
         ```
 
     2. ssrp独立版
@@ -51,8 +53,10 @@
         + <https://github.com/xiaorouji/openwrt-passwall>
 
         ```bash
-        sed -i 'src-git passwall_packages https://github.com/xiaorouji/openwrt-passwall.git;packages' feeds.conf.default
-        sed -i 'src-git passwall_luci https://github.com/xiaorouji/openwrt-passwall.git;luci' feeds.conf.default
+        cat <<- EOF >> feeds.conf.default
+        src-git passwall_packages https://github.com/xiaorouji/openwrt-passwall.git;packages
+        src-git passwall_luci https://github.com/xiaorouji/openwrt-passwall.git;luci
+        EOF
         ```
 
 5. 更新feeds并选择配置
