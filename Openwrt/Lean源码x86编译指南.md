@@ -96,22 +96,25 @@
 
 ## 开始编译
 
-1. 修改Lan Ip
+1. 修改默认设置
 
     ```bash
     vim package/base-files/files/bin/config_generate
-
-    # 将默认的192.168.1.1修改为所需要的ip
-    # lan) ipad=${ipaddr:-"192.168.1.1"} ;;
     ```
 
-2. 下载dl库
+    修改默认ip```192.168.1.1```为自己所需要的：
+
+    ```bash
+    lan) ipad=${ipaddr:-"192.168.1.1"} ;;
+    ```
+
+2. 下载dl库（国内尽量全局科学上网）
 
     ```bash
     make -j$(nproc) download V=s
     ```
 
-3. 编译固件(国内尽量全局科学上网)
+3. 编译固件
 
     ```bash
     nohup make -j$(nproc) V=s &
