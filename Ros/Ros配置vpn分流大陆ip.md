@@ -52,22 +52,22 @@
 
 3. 配置分流路由表。
 
-    点击**Routing**->**Tables**，新建一个Routing Table，名称为**rtab-fq**，勾选**FIB**。
+    点击**Routing**->**Tables**，新建一个Routing Table，名称为**fq-rtab**，勾选**FIB**。
 
     命令行方式为
 
     ```ros
-    /routing/table/add name="rtab-fq" fib
+    /routing/table/add name="fq-rtab" fib
     ```
 
 4. 添加IP分流策略路由。
 
-    点击**Ip**->**Routes**，新建一个Route，Dst. Address填写**0.0.0.0/0**，Gateway填写**192.168.8.3**，Routing Table选择**rtab-fq**。
+    点击**Ip**->**Routes**，新建一个Route，Dst. Address填写**0.0.0.0/0**，Gateway填写**192.168.8.3**，Routing Table选择**fq-rtab**。
 
     命令行方式为
 
     ```ros
-    /ip/route/add dst-address=0.0.0.0/0 routing-table="rtab-fq" gateway=192.168.8.3
+    /ip/route/add dst-address=0.0.0.0/0 routing-table="fq-rtab" gateway=192.168.8.3
     ```
 
 5. 给需要翻墙的内网ip添加标记。
@@ -78,10 +78,10 @@
 
     选择Extra标签，Dst. Address Type选择**local**，勾选**local**前面的感叹号（取反）。
 
-    选择Action标签，Action选择**mark routing**，取消勾选Log，New Routing Make选择**rtab-fq**，勾选Passthrough。
+    选择Action标签，Action选择**mark routing**，取消勾选Log，New Routing Make选择**fq-rtab**，勾选Passthrough。
 
     命令行方式为
 
     ```ros
-    /ip/firewall/mangle/add chain=prerouting action=mark-routing new-routing-mark=rtab-fq passthrough=yes dst-address-type=!local src-address-list=FQIP dst-address-list=!CNIP log=no log-prefix=""
+    /ip/firewall/mangle/add chain=prerouting action=mark-routing new-routing-mark=fq-rtab passthrough=yes dst-address-type=!local src-address-list=FQIP dst-address-list=!CNIP log=no log-prefix=""
     ```
