@@ -11,7 +11,7 @@
     | sed -e '/^#/d'\
     | sed -e 's/^/add address=/g' -e 's/$/ list=CNIP/g' \
     | sed -e $'1i\\\n/ip firewall address-list' -e $'1i\\\nremove [/ip firewall address-list find list=CNIP]' -e $'1i\\\nadd address=10.0.0.0/8 list=CNIP comment=private-network' -e $'1i\\\nadd address=172.16.0.0/12 list=CNIP comment=private-network' -e $'1i\\\nadd address=192.168.0.0/16 list=CNIP comment=private-network' \
-    > cnip.rsc
+    > CNIP.rsc
     ```
 
 + 使用[chnroutes2](https://github.com/misakaio/chnroutes2)生成（更小巧，推荐）
@@ -21,19 +21,19 @@
     | sed -e '/^#/d'\
     | sed -e 's/^/add address=/g' -e 's/$/ list=CNIP/g' \
     | sed -e $'1i\\\n/ip firewall address-list' -e $'1i\\\nremove [/ip firewall address-list find list=CNIP]' -e $'1i\\\nadd address=10.0.0.0/8 list=CNIP comment=private-network' -e $'1i\\\nadd address=172.16.0.0/12 list=CNIP comment=private-network' -e $'1i\\\nadd address=192.168.0.0/16 list=CNIP comment=private-network' \
-    > cnip.rsc
+    > CNIP.rsc
     ```
 
 ## 2. ros配置
 
-+ 假设**192.168.8.1**是ros的**ip，192.168.8.3**是旁路由的ip，**192.168.8.4-192.168.8.250**是需要翻墙的内网ip。
++ 假设**192.168.8.1**是ros的**ip，192.168.8.3**是旁路由的ip，**192.168.8.4-192.168.8.240**是需要翻墙的内网ip。
 
 1. 导入大陆IP列表。
 
     winbox中点击**Files**->**Upload...**上传cnip.rsc脚本文件。点击**New Terminal**打开控制台，在terminal中输入
 
     ```ros
-    import cnip.rsc
+    import CNIP.rsc
     ```
 
     导入脚本，此脚本会添加名称为**CNIP**的Address List。
