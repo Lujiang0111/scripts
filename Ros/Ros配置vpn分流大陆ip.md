@@ -62,12 +62,12 @@
 
 4. 添加IP分流策略路由。
 
-    点击**Ip**->**Routes**，新建一个Route，Dst. Address填写**0.0.0.0/0**，Gateway填写**192.168.8.3**，Routing Table选择**fq-rtab**。
+    点击**Ip**->**Routes**，新建一个Route，Dst. Address填写**0.0.0.0/0**，Gateway填写**192.168.8.3**，Routing Table选择**fq-rtab**，Check Gateway选择**ping**。
 
     命令行方式为
 
     ```ros
-    /ip/route/add dst-address=0.0.0.0/0 routing-table="fq-rtab" gateway=192.168.8.3
+    /ip/route/add dst-address=0.0.0.0/0 routing-table="fq-rtab" gateway=192.168.8.3 check-gateway=ping
     ```
 
 5. 给需要翻墙的内网ip添加标记。
