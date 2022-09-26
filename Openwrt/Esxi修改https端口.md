@@ -7,7 +7,7 @@
 3. 输入
 
     ```bash
-    vi /etcv/mware/rhttpproxy/config.xml
+    vi /etc/vmware/rhttpproxy/config.xml
     /443
     ```
 
@@ -15,8 +15,8 @@
 4. 在datastore创建一个自定义防火墙文件，如httpsPortNew.xml。
 
     ```bash
-    mkdir -p /vmfs/volumes/datastore1/scripts
-    vi /vmfs/volumes/datastore1/scripts/httpsPortNew.xml
+    mkdir -p /vmfs/volumes/datastore1/Scripts
+    vi /vmfs/volumes/datastore1/Scripts/httpsPortNew.xml
     ```
 
     httpsPortNew.xml文件内容为
@@ -46,7 +46,8 @@
     在```exit 0```前添加
 
     ```bash
-    \cp /vmfs/volumes/datastore1/scripts/httpsPortNew.xml /etc/vmware/firewall/ -r
+    # modify https port
+    \cp /vmfs/volumes/datastore1/Scripts/httpsPortNew.xml /etc/vmware/firewall/ -r
     esxcli network firewall refresh
     ```
 
