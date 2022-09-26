@@ -14,7 +14,13 @@
 
     ```bash
     sudo apt update -y
+    ```
+
+    ```bash
     sudo apt full-upgrade -y
+    ```
+
+    ```bash
     sudo apt install -y ack antlr3 asciidoc autoconf automake autopoint binutils bison build-essential \
     bzip2 ccache cmake cpio curl device-tree-compiler fastjar flex gawk gettext gcc-multilib g++-multilib \
     git gperf haveged help2man intltool libc6-dev-i386 libelf-dev libglib2.0-dev libgmp3-dev libltdl-dev \
@@ -93,6 +99,18 @@
 ### Utilities -> Editors
 
 1. 勾选(y)vim
+
+## 无线网卡相关配置
+
+### Kernel modules -> Wireless Drivers
+
+1. 勾选(y)kmod-mt76x2u *(NETGEAR A6210)*
+2. 勾选(y)kmod-rtl8821cu *(COMFAST CF-811AC)*
+
+### Network -> WirelessAPD
+
+1. 勾选(y)hostapd
+2. 勾选(y)wpa-supplicant
 
 ## 开始编译
 
