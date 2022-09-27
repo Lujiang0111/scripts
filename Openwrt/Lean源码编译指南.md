@@ -77,8 +77,9 @@
 
 ### Target Images
 
-1. Kernel partition size改为64
-2. Root filesystem partition size改为512
+1. 勾选(y)ext4
+2. Kernel partition size改为64
+3. Root filesystem partition size改为512
 
 ### Global build settings
 
@@ -94,7 +95,7 @@
 
 ### LuCI -> Themes
 
-1. 勾选(y)luci-theme-argon
+1. 勾选(y)luci-theme-argon-mod
 
 ### Utilities -> Editors
 
