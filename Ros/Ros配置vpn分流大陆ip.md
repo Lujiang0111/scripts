@@ -42,13 +42,47 @@
 
     点击**Ip**->**Firewall**，选择**Address Lists**标签，新建名称为**FQIP**的Address List，地址为需要翻墙的内网IP，可用脚本批量添加）。
 
-    命令行方式为
+    + 命令行方式为：
 
-    ```ros
-    /ip/firewall/address-list/add list=FQIP address=192.168.8.4
-    /ip/firewall/address-list/add list=FQIP address=192.168.8.5
-    ......
-    ```
+        ```ros
+        /ip firewall address-list
+        add address=192.168.8.2 list=FQIP
+        add address=192.168.8.4 list=FQIP
+        add address=192.168.8.5 list=FQIP
+        ......
+        ```
+
+    + 脚本方式为：
+
+    1. Linux下编写名称为FQIP.sh的脚本文件
+
+        ```bash
+        #!/bin/bash
+        fqip_file=FQIP.rsc
+
+        cat <<- EOF > ${fqip_file}
+        /ip firewall address-list
+        remove [/ip firewall address-list find list=FQIP]
+        add address=192.168.8.2 list=FQIP
+        EOF
+
+        for ((i=4; i<=240; i++))
+        do
+        echo -e "add address=192.168.8.${i} list=FQIP" >> ${fqip_file}
+        done
+        ```
+
+    2. Linux下运行FQIP.sh，生成FQIP.rsc
+
+        ```bash
+        bash FQIP.sh
+        ```
+
+    3. ros下导入FQIP.rsc
+
+        ```bash
+        import FQIP.rsc
+        ```
 
 3. 配置分流路由表。
 
