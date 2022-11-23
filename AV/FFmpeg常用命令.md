@@ -27,13 +27,13 @@
 4. 制作对应平台的docker镜像
 
     ```bash
-    nohup ./makeimage.sh win64 nonfree &
+    ./makeimage.sh win64 nonfree
     ```
 
 5. 编译ffmpeg
 
     ```bash
-    nohup ./build.sh win64 nonfree &
+    ./build.sh win64 nonfree
     ```
 
 ## 编码H.264 CBR码流（libx264）
