@@ -5,6 +5,7 @@
 > 参考资料：<https://github.com/BtbN/FFmpeg-Builds>
 
 + 编译环境：Ubuntu
++ 目标环境：win64, win32, linux64, linuxarm64
 + 编译需求：bash，docker
 
 1. 安装docker
