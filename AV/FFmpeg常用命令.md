@@ -1,0 +1,63 @@
+# FFmpeg常用命令
+
+## 一键编译ffmpeg
+
+> 参考资料：<https://github.com/BtbN/FFmpeg-Builds>
+
++ 编译环境：Ubuntu
++ 编译需求：bash，docker
+
+1. 安装docker
+
+    > 参考资料：<https://docs.docker.com/engine/install/ubuntu/>
+
+2. 切换为root用户
+
+    ```bash
+    sudo -i
+    ```
+
+3. clone源码
+
+    ```bash
+    git clone https://github.com/BtbN/FFmpeg-Builds.git
+    cd FFmpeg-Builds
+    ```
+
+4. 制作对应平台的docker镜像
+
+    ```bash
+    nohup ./makeimage.sh win64 nonfree &
+    ```
+
+5. 编译ffmpeg
+
+    ```bash
+    nohup ./build.sh win64 nonfree &
+    ```
+
+## 编码H.264 CBR码流（libx264）
+
+> 参考资料：<https://trac.ffmpeg.org/wiki/Encode/H.264>
+
+```bash
+ffmpeg -i input.mp4 -c:v libx264 -x264-params "nal-hrd=cbr" -b:v 1M -minrate 1M -maxrate 1M -bufsize 2M -pix_fmt yuv420p output.ts
+```
+
+## 编码AAC CBR码流（需要libfdk_aac，否则用FFmpeg自带的aac encoder只能编vbr）
+
+> 参考资料：<https://trac.ffmpeg.org/wiki/Encode/AAC>
+
++ fdk_aac需要ffmpeg带nonfree参数才能编译
+
+```bash
+ffmpeg -i input.wav -c:a libfdk_aac -b:a 256k output.m4a
+```
+
+## 编码MP3 CBR码流（libmp3lame）
+
+> 参考资料：<https://trac.ffmpeg.org/wiki/Encode/MP3>
+
+```bash
+ffmpeg -i input.wav -codec:a libmp3lame -b:a 256k output.mp3
+```
