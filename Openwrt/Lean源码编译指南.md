@@ -80,10 +80,6 @@
 1. Kernel partition size改为64
 2. Root filesystem partition size改为512
 
-### Global build settings
-
-1. 取消(n)Enable IPv6 support in packages
-
 ### Extra packages
 
 1. 取消(n)automount
