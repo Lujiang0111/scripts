@@ -26,7 +26,7 @@
 
 ## 2. ros配置
 
-+ 假设**192.168.8.1**是ros的**ip，192.168.8.3**是旁路由的ip，**192.168.8.4-192.168.8.240**是需要翻墙的内网ip。
++ 假设**192.168.8.1**是ros的**ip，192.168.8.3**是旁路由的ip，**192.168.8.4-192.168.8.239**是需要翻墙的内网ip。
 
 1. 导入大陆IP列表。
 
@@ -36,11 +36,11 @@
     import CNIP.rsc
     ```
 
-    导入脚本，此脚本会添加名称为**CNIP**的Address List。
+    导入脚本，此脚本会添加名称为```CNIP```的Address List。
 
 2. 配置需要翻墙的内网地址列表。
 
-    点击**Ip**->**Firewall**，选择**Address Lists**标签，新建名称为**FQIP**的Address List，地址为需要翻墙的内网IP，可用脚本批量添加）。
+    点击**Ip**->**Firewall**，选择**Address Lists**标签，新建名称为```FQIP```的Address List，地址为需要翻墙的内网IP，可用脚本批量添加）。
 
     + 命令行方式为：
 
@@ -66,9 +66,9 @@
         add address=192.168.8.2 list=FQIP
         EOF
 
-        for ((i=4; i<=240; i++))
+        for ((i=4; i<=239; i++))
         do
-        echo -e "add address=192.168.8.${i} list=FQIP" >> ${fqip_file}
+            echo -e "add address=192.168.8.${i} list=FQIP" >> ${fqip_file}
         done
         ```
 
@@ -86,36 +86,36 @@
 
 3. 配置分流路由表。
 
-    点击**Routing**->**Tables**，新建一个Routing Table，名称为**fq-rtab**，勾选**FIB**。
+    点击**Routing**->**Tables**，新建一个Routing Table，名称为```rtab-fq```，勾选```FIB```。
 
     命令行方式为
 
     ```ros
-    /routing/table/add name="fq-rtab" fib
+    /routing/table/add name="rtab-fq" fib
     ```
 
 4. 添加IP分流策略路由。
 
-    点击**Ip**->**Routes**，新建一个Route，Dst. Address填写**0.0.0.0/0**，Gateway填写**192.168.8.3**，Routing Table选择**fq-rtab**，Check Gateway选择**ping**。
+    点击**Ip**->**Routes**，新建一个Route，Dst. Address填写```0.0.0.0/0```，Gateway填写```192.168.8.3```，Routing Table选择```rtab-fq```，Check Gateway选择```ping```。
 
     命令行方式为
 
     ```ros
-    /ip/route/add dst-address=0.0.0.0/0 routing-table="fq-rtab" gateway=192.168.8.3 check-gateway=ping
+    /ip/route/add dst-address=0.0.0.0/0 routing-table="rtab-fq" gateway=192.168.8.3 check-gateway=ping
     ```
 
 5. 给需要翻墙的内网ip添加标记。
 
     点击**Ip**->**Firewall**，选择**Mangle**标签，新建一个Mangle Rule。
 
-    选择Gereral标签，Chain选择**prerouting**，Src. Address List选择**FQIP**，Dst. Address List选择**CNIP**，勾选**CNIP**前面的感叹号（取反）。
+    选择Gereral标签，Chain选择```prerouting```，Src. Address List选择```FQIP```，Dst. Address List选择```CNIP```，勾选```CNIP```前面的感叹号（取反）。
 
-    选择Extra标签，Dst. Address Type选择**local**，勾选**local**前面的感叹号（取反）。
+    选择Extra标签，Dst. Address Type选择```local```，勾选```local```前面的感叹号（取反）。
 
-    选择Action标签，Action选择**mark routing**，取消勾选Log，New Routing Make选择**fq-rtab**，勾选Passthrough。
+    选择Action标签，Action选择```mark routing```，取消勾选Log，New Routing Make选择```rtab-fq```，勾选```Passthrough```。
 
     命令行方式为
 
     ```ros
-    /ip/firewall/mangle/add chain=prerouting action=mark-routing new-routing-mark=fq-rtab passthrough=yes dst-address-type=!local src-address-list=FQIP dst-address-list=!CNIP log=no log-prefix=""
+    /ip/firewall/mangle/add chain=prerouting action=mark-routing new-routing-mark=rtab-fq passthrough=yes dst-address-type=!local src-address-list=FQIP dst-address-list=!CNIP log=no log-prefix=""
     ```
