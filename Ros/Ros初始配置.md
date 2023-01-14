@@ -32,7 +32,7 @@
 
 1. 设置DHCP IP池。
 
-    点击**IP**->**Pool**，选择**Pools**选项卡，创建一个IP Pool。Name填写```pool-main```，Addresses填写想要分配的地址池```192.168.8.20-192.168.8.239```，Next Pool选择```none```。
+    点击**IP**->**Pool**，选择**Pools**选项卡，创建一个IP Pool。Name填写```pool-main```，Addresses填写想要分配的地址池```192.168.8.50-192.168.8.239```，Next Pool选择```none```。
 
 2. 设置DHCP
 
