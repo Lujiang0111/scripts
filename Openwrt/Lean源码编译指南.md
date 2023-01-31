@@ -77,8 +77,7 @@
 
 ### Target Images
 
-1. Kernel partition size改为64
-2. Root filesystem partition size改为512
+1. Root filesystem partition size改为合适大小
 
 ### Extra packages
 
@@ -121,7 +120,7 @@
     lan) ipad=${ipaddr:-"192.168.1.1"} ;;
     ```
 
-2. 下载dl库（国内尽量全局科学上网）
+2. 下载dl库
 
     ```bash
     make -j$(nproc) download V=s
