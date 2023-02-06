@@ -20,9 +20,11 @@ echo -e "done!"
 echo -e "\n\033[33m============= installing =============\033[0m\n"
 
 cd ${src_path}
-chmod +x configure
-./configure --prefix=${install_version_path}
+rm -rf build/${os_version}/
+mkdir -p build/${os_version}/
 
+cd build/${os_version}/
+cmake -DCMAKE_INSTALL_PREFIX=${install_version_path} ../..
 make clean && make V=1 -j$(nproc) && make install
 
 echo -e "done!"
@@ -34,6 +36,16 @@ mkdir -p ${dst_path}lib
 
 \cp -rf ${install_version_path}include/* ${dst_path}include/
 \cp -rf ${install_version_path}lib/* ${dst_path}lib/
+
+cd ${dst_path}lib/
+for src_file in $(find ./ -name "*.so*")
+do
+	dst_file=$(readlink ${src_file})
+
+	if [[ ${dst_file}"x" != "x" ]]; then
+		rm -f ${src_file}
+	fi
+done
 
 echo -e "done!"
 echo -e "\n\033[33m========= install successful =========\033[0m\n"
