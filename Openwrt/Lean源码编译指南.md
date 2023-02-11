@@ -65,6 +65,12 @@
         EOF
         ```
 
+    4. 自用源
+
+        ```bash
+        sed -i '$a src-git lujiang0111 https://github.com/Lujiang0111/openwrt-packages-feed.git' feeds.conf.default
+        ```
+
 5. 更新feeds并选择配置
 
     ```bash
