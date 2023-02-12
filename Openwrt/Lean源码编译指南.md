@@ -68,7 +68,7 @@
     4. 自用源
 
         ```bash
-        sed -i '$a src-git lujiang0111 https://github.com/Lujiang0111/openwrt-packages-feed.git' feeds.conf.default
+        sed -i '$a src-git lujiang0111 https://github.com/Lujiang0111/openwrt-packages.git' feeds.conf.default
         ```
 
 5. 更新feeds并选择配置
@@ -112,27 +112,43 @@
 
 1. 勾选(y)hostapd
 
-## 开始编译
+## 修改具体配置
 
-1. 修改默认设置
+1. 修改LAN口IP设置
 
     ```bash
     vim package/base-files/files/bin/config_generate
     ```
 
-    修改默认ip```192.168.1.1```为自己所需要的：
+    修改LAN口ip```192.168.1.1```为自己所需要的：
 
     ```bash
     lan) ipad=${ipaddr:-"192.168.1.1"} ;;
     ```
 
-2. 下载dl库
+2. 修改ssr-plus的incure选项
+
+    ```bash
+    vim feeds/helloworld/luci-app-ssr-plus/root/usr/share/shadowsocksr/subscribe.lua
+    ```
+
+    修改result.insecure选项为```1```
+
+    ```bash
+    # 原文
+    -- 按照官方的建议 默认验证ssl证书
+    result.insecure = "0"
+    ```
+
+## 开始编译
+
+1. 下载dl库
 
     ```bash
     make -j$(nproc) download V=s
     ```
 
-3. 编译固件
+2. 编译固件
 
     ```bash
     nohup make -j$(nproc) V=s &
