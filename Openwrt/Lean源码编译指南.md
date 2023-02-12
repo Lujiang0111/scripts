@@ -52,7 +52,7 @@
         + <https://github.com/fw876/helloworld>
 
         ```bash
-        sed -i '$a src-git helloworld https://github.com/fw876/helloworld.git' feeds.conf.default
+        sed -i '1 i src-git helloworld https://github.com/fw876/helloworld.git' feeds.conf.default
         ```
 
     3. passwall独立版
@@ -68,7 +68,7 @@
     4. 自用源
 
         ```bash
-        sed -i '$a src-git lujiang0111 https://github.com/Lujiang0111/openwrt-packages.git' feeds.conf.default
+        sed -i '1 i src-git lujiang0111 https://github.com/Lujiang0111/openwrt-packages.git' feeds.conf.default
         ```
 
 5. 更新feeds并选择配置
