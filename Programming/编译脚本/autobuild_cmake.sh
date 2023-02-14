@@ -16,6 +16,40 @@ install_version_path=${install_project_path}${full_version}/
 
 echo -e "\n\033[33m============= preparing =============\033[0m\n"
 
+function DelAFile() {
+	cd "$1" || exit
+	for file in *.a*; do
+		if [[ ${file}"x" != "x" ]]; then
+			rm -rf "${file}"
+		fi
+	done
+	cd - >/dev/null || exit
+}
+
+function DelSoFile() {
+	cd "$1" || exit
+	for file in *.so*; do
+		if [[ ${file}"x" != "x" ]]; then
+			rm -rf "${file}"
+		fi
+	done
+	cd - >/dev/null || exit
+}
+
+function CreateSoLinker() {
+	cd "$1" || exit
+	for file in *.so.*; do
+		if [[ ${file}"x" != "x" ]]; then
+			realname=$(echo "${file}" | rev | cut -d '/' -f 1 | rev)
+			libname=$(echo "${realname}" | cut -d '.' -f 1)
+			if [ ! -f "${libname}".so ]; then
+				ln -sf "${realname}" "${libname}".so
+			fi
+		fi
+	done
+	cd - >/dev/null || exit
+}
+
 mkdir -p ${install_project_path}
 rm -rf ${install_version_path}
 
