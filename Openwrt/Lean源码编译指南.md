@@ -132,12 +132,25 @@
     vim feeds/helloworld/luci-app-ssr-plus/root/usr/share/shadowsocksr/subscribe.lua
     ```
 
-    修改result.insecure选项为```1```
+    修改processData函数Trojan分支的result.insecure选项为```1```
 
-    ```bash
+    ```lua
     # 原文
     -- 按照官方的建议 默认验证ssl证书
     result.insecure = "0"
+    ```
+
+3. 修改ssr-plus的hash判断
+
+    ```bash
+    vim feeds/helloworld/luci-app-ssr-plus/root/usr/share/shadowsocksr/subscribe.lua
+    ```
+
+    删除execute函数哈希表判断，使其不丢弃重复节点
+
+    ```lua
+    # 删除下文
+    -- or cache[groupHash][result.hashkey]
     ```
 
 ## 开始编译
