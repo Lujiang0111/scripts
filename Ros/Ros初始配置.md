@@ -48,43 +48,23 @@
 
 ## 设置自动切换旁路由dns
 
-1. 点击**System**->**Scripts**，选择**Scripts**选项卡，添加```script-startup-setdns```脚本。
+1. 点击**Tools**->**Netwatch**，点击加号，添加一个新的Netwatch Host。
+    + 选择**Host**选项卡。Host填写旁路由IP（这里以```192.168.8.3```为例），Type选择```simple```，Interval填写```00:00:30```，timeout填写```1.00```。
+    + 选择**Up**选项卡，设定IP上线时的操作(On Up)：
 
-    ```ros
-    :global dnscheck false
-    /log info message="dns first set to 223.5.5.5!";
-    /ip dns set servers 223.5.5.5,119.29.29.29;
-    /ip dns cache flush
-    ```
+        ```ros
+        /log info message="192.168.8.3 up!"
+        /ip dns set servers 192.168.8.3
+        /ip dns cache flush
+        ```
 
-2. 点击**System**->**Scripts**，选择**Scripts**选项卡，添加``script-change-dns``脚本。
+    + 选择**Down**选项卡，设定IP下线时的操作(On Down)：
 
-    ```ros
-    :global dnscheck
-    :local curcheck ([:ping 192.168.8.3 count=5 interval=100ms]>3)
-    :if ($curcheck && !$dnscheck) do={
-        :log info message="dns change to 192.168.8.3!";
-        :set dnscheck true;
-        :ip dns set servers 192.168.8.3;
-        :ip dns cache flush}
-    :if (!$curcheck && $dnscheck) do={
-        :log info message="dns change to 223.5.5.5!";
-        :set dnscheck false;
-        :ip dns set servers 223.5.5.5,119.29.29.29;
-        :ip dns cache flush}
-    ```
-
-3. 点击**System**->**Scheduler**，创建一个Schedule，Name填写```schedule-startup-setdns```，Start Time选择``startup``，Interval填写```00:00:00```（不循环），On Event填写：
-
-    ```ros
-    :execute script="script-startup-setdns"
-    ```
-
-4. 点击**System**->**Scheduler**，创建一个Schedule，Name填写```schedule-change-dns```，Start Time选择``startup``，Interval填写```00:01:00```，On Event填写：
-
-    ```ros
-    :execute script="script-change-dns"
-    ```
+        ```ros
+        /log info message="192.168.8.3 down!"
+        /ip dns set servers 223.5.5.5,119.29.29.29
+        /ip dns cache flush
+        ```
 
 ## 设置UPnP
 
