@@ -71,12 +71,11 @@
         sed -i '1 i src-git lujiang0111 https://github.com/Lujiang0111/openwrt-packages.git' feeds.conf.default
         ```
 
-5. 更新feeds并选择配置
+5. 更新feeds
 
     ```bash
     ./scripts/feeds update -a
     ./scripts/feeds install -a
-    make menuconfig
     ```
 
 ## 添加自定义包
@@ -84,6 +83,10 @@
 + [mosdns](https://github.com/sbwml/luci-app-mosdns)
 
 ## 编译选项
+
+```bash
+make menuconfig
+```
 
 ### Target Images
 
