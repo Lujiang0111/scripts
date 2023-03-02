@@ -61,7 +61,7 @@
         ```ros
         /log info message="192.168.8.3 up!"
         /ip/firewall/mangle enable numbers=0
-        /ip dns set servers 192.168.8.3,fd08::3
+        /ip dns set servers 192.168.8.3
         /ip dns cache flush
         ```
 
