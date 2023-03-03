@@ -89,8 +89,6 @@
 
     git clone https://github.com/sbwml/luci-app-mosdns package/mosdns
     git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
-    
-    ./scripts/feeds install -a
     ```
 
 + [smartdns](https://github.com/pymumu/luci-app-smartdns)
@@ -115,6 +113,7 @@
     rmdir $WORKINGDIR/luci-app-smartdns-${LUCIBRANCH}
     rm $WORKINGDIR/${LUCIBRANCH}.zip
 
+    ./scripts/feeds update -a
     ./scripts/feeds install -a
     ```
 
