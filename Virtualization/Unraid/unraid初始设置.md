@@ -67,7 +67,7 @@
 
 2. 搜索```chinese```安装中文语言包，点击**更多操作**->**切换到此语言**应用中文语言包。
 
-3. 安装常用插件，如：```Dynamix File Manager```，```aria2-pro```等。
+3. 安装常用插件，如：```Dynamix File Manager```，```aria2-pro```，```Unassigned Devices```，```Unassigned Devices Preclear```等。
 
 ### 开始奇偶校验
 
