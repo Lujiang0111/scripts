@@ -133,7 +133,7 @@ make menuconfig
 
 ### LuCI -> Applications
 
-1. 可**取消**勾选(n)```luci-app-accesscontrol```，```luci-app-adbyby-plus```，```luci-app-ddns```，```luci-app-wol```，```luci-app-unblockmusic```，```luci-app-xlnetacc```。
+1. 可**取消**勾选(n)```luci-app-accesscontrol```，```luci-app-adbyby-plus```，```luci-app-ddns```，```luci-app-unblockmusic```，```luci-app-wol```，```luci-app-xlnetacc```。
 2. 勾选相应插件
 
 ### LuCI -> Themes
