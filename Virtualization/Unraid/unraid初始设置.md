@@ -35,15 +35,17 @@
 
 ### 激活Unraid
 
-1. 选择**TOOLS**选项卡，点击**Registration**，购买或回复Unraid Key
+1. 选择**TOOLS**选项卡，点击**Registration**，购买或恢复Unraid Key。
 
-### 设置直通网卡
+### 设置IPV6与直通网卡
 
 1. 选择**SETTINGS**选项卡，点击**Network Settings**，在**Interface Rules**子选项卡下，将需要要直通的网卡设置为靠后的eth序号，重启系统。
 
 2. 选择**SETTINGS**选项卡，点击**Network Settings**，将需要直通的网卡从Bonding members of bond0列表中移除。
 
 3. 选择**TOOLS**选项卡，点击**System Devices**，勾选需要直通的网卡，点击```BIND SELECTED TO VFIO AT BOOT```，重启系统。
+
+4. 选择**SETTINGS**选项卡，点击**Network Settings**，修改网络协议为```IPv4+IPv6```，IPv6地址分配选择```自动```。点击应用，观察页面下方路由表是否已经获取到IPv6地址，重启系统。
 
 ### 建立子账户
 
@@ -59,7 +61,7 @@
 
 4. 点击奇偶校验的```STOP```停止奇偶校验。
 
-5. 勾选Format右边的```Yes, I want to do this```选矿，点击```FORMAT```格式化磁盘，等待格式化完成。
+5. 勾选Format右边的```Yes, I want to do this```选框，点击```FORMAT```格式化磁盘，等待格式化完成。
 
 ### 安装插件及中文化
 
@@ -68,6 +70,11 @@
 2. 搜索```chinese```安装中文语言包，点击**更多操作**->**切换到此语言**应用中文语言包。
 
 3. 安装常用插件，如：```Dynamix File Manager```，```aria2-pro```，```Unassigned Devices```等。
+
+### 其他设置
+
+1. 选择**设置**选项卡，点击**管理权限**，修改起始页。
+2. 选择**设置**选项卡，点击**计划程序**，添加计划程序。
 
 ### 开始奇偶校验
 
