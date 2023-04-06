@@ -6,6 +6,8 @@ mkdir trunk\develop\build
 mkdir trunk\develop\build\linux
 mkdir trunk\develop\build\linux\centos7.1
 mkdir trunk\develop\build\linux\centos7.1\x64
+mkdir trunk\develop\build\linux\ubuntu22.04
+mkdir trunk\develop\build\linux\ubuntu22.04\x64
 mkdir trunk\develop\build\windows
 mkdir trunk\develop\build\windows\vs2017
 mkdir trunk\develop\include
@@ -17,6 +19,8 @@ mkdir trunk\develop\test\build
 mkdir trunk\develop\test\build\linux
 mkdir trunk\develop\test\build\linux\centos7.1
 mkdir trunk\develop\test\build\linux\centos7.1\x64
+mkdir trunk\develop\test\build\linux\ubuntu22.04
+mkdir trunk\develop\test\build\linux\ubuntu22.04\x64
 mkdir trunk\develop\test\build\windows
 mkdir trunk\develop\test\build\windows\vs2017
 mkdir trunk\develop\test\include

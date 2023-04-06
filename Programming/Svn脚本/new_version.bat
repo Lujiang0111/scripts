@@ -6,6 +6,12 @@ mkdir linux\centos7.1\x64\lib
 mkdir linux\centos7.1\x64_release
 mkdir linux\centos7.1\x64_release\include
 mkdir linux\centos7.1\x64_release\lib
+mkdir linux\ubuntu22.04\x64
+mkdir linux\ubuntu22.04\x64\include
+mkdir linux\ubuntu22.04\x64\lib
+mkdir linux\ubuntu22.04\x64_release
+mkdir linux\ubuntu22.04\x64_release\include
+mkdir linux\ubuntu22.04\x64_release\lib
 mkdir windows
 mkdir windows\vs2017
 mkdir windows\vs2017\x64
