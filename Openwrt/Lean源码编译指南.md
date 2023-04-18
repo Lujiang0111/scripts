@@ -131,6 +131,7 @@ make menuconfig
 ### Extra packages
 
 1. 取消(n)```automount```
+2. 勾选(y)```ipv6helper```
 
 ### Base system
 
