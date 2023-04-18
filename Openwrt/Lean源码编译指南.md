@@ -130,7 +130,11 @@ make menuconfig
 
 ### Extra packages
 
-1. 取消(n)automount
+1. 取消(n)```automount```
+
+### Base system
+
+1. 取消(n)```block-mount```
 
 ### LuCI -> Applications
 
@@ -139,22 +143,22 @@ make menuconfig
 
 ### LuCI -> Themes
 
-1. 勾选(y)luci-theme-argon-mod
+1. 勾选(y)```luci-theme-argon-mod```
 
 ### Utilities -> Editors
 
-1. 勾选(y)vim
+1. 勾选(y)```vim```
 
 ## 无线网卡相关配置
 
 ### Kernel modules -> Wireless Drivers
 
-1. 勾选(y)kmod-mt76x2u *(NETGEAR A6210)*
-2. 勾选(y)kmod-rtl8821cu *(COMFAST CF-811AC)*
+1. 勾选(y)```kmod-mt76x2u``` *(NETGEAR A6210)*
+2. 勾选(y)```kmod-rtl8821cu``` *(COMFAST CF-811AC)*
 
 ### Network -> WirelessAPD
 
-1. 勾选(y)hostapd
+1. 勾选(y)```hostapd```
 
 ## 修改具体配置
 
