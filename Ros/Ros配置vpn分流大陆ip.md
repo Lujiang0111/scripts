@@ -26,7 +26,7 @@
 
 ## 2. ros配置
 
-+ 假设**192.168.8.1**是ros的**ip，192.168.8.3**是旁路由的ip，**192.168.8.4-192.168.8.239**是需要翻墙的内网ip。
++ 假设**192.168.8.1**是ros的**ip，192.168.8.5**是旁路由的ip，其余IP是需要翻墙的内网ip。
 
 1. 导入大陆IP列表。
 
@@ -47,8 +47,9 @@
         ```ros
         /ip firewall address-list
         add address=192.168.8.2 list=FQIP
+        add address=192.168.8.3 list=FQIP
         add address=192.168.8.4 list=FQIP
-        add address=192.168.8.5 list=FQIP
+        add address=192.168.8.6 list=FQIP
         ......
         ```
 
@@ -64,9 +65,11 @@
         /ip firewall address-list
         remove [/ip firewall address-list find list=FQIP]
         add address=192.168.8.2 list=FQIP
+        add address=192.168.8.3 list=FQIP
+        add address=192.168.8.4 list=FQIP
         EOF
 
-        for ((i=4; i<=239; i++))
+        for ((i=6; i<=239; i++))
         do
             echo -e "add address=192.168.8.${i} list=FQIP" >> ${fqip_file}
         done
@@ -96,12 +99,12 @@
 
 4. 添加IP分流策略路由。
 
-    点击**Ip**->**Routes**，新建一个Route，Dst. Address填写```0.0.0.0/0```，Gateway填写```192.168.8.3```，Routing Table选择```rtab-fq```，Check Gateway选择```arp```。
+    点击**Ip**->**Routes**，新建一个Route，Dst. Address填写```0.0.0.0/0```，Gateway填写```192.168.8.5```，Routing Table选择```rtab-fq```，Check Gateway选择```arp```。
 
     命令行方式为
 
     ```ros
-    /ip/route/add dst-address=0.0.0.0/0 routing-table="rtab-fq" gateway=192.168.8.3 check-gateway=arp
+    /ip/route/add dst-address=0.0.0.0/0 routing-table="rtab-fq" gateway=192.168.8.5 check-gateway=arp
     ```
 
 5. 给需要翻墙的内网ip添加标记。
