@@ -9,7 +9,7 @@
         | Ali_v4 | 223.5.5.5 | 53 | udp | default | |
         | Tencent_v4 | 119.29.29.29 | 53 | udp | default | |
         | Ali_v6 | 2400:3200::1 | 53 | udp | default | |
-        | Tencent_v6 | 2402:4e00:: | 53 | udp | default | |
+        | Ali_v6_2 | 2400:3200:baba::1 | 53 | udp | default | |
         | Cloudflare | 1.1.1.1 | 853 | tls | overseas | ✔ |
         | Google | 8.8.4.4 | 853 | tls | overseas | ✔ |
 
