@@ -5,8 +5,8 @@
 1. 规划好网口与地址分配
     + 网口分配：2号网口为```wan口```，其余为```LAN口```。
     + 地址分配：
-        + IPv4：ros地址```192.168.8.1```, 自建dns地址```192.168.8.3```，DHCP地址池```192.168.8.50-192.168.8.239```。
-        + IPv6：ros地址```fd08::1```，自建dns地址```fd08::3```，内网地址池```fd08::/64```
+        + IPv4：ros地址```192.168.8.1```, 自建dns地址```192.168.8.5```，DHCP地址池```192.168.8.100-192.168.8.239```。
+        + IPv6：ros地址```fd08::1```，自建dns地址```fd08::5```，内网地址池```fd08::/64```
 
 2. 确定WAN口与LAN口。
 
@@ -38,7 +38,7 @@
 
 1. 设置DHCP IP池。
 
-    点击**IP**->**Pool**，选择**Pools**选项卡，创建一个IP Pool。Name填写```pool-ipv4```，Addresses填写想要分配的地址池```192.168.8.50-192.168.8.239```，Next Pool选择```none```。
+    点击**IP**->**Pool**，选择**Pools**选项卡，创建一个IP Pool。Name填写```pool-ipv4```，Addresses填写想要分配的地址池```192.168.8.100-192.168.8.239```，Next Pool选择```none```。
 
 2. 设置DHCP
 
@@ -50,27 +50,29 @@
 
 1. 设置DNS缓存
 
-    点击**IP**->**DNS**，Server填写```223.5.5.5```,```119.29.29.29```,```2400:3200::1```和```2402:4e00::```，勾选```Allow Remote Requests```。
+    点击**IP**->**DNS**，Server填写```223.5.5.5```,```119.29.29.29```,```2400:3200::1```和```2400:3200:baba::1```，勾选```Allow Remote Requests```。
 
 2. 设置自动切换为旁路由dns
 
     点击**Tools**->**Netwatch**，点击+号，添加一个新的Netwatch Host。
-    + 选择**Host**选项卡。Host填写```192.168.8.3```，Type选择```simple```。
+    + 选择**Host**选项卡。Host填写```192.168.8.5```，Type选择```simple```。
     + 选择**Up**选项卡，设定IP上线时的操作(On Up)：
 
         ```ros
-        /log info message="192.168.8.3 up!"
-        /ip/firewall/mangle enable numbers=0
-        /ip dns set servers 192.168.8.3
+        /log info message="192.168.8.5 up!"
+        /ip/firewall/mangle/enable numbers=0
+        /ip/route/enable numbers=0
+        /ip dns set servers 192.168.8.5,fd08::5
         /ip dns cache flush
         ```
 
     + 选择**Down**选项卡，设定IP下线时的操作(On Down)：
 
         ```ros
-        /log info message="192.168.8.3 down!"
-        /ip/firewall/mangle disable numbers=0
-        /ip dns set servers 223.5.5.5,119.29.29.29,2400:3200::1,2402:4e00::
+        /log info message="192.168.8.5 down!"
+        /ip/route/disable numbers=0
+        /ip/firewall/mangle/disable numbers=0
+        /ip dns set servers 223.5.5.5,119.29.29.29,2400:3200::1,2400:3200:baba::1
         /ip dns cache flush
         ```
 
@@ -80,7 +82,7 @@
 
 2. 点击**IPv6**->**DHCP Client**，点击+号，添加一个DHCPv6 Client，选择**DHCP**选项卡，Interface选择已创建的PPPOE Client，Request勾选```prefix```，Pool name填写```pool-ipv6```，Pool Prefix Length填```60```（有些地方可能要填写56），**取消**勾选```Use Peer DNS```，**取消**勾选```Add Default Route```，然后点右边的**Apply**，如果Prefix正确的话会显示状态栏**Status:Bound**，如果不正确就换个值再尝试。
 
-3. 给网桥接口分配公网IPv6地址：点击**IPv6**->**Address**,点击+号，添加一个Ipv6 Address，Address填写```::1/64```，From Pool选择```pool-ipv6```，Interface选择```bridge-lan```，勾选```Advertise```。
+3. 给网桥接口分配公网IPv6地址：点击**IPv6**->**Address**,点击+号，添加一个Ipv6 Address，Address填写```::/64``，From Pool选择```pool-ipv6```，Interface选择```bridge-lan```，勾选```EUI64```、```Advertise```。
 
 4. 给网桥接口分配私有IPv6地址：点击**IPv6**->**Address**,点击+号，添加一个Ipv6 Address，Address填写```fd08::1/64```，Interface选择```bridge-lan```，勾选```Advertise```。
 
