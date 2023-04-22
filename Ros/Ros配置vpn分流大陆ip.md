@@ -30,7 +30,7 @@
 
 1. 导入大陆IP列表。
 
-    winbox中点击**Files**->**Upload...**上传cnip.rsc脚本文件。点击**New Terminal**打开控制台，在terminal中输入
+    winbox中点击**Files**->**Upload**上传cnip.rsc脚本文件。点击**New Terminal**打开控制台，在terminal中输入
 
     ```ros
     import CNIP.rsc
