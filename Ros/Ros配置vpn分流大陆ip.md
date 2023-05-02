@@ -64,10 +64,12 @@
         cat <<- EOF > ${fqip_file}
         /ip firewall address-list
         remove [/ip firewall address-list find list=FQIP]
-        add address=192.168.8.2 list=FQIP
-        add address=192.168.8.3 list=FQIP
-        add address=192.168.8.4 list=FQIP
         EOF
+        
+        for ((i=2; i<=4; i++))
+        do
+            echo -e "add address=192.168.8.${i} list=FQIP" >> ${fqip_file}
+        done
 
         for ((i=6; i<=239; i++))
         do
