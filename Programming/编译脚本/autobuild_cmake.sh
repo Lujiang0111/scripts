@@ -7,8 +7,9 @@ project=example_lib
 version=1.0.0
 full_version=v${version}-release
 os_version=centos7.1
+os_arch=x64
 src_path=${shell_path}../../../../src/
-dst_path=${shell_path}../../../../../../../../Versions/Baselib/${project}/v${version}/linux/${os_version}/x64/
+dst_path=${shell_path}../../../../../../../../Versions/Baselib/${project}/v${version}/linux/${os_version}/${os_arch}/
 
 install_root_path=/home/install/
 install_project_path=${install_root_path}${project}/
