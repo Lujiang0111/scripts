@@ -62,7 +62,7 @@
         /log info message="192.168.8.5 up!"
         /ip/firewall/mangle/enable numbers=0
         /ip/route/enable numbers=0
-        /ip dns set servers 192.168.8.5,fd08::5
+        /ip dns set servers 192.168.8.5
         /ip dns cache flush
         ```
 
@@ -72,7 +72,7 @@
         /log info message="192.168.8.5 down!"
         /ip/route/disable numbers=0
         /ip/firewall/mangle/disable numbers=0
-        /ip dns set servers 223.5.5.5,119.29.29.29,2400:3200::1,2400:3200:baba::1
+        /ip dns set servers 223.5.5.5,119.29.29.29
         /ip dns cache flush
         ```
 
