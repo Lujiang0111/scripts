@@ -49,14 +49,16 @@
         EOF
         ```
 
-    2. ssrp独立版
+    2. ssrp
         + <https://github.com/fw876/helloworld>
 
         ```bash
-        sed -i '1 i src-git helloworld https://github.com/fw876/helloworld.git' feeds.conf.default
+        cat <<- EOF >> feeds.conf.default
+        src-git helloworld https://github.com/fw876/helloworld.git
+        EOF
         ```
 
-    3. passwall独立版
+    3. passwall
         + <https://github.com/xiaorouji/openwrt-passwall>
 
         ```bash
@@ -66,7 +68,16 @@
         EOF
         ```
 
-    4. 自用源
+    4. openclash
+        + <https://github.com/vernesong/OpenClash>
+
+        ```bash
+        cat <<- EOF >> feeds.conf.default
+        src-git openclash https://github.com/vernesong/OpenClash.git
+        EOF
+        ```
+
+    5. 自用源
 
         ```bash
         sed -i '1 i src-git lujiang0111 https://github.com/Lujiang0111/openwrt-packages.git' feeds.conf.default
