@@ -109,7 +109,7 @@
     <ExportedTrigger Enabled="true" Name="AoE Gluttony's Augur"
         Id="5df3ca51-4aa5-4ddd-8128-a106ebb445b5" RegularExpression="^.{15}\S+ 14:4.{7}:[^:]*:814C:">
         <Actions>
-        <Action OrderNumber="1" UseTTSTextExpression="AoE" ActionType="UseTTS">
+        <Action OrderNumber="1" UseTTSTextExpression="AoE" ActionType="UseTTS" Asynchronous="False">
             <Condition Enabled="false" Grouping="Or" />
         </Action>
         </Actions>
@@ -144,7 +144,7 @@
             <Triggers>
             <Trigger Enabled="true" Name="0. 开始" Id="bff60fc0-afe1-4e4a-becf-977f56629a58" RegularExpression="^.{15}\S+ 14:4.{7}:[^:]*:817C:">
                 <Actions>
-                <Action OrderNumber="1" VariableOp="SetString" VariableName="p9s_phase_mark" VariableExpression="817C" ActionType="Variable">
+                <Action OrderNumber="1" VariableOp="SetString" VariableName="p9s_phase_mark" VariableExpression="817C" ActionType="Variable" Asynchronous="False">
                     <Condition Enabled="false" Grouping="Or" />
                 </Action>
                 </Actions>
