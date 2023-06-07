@@ -6,10 +6,8 @@
     + 服务器组分为**default**和**overseas**两组，修改dns所属分组的方法是点击每个dns右端的**修改**按钮，修改**服务器组**为```default```与```overseas```即可。
         | 名称 | IP | 端口 | 协议类型 | 服务器组 | 从默认服务器组排除 |
         | - | - | - | - | - | - |
-        | Ali_v4 | 223.5.5.5 | 53 | udp | default | |
-        | Tencent_v4 | 119.29.29.29 | 53 | udp | default | |
-        | Ali_v6 | 2400:3200::1 | 53 | udp | default | |
-        | Ali_v6_2 | 2400:3200:baba::1 | 53 | udp | default | |
+        | Ali | 223.5.5.5 | 53 | udp | default | |
+        | Tencent | 119.29.29.29 | 53 | udp | default | |
         | Cloudflare | 1.1.1.1 | 853 | tls | overseas | ✔ |
         | Google | 8.8.4.4 | 853 | tls | overseas | ✔ |
 
