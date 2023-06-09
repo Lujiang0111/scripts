@@ -142,7 +142,6 @@ make menuconfig
 ### Extra packages
 
 1. 取消(n)```automount```
-2. 勾选(y)```ipv6helper```
 
 ### Base system
 
@@ -150,7 +149,7 @@ make menuconfig
 
 ### LuCI -> Applications
 
-1. 可**取消**勾选(n)```luci-app-accesscontrol```，```luci-app-adbyby-plus```，```luci-app-ddns```，```luci-app-unblockmusic```，```luci-app-wol```，```luci-app-xlnetacc```。
+1. 可**取消**勾选(n)```luci-app-accesscontrol```，```luci-app-adbyby-plus```，```luci-app-ddns```，```luci-app-ipsec-vpnd```，```luci-app-turboacc```，```luci-app-unblockmusic```，```luci-app-upnp```，```luci-app-wireguard```，```luci-app-wol```，```luci-app-xlnetacc```，```luci-app-zerotier```。
 2. 勾选相应插件
 
 ### LuCI -> Themes
