@@ -2,7 +2,7 @@
 
 ## cd命令自动补全目录
 
-```bash
+```shell
 cat << EOF >> ~/.bashrc
 
 # Complete cd command
@@ -12,13 +12,13 @@ EOF
 
 ## nohup不打印日志的方法
 
-```bash
+```shell
 nohup sh run.sh > /dev/null 2>&1 &
 ```
 
 ## 清理系统缓存
 
-```bash
+```shell
 sync
 echo 3 > /proc/sys/vm/drop_caches
 ```

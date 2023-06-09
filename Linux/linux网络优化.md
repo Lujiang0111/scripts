@@ -4,7 +4,7 @@
 
 1. 查看当前缓冲区大小：
 
-    ```bash
+    ```shell
     cat /proc/sys/net/core/rmem_max
     cat /proc/sys/net/core/wmem_max
     ```
@@ -12,7 +12,7 @@
 2. 打开配置文件：```sudo vim /etc/sysctl.conf```
 3. 在文件末尾添加：
 
-    ```bash
+    ```shell
     net.core.rmem_max = 33554432
     net.core.wmem_max = 33554432
     ```
@@ -23,7 +23,7 @@
 
 1. 查看当前网卡ring buffer size :
 
-    ```bash
+    ```shell
     :~ # ethtool -g eth1
     Ring parameters for eth1:
     Pre-set maximums:
@@ -44,7 +44,7 @@
 
     上面的设定方法在reboot后就失效了，为了将这种修改恒久化，可以修改配置文件。
 
-    ```bash
+    ```shell
     $ vim /etc/rc.d/rc.local
 
     #!/bin/sh

@@ -13,7 +13,7 @@
 1. 下载msys2：<https://www.msys2.org/>
 2. 更新msys2
 
-    ```bash
+    ```shell
     pacman -Syu
     pacman -Su
     ```
@@ -61,7 +61,7 @@
 
     + 注释掉vs版本判断行
 
-    ```bash
+    ```shell
     # MSVC 2005 supports C99 variadic macros
     if [ "$ngx_msvc_ver" -ge 14 ]; then
         have=NGX_HAVE_C99_VARIADIC_MACROS . auto/have
@@ -70,7 +70,7 @@
 
     改为
 
-    ```bash
+    ```shell
     # MSVC 2005 supports C99 variadic macros
     #if [ "$ngx_msvc_ver" -ge 14 ]; then
         have=NGX_HAVE_C99_VARIADIC_MACROS . auto/have
@@ -81,7 +81,7 @@
 
     + 修改openssl库的搜索路径
 
-    ```bash
+    ```shell
     CORE_INCS="$CORE_INCS $OPENSSL/openssl/include"
     CORE_DEPS="$CORE_DEPS $OPENSSL/openssl/include/openssl/ssl.h"
 
@@ -98,7 +98,7 @@
 
     改为
 
-    ```bash
+    ```shell
     CORE_INCS="$CORE_INCS $OPENSSL/include"
     CORE_DEPS="$CORE_DEPS $OPENSSL/include/openssl/ssl.h"
 
@@ -119,7 +119,7 @@
 
 2. 进入nginx-src目录，运行
 
-    ```bash
+    ```shell
     chmod +x auto/configure
     auto/configure \
     --prefix= \

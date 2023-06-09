@@ -12,13 +12,13 @@
 
 3. 终端输入以下命令关闭显卡调用：
 
-    ```bash
+    ```shell
     esxcli system settings kernel set -s vga -v FALSE
     ```
 
     *关闭后重启不再显示黄底的Esxi控制台界面，如果需要重新启用显卡调用，输入*
 
-    ```bash
+    ```shell
     esxcli system settings kernel set -s vga -v TRUE
     ```
 

@@ -20,7 +20,7 @@
 1. 使用xshell等软件登录Esxi，密码方式选择Keyboard Interactive。
 2. 查询对应类ID是否存在。
 
-    ```bash
+    ```shell
     lspci -v | grep "Class 0c03"
     ```
 
@@ -30,13 +30,13 @@
 
 2. 修改```passthru.map```文件
 
-    ```bash
+    ```shell
     vi /etc/vmware/passthru.map
     ```
 
     在文件最后添加
 
-    ```bash
+    ```shell
     # Cannon Point-LP USB 3.1 xHCI Controller
     8086  9ded  d3d0     default
     ```

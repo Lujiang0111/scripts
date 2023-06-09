@@ -13,14 +13,14 @@
 1. 下载msys2：<https://www.msys2.org/>
 2. 更新msys2：
 
-    ```bash
+    ```shell
     pacman -Syu
     pacman -Su
     ```
 
 3. 下载FFmpeg的依赖库：
 
-    ```bash
+    ```shell
     # normal msys2 packages
     pacman -S make pkgconf diffutils
 
@@ -50,7 +50,7 @@
 + 下载地址：<https://www.ffmpeg.org/download.html>
 + 编译命令：
 
-    ```bash
+    ```shell
     ./configure --prefix=/home/Install/FFmpeg --toolchain=msvc --arch=x86_64 \
     --enable-shared --disable-static --disable-doc \
     --enable-debug --disable-optimizations --disable-asm --disable-stripping \
@@ -65,7 +65,7 @@
 
 + 编译命令：
 
-    ```bash
+    ```shell
     ./configure --prefix=/home/Install/FFmpeg --toolchain=msvc --arch=x86_64 \
     --enable-shared --disable-static --disable-programs --disable-doc \
     --enable-debug --disable-asm --disable-stripping \
@@ -86,7 +86,7 @@
     + vs2013及以上版本自带vsnprintf，不需要用avpriv_snprintf了，所以需要将相关地方注释掉。
     + 修改configure文件，将
 
-    ```bash
+    ```shell
     case $libc_type in
     bionic)
         add_compat strtod.o strtod=avpriv_strtod
@@ -102,7 +102,7 @@
 
     修改为
 
-    ```bash
+    ```shell
     case $libc_type in
     bionic)
         add_compat strtod.o strtod=avpriv_strtod

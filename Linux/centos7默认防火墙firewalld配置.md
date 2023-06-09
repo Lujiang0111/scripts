@@ -13,7 +13,7 @@
 
 我们还没有做任何配置，default zone和active zone都应该是public。
 
-```bash
+```shell
 firewall-cmd --get-default-zone
 firewall-cmd --get-active-zones
 ```
@@ -22,19 +22,19 @@ firewall-cmd --get-active-zones
 
 一个服务对应一系列端口，每个服务对应```/usr/lib/firewalld/services```下面一个xml文件。
 
-```bash
+```shell
 firewall-cmd --list-services
 ```
 
 ## 更新防火墙规则
 
-```bash
+```shell
 firewall-cmd --reload
 ```
 
 ## 启用一个服务
 
-```bash
+```shell
 firewall-cmd --permanent --add-service=http #http换成想要开放的service
 ```
 

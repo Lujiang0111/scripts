@@ -12,7 +12,7 @@
 1. 使用XShell等软件登录ssh。
 2. 创建或修改dnsmasq配置文件
 
-    ```bash
+    ```shell
     vi /jffs/configs/dnsmasq.conf.add
     ```
 
@@ -35,7 +35,7 @@
 
 5. 重启dnsmasq服务
 
-    ```bash
+    ```shell
     service restart_dnsmasq
     ```
 

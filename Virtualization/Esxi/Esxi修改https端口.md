@@ -7,7 +7,7 @@
 2. 使用xshell等工具连接esxi（身份验证使用Keyboard Interactive）。
 3. 输入
 
-    ```bash
+    ```shell
     vi /etc/vmware/rhttpproxy/config.xml
     /443
     ```
@@ -15,7 +15,7 @@
     修改443为自己想要的端口，如4433。
 4. 在datastore创建一个自定义防火墙文件，如httpsPortNew.xml。
 
-    ```bash
+    ```shell
     mkdir -p /vmfs/volumes/datastore1/Scripts
     vi /vmfs/volumes/datastore1/Scripts/httpsPortNew.xml
     ```
@@ -40,13 +40,13 @@
 
 5. 在开机启动脚本local.sh中添加防火墙配置
 
-    ```bash
+    ```shell
     vi /etc/rc.local.d/local.sh
     ```
 
     在```exit 0```前添加
 
-    ```bash
+    ```shell
     # modify https port
     \cp /vmfs/volumes/datastore1/Scripts/httpsPortNew.xml /etc/vmware/firewall/ -r
     esxcli network firewall refresh

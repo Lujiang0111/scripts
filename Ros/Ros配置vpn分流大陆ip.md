@@ -6,7 +6,7 @@
 
 + 使用[geolite2](https://github.com/firehol/blocklist-ipsets/tree/master/geolite2_country)生成
 
-    ```bash
+    ```shell
     curl -s https://raw.githubusercontent.com/firehol/blocklist-ipsets/master/geolite2_country/country_cn.netset \
     | sed -e '/^#/d'\
     | sed -e 's/^/add address=/g' -e 's/$/ list=CNIP/g' \
@@ -16,7 +16,7 @@
 
 + 使用[chnroutes2](https://github.com/misakaio/chnroutes2)生成（更小巧，推荐）
 
-    ```bash
+    ```shell
     curl -s https://raw.githubusercontent.com/misakaio/chnroutes2/master/chnroutes.txt \
     | sed -e '/^#/d'\
     | sed -e 's/^/add address=/g' -e 's/$/ list=CNIP/g' \
@@ -57,7 +57,7 @@
 
     1. Linux下编写名称为FQIP.sh的脚本文件
 
-        ```bash
+        ```shell
         #!/bin/bash
         fqip_file=FQIP.rsc
 
@@ -79,13 +79,13 @@
 
     2. Linux下运行FQIP.sh，生成FQIP.rsc
 
-        ```bash
+        ```shell
         bash FQIP.sh
         ```
 
     3. ros下导入FQIP.rsc
 
-        ```bash
+        ```shell
         import FQIP.rsc
         ```
 

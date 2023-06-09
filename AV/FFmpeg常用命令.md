@@ -14,26 +14,26 @@
 
 2. 切换为root用户
 
-    ```bash
+    ```shell
     sudo -i
     ```
 
 3. clone源码
 
-    ```bash
+    ```shell
     git clone https://github.com/BtbN/FFmpeg-Builds.git
     cd FFmpeg-Builds
     ```
 
 4. 制作对应平台的docker镜像
 
-    ```bash
+    ```shell
     ./makeimage.sh win64 nonfree
     ```
 
 5. 编译ffmpeg
 
-    ```bash
+    ```shell
     ./build.sh win64 nonfree
     ```
 
@@ -41,7 +41,7 @@
 
 > 参考资料：<https://trac.ffmpeg.org/wiki/Encode/H.264>
 
-```bash
+```shell
 ffmpeg -i input.mp4 -c:v libx264 -x264-params "nal-hrd=cbr" -b:v 1M -minrate 1M -maxrate 1M -bufsize 2M -pix_fmt yuv420p output.ts
 ```
 
@@ -51,7 +51,7 @@ ffmpeg -i input.mp4 -c:v libx264 -x264-params "nal-hrd=cbr" -b:v 1M -minrate 1M 
 
 + fdk_aac需要ffmpeg带nonfree参数才能编译
 
-```bash
+```shell
 ffmpeg -i input.wav -c:a libfdk_aac -b:a 256k output.m4a
 ```
 
@@ -59,6 +59,6 @@ ffmpeg -i input.wav -c:a libfdk_aac -b:a 256k output.m4a
 
 > 参考资料：<https://trac.ffmpeg.org/wiki/Encode/MP3>
 
-```bash
+```shell
 ffmpeg -i input.wav -codec:a libmp3lame -b:a 256k output.mp3
 ```

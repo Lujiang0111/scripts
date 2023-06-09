@@ -8,19 +8,19 @@
 
 2. 安装编译依赖
 
-    ```bash
+    ```shell
     sudo clear
     ```
 
-    ```bash
+    ```shell
     sudo apt update -y
     ```
 
-    ```bash
+    ```shell
     sudo apt full-upgrade -y
     ```
 
-    ```bash
+    ```shell
     sudo apt install -y ack antlr3 asciidoc autoconf automake autopoint binutils bison build-essential \
     bzip2 ccache cmake cpio curl device-tree-compiler fastjar flex gawk gettext gcc-multilib g++-multilib \
     git gperf haveged help2man intltool libc6-dev-i386 libelf-dev libglib2.0-dev libgmp3-dev libltdl-dev \
@@ -32,7 +32,7 @@
 
 3. 下载源代码
 
-    ```bash
+    ```shell
     git clone https://github.com/coolsnowwolf/lede
     cd lede
     ```
@@ -42,7 +42,7 @@
     1. 整合版
         + <https://github.com/kenzok8/openwrt-packages>
 
-        ```bash
+        ```shell
         cat <<- EOF >> feeds.conf.default
         src-git kenzo https://github.com/kenzok8/openwrt-packages
         src-git small https://github.com/kenzok8/small
@@ -52,7 +52,7 @@
     2. ssrp
         + <https://github.com/fw876/helloworld>
 
-        ```bash
+        ```shell
         cat <<- EOF >> feeds.conf.default
         src-git helloworld https://github.com/fw876/helloworld.git
         EOF
@@ -61,7 +61,7 @@
     3. passwall
         + <https://github.com/xiaorouji/openwrt-passwall>
 
-        ```bash
+        ```shell
         cat <<- EOF >> feeds.conf.default
         src-git passwall_packages https://github.com/xiaorouji/openwrt-passwall.git;packages
         src-git passwall_luci https://github.com/xiaorouji/openwrt-passwall.git;luci
@@ -71,7 +71,7 @@
     4. openclash
         + <https://github.com/vernesong/OpenClash>
 
-        ```bash
+        ```shell
         cat <<- EOF >> feeds.conf.default
         src-git openclash https://github.com/vernesong/OpenClash.git
         EOF
@@ -79,13 +79,13 @@
 
     5. 自用源
 
-        ```bash
+        ```shell
         sed -i '1 i src-git lujiang0111 https://github.com/Lujiang0111/openwrt-packages.git' feeds.conf.default
         ```
 
 5. 更新feeds
 
-    ```bash
+    ```shell
     ./scripts/feeds update -a
     ./scripts/feeds install -a
     ```
@@ -94,7 +94,7 @@
 
 + [mosdns](https://github.com/sbwml/luci-app-mosdns)
 
-    ```bash
+    ```shell
     # drop mosdns and v2ray-geodata packages that come with the source
     find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
     find ./ | grep Makefile | grep mosdns | xargs rm -f
@@ -105,7 +105,7 @@
 
 + [smartdns](https://github.com/pymumu/luci-app-smartdns)
 
-    ```bash
+    ```shell
     WORKINGDIR="`pwd`/feeds/packages/net/smartdns"
     mkdir $WORKINGDIR -p
     rm $WORKINGDIR/* -fr
@@ -131,7 +131,7 @@
 
 ## 编译选项
 
-```bash
+```shell
 make menuconfig
 ```
 
@@ -176,19 +176,19 @@ make menuconfig
 
 1. 修改LAN口IP设置
 
-    ```bash
+    ```shell
     vim package/base-files/files/bin/config_generate
     ```
 
     修改LAN口ip```192.168.1.1```为自己所需要的：
 
-    ```bash
+    ```shell
     lan) ipad=${ipaddr:-"192.168.1.1"} ;;
     ```
 
 2. 开启ssr-plus的insecure选项
 
-    ```bash
+    ```shell
     vim feeds/helloworld/luci-app-ssr-plus/root/usr/share/shadowsocksr/subscribe.lua
     ```
 
@@ -205,13 +205,13 @@ make menuconfig
 
 1. 下载dl库
 
-    ```bash
+    ```shell
     make -j$(nproc) download V=s
     ```
 
 2. 编译固件
 
-    ```bash
+    ```shell
     nohup make -j$(nproc) V=s &
     ```
 
