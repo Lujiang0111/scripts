@@ -112,6 +112,15 @@
     cd -
     ```
 
++ [luci-app-argon-config](https://github.com/jerrykuku/luci-app-argon-config)
+
+    ```shell
+    cd feeds/luci/applications
+    rm -rf luci-app-argon-config
+    git clone https://github.com/jerrykuku/luci-app-argon-config.git luci-app-argon-config
+    cd -
+    ```
+
 + [smartdns](https://github.com/pymumu/luci-app-smartdns)
 
     ```shell
@@ -146,8 +155,7 @@ make menuconfig
 
 ### Target Images
 
-1. 勾选(y)```ext4```。
-2. Root filesystem partition size改为合适大小
+1. Root filesystem partition size改为合适大小
 
 ### Extra packages
 
