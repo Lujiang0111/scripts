@@ -145,7 +145,8 @@ make menuconfig
 
 ### Target Images
 
-1. Root filesystem partition size改为合适大小
+1. 勾选(y)```ext4```。
+2. Root filesystem partition size改为合适大小
 
 ### Extra packages
 
