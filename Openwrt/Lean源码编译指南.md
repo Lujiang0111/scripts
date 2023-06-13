@@ -164,7 +164,7 @@ make menuconfig
 
 ### LuCI -> Themes
 
-1. 勾选(y)```luci-theme-argon-mod```
+1. 勾选(y)```luci-theme-argon```
 
 ### Utilities -> Editors
 
