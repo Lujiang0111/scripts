@@ -103,6 +103,14 @@
     git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
     ```
 
++ [luci-theme-argon](https://github.com/jerrykuku/luci-theme-argon)
+
+    ```shell
+    cd package/lean
+    rm -rf luci-theme-argon
+    git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git luci-theme-argon
+    ```
+
 + [smartdns](https://github.com/pymumu/luci-app-smartdns)
 
     ```shell
