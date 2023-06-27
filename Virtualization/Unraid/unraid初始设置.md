@@ -6,9 +6,58 @@
 
 2. 将U盘格式化为FAT32格式。
 
-3. 下载 [Unraid USB Creator](https://unraid.net/download)，选择对应版本，设置主机名，选择```Static IP```，设置IP地址、子网掩码、默认网关与首选DNS服务器。
+### 方式一：使用官方工具制作启动U盘
 
-4.点击Write下载镜像并制作Unraid启动U盘（建议全局连接外网）
+1. 下载 [Unraid USB Creator](https://unraid.net/download)，选择对应版本，设置主机名，选择```Static IP```，设置IP地址、子网掩码、默认网关与首选DNS服务器，勾选**Allow UEFI Boot**。
+
+2. 点击Write下载镜像并制作Unraid启动U盘（建议全局连接外网）。
+
+### 方式2：手动制作启动U盘
+
+> 参考资料：<https://github.com/coolsnowwolf/lede>
+
+1. 进入Unraid下载官网<https://unraid.net/download>，下载对应版本的完整包(zip格式)。
+
+2. 将U盘卷标改为```UNRAID```。
+
+3. 将zip包解压到U盘根目录。
+
+4. 进入U盘根目录，重命名```EFI-```文件夹为```EFI```。
+
+5. 进入config文件夹，编辑```.cfg```文件进行相应设置。
+
+    + **ident.cfg**参考设置：
+
+        ```ini
+        # Generated names
+        NAME="Treasure"
+        COMMENT="Media server"
+        WORKGROUP="WORKGROUP"
+        localMaster="yes"
+        timeZone="Asia/Shanghai"
+        USE_NTP="yes"
+        NTP_SERVER1="ntp.ntsc.ac.cn"
+        NTP_SERVER2="cn.ntp.org.cn"
+        NTP_SERVER3="time.pool.aliyun.com"
+        NTP_SERVER4="time1.cloud.tencent.com"
+
+        ```
+
+    + **network.cfg**参考配置：
+
+        ```ini
+        # Generated network settings
+        USE_DHCP="no"
+        IPADDR="192.168.8.2"
+        NETMASK="255.255.255.0"
+        GATEWAY="192.168.8.1"
+        BONDING="yes"
+        BRIDGING="yes"
+        DNS_SERVER1="192.168.8.1"
+
+        ```
+
+6. 返回U盘根目录，右键点击```make_bootable.bat```文件，选择**以管理员身份运行**。
 
 ## NAS准备工作
 
@@ -45,7 +94,7 @@
 
 3. 选择**TOOLS**选项卡，点击**System Devices**，勾选需要直通的网卡，点击```BIND SELECTED TO VFIO AT BOOT```，重启系统。
 
-4. 选择**SETTINGS**选项卡，点击**Network Settings**，修改网络协议为```IPv4+IPv6```，IPv6地址分配选择```自动```。点击应用，观察页面下方路由表是否已经获取到IPv6地址，重启系统。
+4. 选择**SETTINGS**选项卡，点击**Network Settings**，修改网络协议为```IPv4+IPv6```，IPv6地址分配选择```Static```，IPv6 address填写```fd08::2```，IPv6 default gateway填写```fd08::1```，点击应用，观察页面下方路由表是否已经获取到IPv6地址，重启系统。
 
 ### 建立子账户
 
