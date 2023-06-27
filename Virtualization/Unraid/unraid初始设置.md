@@ -6,7 +6,7 @@
 
 2. 将U盘格式化为FAT32格式。
 
-### 方式一：使用官方工具制作启动U盘
+### 方式1：使用官方工具制作启动U盘
 
 1. 下载 [Unraid USB Creator](https://unraid.net/download)，选择对应版本，设置主机名，选择```Static IP```，设置IP地址、子网掩码、默认网关与首选DNS服务器，勾选**Allow UEFI Boot**。
 
@@ -25,22 +25,6 @@
 4. 进入U盘根目录，重命名```EFI-```文件夹为```EFI```。
 
 5. 进入config文件夹，编辑```.cfg```文件进行相应设置。
-
-    + **ident.cfg**参考设置：
-
-        ```ini
-        # Generated names
-        NAME="Treasure"
-        COMMENT="Media server"
-        WORKGROUP="WORKGROUP"
-        localMaster="yes"
-        timeZone="Asia/Shanghai"
-        USE_NTP="yes"
-        NTP_SERVER1="ntp.ntsc.ac.cn"
-        NTP_SERVER2="cn.ntp.org.cn"
-        NTP_SERVER3="time.pool.aliyun.com"
-        NTP_SERVER4="time1.cloud.tencent.com"
-        ```
 
     + **network.cfg**参考配置：
 
