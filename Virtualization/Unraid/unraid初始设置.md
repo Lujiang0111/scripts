@@ -76,7 +76,7 @@
 
 3. 选择**TOOLS**选项卡，点击**System Devices**，勾选需要直通的网卡，点击```BIND SELECTED TO VFIO AT BOOT```，重启系统。
 
-4. 选择**SETTINGS**选项卡，点击**Network Settings**，修改网络协议为```IPv4+IPv6```，IPv6地址分配选择```Static```，IPv6 address填写```fd08::2```，IPv6 default gateway填写```fd08::1```，点击应用，观察页面下方路由表是否已经获取到IPv6地址，重启系统。
+4. 选择**SETTINGS**选项卡，点击**Network Settings**，修改网络协议为```IPv4+IPv6```，IPv6地址分配选择```Static```，IPv6 address填写```fd08::2/64```，IPv6 default gateway填写```fd08::1```，点击应用，观察页面下方路由表是否已经获取到IPv6地址，重启系统。
 
 ### 建立子账户
 
