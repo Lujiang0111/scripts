@@ -14,7 +14,7 @@
 
 ### 方式2：手动制作启动U盘
 
-> 参考资料：<https://github.com/coolsnowwolf/lede>
+> 参考资料：<https://docs.unraid.net/unraid-os/manual/getting-started#manual-install-method>
 
 1. 进入Unraid下载官网<https://unraid.net/download>，下载对应版本的完整包(zip格式)。
 
@@ -40,7 +40,6 @@
         NTP_SERVER2="cn.ntp.org.cn"
         NTP_SERVER3="time.pool.aliyun.com"
         NTP_SERVER4="time1.cloud.tencent.com"
-
         ```
 
     + **network.cfg**参考配置：
@@ -54,7 +53,6 @@
         BONDING="yes"
         BRIDGING="yes"
         DNS_SERVER1="192.168.8.1"
-
         ```
 
 6. 返回U盘根目录，右键点击```make_bootable.bat```文件，选择**以管理员身份运行**。
