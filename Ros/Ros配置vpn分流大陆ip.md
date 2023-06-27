@@ -124,3 +124,27 @@
     ```ros
     /ip/firewall/mangle/add chain=prerouting action=mark-routing new-routing-mark=rtab-fq passthrough=yes dst-address-type=!local src-address-list=FQIP dst-address-list=!CNIP log=no log-prefix=""
     ```
+
+6. 设置Netwatch，根据旁路由启停状况自动切换配置。
+
+    点击**Tools**->**Netwatch**，点击+号，添加一个新的Netwatch Host。
+    + 选择**Host**选项卡。Host填写```192.168.8.5```，Type选择```icmp```。
+    + 选择**Up**选项卡，设定IP上线时的操作(On Up)：
+
+        ```ros
+        /log info message="192.168.8.5 up!"
+        /ip/firewall/mangle/enable numbers=0
+        /ip/route/enable numbers=0
+        /ip dns set servers 192.168.8.5
+        /ip dns cache flush
+        ```
+
+    + 选择**Down**选项卡，设定IP下线时的操作(On Down)：
+
+        ```ros
+        /log info message="192.168.8.5 down!"
+        /ip/route/disable numbers=0
+        /ip/firewall/mangle/disable numbers=0
+        /ip dns set servers 223.5.5.5,119.29.29.29
+        /ip dns cache flush
+        ```

@@ -48,47 +48,25 @@
 
 ## 设置DNS
 
-1. 设置DNS缓存
+1. 设置DNS地址与DNS缓存
 
-    点击**IP**->**DNS**，Server填写```223.5.5.5```,```119.29.29.29```,```2400:3200::1```和```2400:3200:baba::1```，勾选```Allow Remote Requests```。
-
-2. 设置自动切换为旁路由dns
-
-    点击**Tools**->**Netwatch**，点击+号，添加一个新的Netwatch Host。
-    + 选择**Host**选项卡。Host填写```192.168.8.5```，Type选择```simple```。
-    + 选择**Up**选项卡，设定IP上线时的操作(On Up)：
-
-        ```ros
-        /log info message="192.168.8.5 up!"
-        /ip/firewall/mangle/enable numbers=0
-        /ip/route/enable numbers=0
-        /ip dns set servers 192.168.8.5
-        /ip dns cache flush
-        ```
-
-    + 选择**Down**选项卡，设定IP下线时的操作(On Down)：
-
-        ```ros
-        /log info message="192.168.8.5 down!"
-        /ip/route/disable numbers=0
-        /ip/firewall/mangle/disable numbers=0
-        /ip dns set servers 223.5.5.5,119.29.29.29
-        /ip dns cache flush
-        ```
+    点击**IP**->**DNS**，Server填写```223.5.5.5```,```119.29.29.29```，勾选```Allow Remote Requests```。
 
 ## 设置IPv6
 
 1. 点击**Interface**，选择**Interface**选项卡，查看已创建的PPPOE Client，记录下```Actual MTU```列中的实际MTU值，本文以```1492```为例。
 
-2. 点击**IPv6**->**DHCP Client**，点击+号，添加一个DHCPv6 Client，选择**DHCP**选项卡，Interface选择已创建的PPPOE Client，Request勾选```prefix```，Pool name填写```pool-ipv6```，Pool Prefix Length填```60```（有些地方可能要填写56），**取消**勾选```Use Peer DNS```，**取消**勾选```Add Default Route```，然后点右边的**Apply**，如果Prefix正确的话会显示状态栏**Status:Bound**，如果不正确就换个值再尝试。
+2. 点击**IPv6**->**DHCP Client**，点击+号，添加一个DHCPv6 Client，选择**DHCP**选项卡，Interface选择已创建的PPPOE Client，Request勾选```prefix```，Pool name填写```pool-ipv6```，Pool Prefix Length填```60```（电信：56，移动、联通：60），**取消**勾选```Use Peer DNS```，**取消**勾选```Add Default Route```，然后点右边的**Apply**，如果Prefix正确的话会显示状态栏**Status:Bound**，如果不正确就换个值再尝试。
 
 3. 给网桥接口分配公网IPv6地址：点击**IPv6**->**Address**,点击+号，添加一个Ipv6 Address，Address填写```::/64```，From Pool选择```pool-ipv6```，Interface选择```bridge-lan```，勾选```EUI64```、```Advertise```。
 
 4. 给网桥接口分配私有IPv6地址：点击**IPv6**->**Address**,点击+号，添加一个Ipv6 Address，Address填写```fd08::1/64```，Interface选择```bridge-lan```，勾选```Advertise```。
 
-5. 点击**IPv6**->**ND**，选择**Interface**选项卡，选择默认的all规则，点击**Disable**禁用。点击+号，添加新的ND，Interface选择```bridge-lan```，RA Interval填写```60-120```，MTU填写之前查到的实际MTU值```1492```，DNS Servers填写```fd08::1```。
+5. 设置IPv6伪装：点击**IPv6**->**Firewall**，选择**NAT**选项卡，添加一条NAT规则。选择General选项卡，Chain选择```srcnat```；选择Action选项卡，Action选择```masquerade```，**取消**勾选Log。
 
-6. 点击**IPv6**->**ND**，选择**Prefixes**选项卡，点击**Default**，Valid Lifetime设置为```1d 00:00:00```，Preferred Lifetime设置为```00:12:00```。
+6. 点击**IPv6**->**ND**，选择**Interface**选项卡，选择默认的all规则，点击**Disable**禁用。点击+号，添加新的ND，Interface选择```bridge-lan```，RA Interval填写```60-120```，MTU填写之前查到的实际MTU值```1492```，DNS Servers填写```fd08::1```。
+
+7. 点击**IPv6**->**ND**，选择**Prefixes**选项卡，点击**Default**，Valid Lifetime设置为```1d 00:00:00```，Preferred Lifetime设置为```00:12:00```。
 
 ## 设置UPnP
 
