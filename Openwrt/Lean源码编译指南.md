@@ -108,7 +108,7 @@
     ```shell
     cd package/lean
     rm -rf luci-theme-argon
-    git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git luci-theme-argon
+    git clone https://github.com/jerrykuku/luci-theme-argon.git -b 18.06 luci-theme-argon
     cd -
     ```
 
@@ -117,7 +117,7 @@
     ```shell
     cd feeds/luci/applications
     rm -rf luci-app-argon-config
-    git clone https://github.com/jerrykuku/luci-app-argon-config.git luci-app-argon-config
+    git clone https://github.com/jerrykuku/luci-app-argon-config.git -b 18.06 luci-app-argon-config
     cd -
     ```
 
