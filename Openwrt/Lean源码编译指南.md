@@ -147,6 +147,19 @@
     ./scripts/feeds install -a
     ```
 
+## 修改内核版本
+
+```shell
+vim target/linux/x86/Makefile
+```
+
+修改```KERNEL_PATCHVER:```为自己所需要的内核版本：
+
+```makefile
+# 修改为5.4内核
+KERNEL_PATCHVER:=5.4
+```
+
 ## 编译选项
 
 ```shell
