@@ -182,7 +182,7 @@ make menuconfig
 ### LuCI -> Applications
 
 1. 可**取消**勾选(n)```luci-app-accesscontrol```，```luci-app-adbyby-plus```，```luci-app-ddns```，```luci-app-ipsec-vpnd```，```luci-app-turboacc```，```luci-app-unblockmusic```，```luci-app-upnp```，```luci-app-wireguard```，```luci-app-wol```，```luci-app-xlnetacc```，```luci-app-zerotier```。
-2. 勾选相应插件
+2. 编译ssrp时，如果需要IPv6解析，需要取消勾选(n)```ChinaDNS-NG```。
 
 ### LuCI -> Themes
 
