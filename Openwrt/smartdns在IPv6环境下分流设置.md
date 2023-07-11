@@ -54,7 +54,19 @@
         | 跳过cache | ✔ |
         | 停用IPv6地址解析 | ✔ |
 
-## Passwall设置
+## 代理软件设置
+
+### ssrp
+
++ SmartDNS设置页面，勾选```自动设置dnsmasq```。
+
++ ssrp设置页面，按下表所示配置。
+    | 名称 | 设置值 |
+    | - | - |
+    | DNS解析方式 | 使用DNS2TCP查询 |
+    | 访问国外域名DNS服务器 | 127.0.0.1:5339 |
+
+### Passwall
 
 + SmartDNS设置页面，勾选```自动设置dnsmasq```。
 
@@ -67,7 +79,7 @@
     | ChinaDNS-NG | ❌ |
     | 当使用中国列表外时的默认DNS | 远程DNS |
 
-## OpenClash设置
+### OpenClash
 
 + SmartDNS设置页面，**不**勾选```自动设置dnsmasq```。
 
