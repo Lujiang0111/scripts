@@ -78,6 +78,7 @@
         ```
 
     5. 自用源
+        + <https://github.com/Lujiang0111/openwrt-packages>
 
         ```shell
         sed -i '1 i src-git lujiang0111 https://github.com/Lujiang0111/openwrt-packages.git' feeds.conf.default
