@@ -232,6 +232,18 @@ make menuconfig
     result.insecure = "0"
     ```
 
+3. 修改passwall的启动延时
+
+    ```shell
+    vim feeds/passwall_luci/luci-app-passwall/root/usr/share/passwall/0_default_config
+    ```
+
+    将```option start_delay```的值从60修改为```5```
+
+    ```lua
+    option start_delay '5'
+    ```
+
 ## 开始编译
 
 1. 下载dl库
