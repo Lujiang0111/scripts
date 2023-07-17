@@ -148,18 +148,59 @@
     ./scripts/feeds install -a
     ```
 
-## 修改内核版本
+## 修改具体配置
 
-```shell
-vim target/linux/x86/Makefile
-```
+1. 修改内核版本
 
-修改```KERNEL_PATCHVER:```为自己所需要的内核版本：
+    ```shell
+    vim target/linux/x86/Makefile
+    ```
 
-```makefile
-# 修改为5.4内核
-KERNEL_PATCHVER:=5.4
-```
+    修改```KERNEL_PATCHVER:```为自己所需要的内核版本：
+
+    ```makefile
+    # 修改为5.4内核
+    KERNEL_PATCHVER:=5.4
+    ```
+
+2. 修改LAN口IP设置
+
+    ```shell
+    vim package/base-files/files/bin/config_generate
+    ```
+
+    修改LAN口ip```192.168.1.1```为自己所需要的：
+
+    ```shell
+    lan) ipad=${ipaddr:-"192.168.1.1"} ;;
+    ```
+
+3. 开启ssr-plus的insecure选项
+
+    ```shell
+    vim feeds/helloworld/luci-app-ssr-plus/root/usr/share/shadowsocksr/subscribe.lua
+    ```
+
+    修改processData函数Trojan分支的result.insecure选项为```1```
+
+    ```lua
+    -- 将下方result.insecure的值修改为1
+
+    -- 按照官方的建议 默认验证ssl证书
+    result.insecure = "0"
+    ```
+
+4. 修改passwall的启动延时
+
+    ```shell
+    vim feeds/passwall_luci/luci-app-passwall/root/usr/share/passwall/0_default_config
+    ```
+
+    将```option start_delay```的值从60修改为```5```
+
+    ```lua
+    option start_delay '5'
+    ```
 
 ## 编译选项
 
@@ -202,47 +243,6 @@ make menuconfig
 ### Network -> WirelessAPD
 
 1. 勾选(y)```hostapd```
-
-## 修改具体配置
-
-1. 修改LAN口IP设置
-
-    ```shell
-    vim package/base-files/files/bin/config_generate
-    ```
-
-    修改LAN口ip```192.168.1.1```为自己所需要的：
-
-    ```shell
-    lan) ipad=${ipaddr:-"192.168.1.1"} ;;
-    ```
-
-2. 开启ssr-plus的insecure选项
-
-    ```shell
-    vim feeds/helloworld/luci-app-ssr-plus/root/usr/share/shadowsocksr/subscribe.lua
-    ```
-
-    修改processData函数Trojan分支的result.insecure选项为```1```
-
-    ```lua
-    -- 将下方result.insecure的值修改为1
-
-    -- 按照官方的建议 默认验证ssl证书
-    result.insecure = "0"
-    ```
-
-3. 修改passwall的启动延时
-
-    ```shell
-    vim feeds/passwall_luci/luci-app-passwall/root/usr/share/passwall/0_default_config
-    ```
-
-    将```option start_delay```的值从60修改为```5```
-
-    ```lua
-    option start_delay '5'
-    ```
 
 ## 开始编译
 
