@@ -1,14 +1,23 @@
 # Linux tips
 
-## cd命令自动补全目录
+## tab自动补全
 
-```shell
-cat << EOF >> ~/.bashrc
++ 方式1：使用**bash-completion**
 
-# Complete cd command
-complete -d cd
-EOF
-```
+    ```shell
+    yum install -y bash-completion
+    source /usr/share/bash-completion/bash_completion
+    ```
+
++ 方式2：手动补全
+
+    ```shell
+    cat << EOF >> ~/.bashrc
+
+    # Complete cd command
+    complete -d cd
+    EOF
+    ```
 
 ## nohup不打印日志的方法
 
@@ -25,7 +34,12 @@ echo 3 > /proc/sys/vm/drop_caches
 
 ## 解决ssh连接慢的问题
 
-1. ```vim /etc/ssh/sshd_config```
+1. 打开ssh配置文件
+
+    ```shell
+    vim /etc/ssh/sshd_config
+    ```
+
 2. 修改```#UseDNS yes```为```UseDNS no```
 
 ## CentOS7最小化安装后网络设置
