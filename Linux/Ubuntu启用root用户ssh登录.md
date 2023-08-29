@@ -17,5 +17,5 @@ sudo vim /etc/ssh/sshd_config
 ## 重启ssh服务
 
 ```bash
-sudo  systemctl  restart  ssh
+sudo systemctl restart ssh
 ```
