@@ -70,21 +70,22 @@
 
 ## 设置UPnP
 
-1. 点击**IP**->**UPnp**，勾选```Enabled```、```Allow To Disable External Interface```、```Show Dummy Rule```
+1. 点击**IP**->**UPnp**，勾选```Enabled```、```Allow To Disable External Interface```、```Show Dummy Rule```。
 
-    点击Interfaces，创建一个Upnp，Interface选择WAN口(```ether2-wan```)，type选择```external```
+2. 点击Interfaces，创建一个Upnp，Interface选择WAN口(```ether2-wan```)，type选择```external```。
 
-    点击Interfaces，创建一个Upnp，Interface选择```bridge-lan```，type选择```internal```
+3. 点击Interfaces，创建一个Upnp，Interface选择```bridge-lan```，type选择```internal```。
 
 ## 安全设置
 
 1. 关闭不必要的服务
 
-    点击**IP**->**Services**，只留下winbox与www
+    + 点击**IP**->**Services**，只留下winbox与www
+    + 分别点击**winbox**与**www**,Available from项填写```192.168.0.0/16```（只允许内网访问）。
 
 2. 设置管理员密码
 
-    点击**System**->**Users**，设置admin的密码
+    点击**System**->**Users**，设置admin的密码。
 
 3. 升级固件
 
