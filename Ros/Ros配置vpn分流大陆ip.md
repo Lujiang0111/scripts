@@ -101,12 +101,12 @@
 
 4. 添加IP分流策略路由。
 
-    点击**Ip**->**Routes**，新建一个Route，Dst. Address填写```0.0.0.0/0```，Gateway填写```192.168.8.5```，Routing Table选择```rtab-fq```，Check Gateway选择```arp```。
+    点击**Ip**->**Routes**，新建一个Route，Dst. Address填写```0.0.0.0/0```，Gateway填写```192.168.8.5```，Routing Table选择```rtab-fq```。
 
     命令行方式为
 
     ```ros
-    /ip/route/add dst-address=0.0.0.0/0 routing-table="rtab-fq" gateway=192.168.8.5 check-gateway=arp
+    /ip/route/add dst-address=0.0.0.0/0 routing-table="rtab-fq" gateway=192.168.8.5
     ```
 
 5. 给需要翻墙的内网ip添加标记。
@@ -118,6 +118,8 @@
     选择Extra标签，Dst. Address Type选择```local```，勾选```local```前面的感叹号（取反）。
 
     选择Action标签，Action选择```mark routing```，取消勾选Log，New Routing Make选择```rtab-fq```，勾选```Passthrough```。
+
+    查看此Mangle Rule的序号(#)，这里假设为```3```。
 
     命令行方式为
 
@@ -133,7 +135,7 @@
 
         ```ros
         /log info message="192.168.8.5 up!"
-        /ip/firewall/mangle/enable numbers=0
+        /ip/firewall/mangle/enable numbers=3
         /ip/route/enable numbers=0
         /ip dns set servers 192.168.8.5
         /ip dns cache flush
@@ -144,7 +146,9 @@
         ```ros
         /log info message="192.168.8.5 down!"
         /ip/route/disable numbers=0
-        /ip/firewall/mangle/disable numbers=0
+        /ip/firewall/mangle/disable numbers=3
         /ip dns set servers 223.5.5.5,119.29.29.29
         /ip dns cache flush
         ```
+
+        + 其中**mangle**的```numbers```数值为之前记录的Mangle Rule的序号。

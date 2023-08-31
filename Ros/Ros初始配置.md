@@ -10,19 +10,24 @@
 
 2. 确定WAN口与LAN口。
 
-    打开winbox，使用MAC地址方式连接至ros。
+    + 打开winbox，使用MAC地址方式连接至ros。
 
-    点击**Interface**，选择**Interface**选项卡，确定WAN口、2.5G口、SFP口等。修改Name为```ether1-2.5g```、```ether2-wan```等，方便记忆。
+    + 点击**Interface**，选择**Interface**选项卡，确定WAN口、2.5G口、SFP口等。修改Name为```ether1-2.5g```、```ether2-wan```等，方便记忆。
 
 3. 设置LAN网桥。
 
-    点击**Bridge**，选择**Bridge**选项卡，创建一个Interface。Name填写```bridge-lan```。
+    + 点击**Bridge**，选择**Bridge**选项卡，创建一个Interface。Name填写```bridge-lan```。
 
-    选择**Ports**选项卡，创建New Bridge Port，Interface依次选择LAN网口，Bridge选择```bridge-lan```，有多少个LAN口就要创建多少个bridge。
+    + 选择**Ports**选项卡，创建New Bridge Port，Interface依次选择LAN网口，Bridge选择```bridge-lan```，有多少个LAN口就要创建多少个bridge。
 
-4. 设置LAN IP。
+4. 设定Interface List
 
-    点击**IP**->**Addresses**，创建一个Address。Address填写想要分配的LAN IP```192.168.8.1/24```，Interface选择```bridge-lan```，设置完成后winbox就可以使用ip登录了。
+    + 点击**Interface**，选择**Interface List**选项卡，添加一个Interface List，其中**List**选择```WAN```，**Interface**选择```ether2-wan```。
+    + 点击**Interface**，选择**Interface List**选项卡，添加一个Interface List，其中**List**选择```LAN```，**Interface**选择```bridge-lan```。
+
+5. 设置LAN IP。
+
+    + 点击**IP**->**Addresses**，创建一个Address。Address填写想要分配的LAN IP```192.168.8.1/24```，Interface选择```bridge-lan```，设置完成后winbox就可以使用ip登录了。
 
 ## 设置拨号上网
 
@@ -50,7 +55,7 @@
 
 1. 设置DNS地址与DNS缓存
 
-    点击**IP**->**DNS**，Server填写```223.5.5.5```,```119.29.29.29```，勾选```Allow Remote Requests```。
+    点击**IP**->**DNS**，Server填写```223.5.5.5```,```114.114.114.114```，勾选```Allow Remote Requests```。
 
 ## 设置IPv6
 
@@ -75,6 +80,61 @@
 2. 点击Interfaces，创建一个Upnp，Interface选择WAN口(```ether2-wan```)，type选择```external```。
 
 3. 点击Interfaces，创建一个Upnp，Interface选择```bridge-lan```，type选择```internal```。
+
+## 防火墙设置
+
+以下配置均为ROS默认自带防火墙规则(去掉了fasttrack)
+
+1. IPv4防火墙：
+
+    ```ros
+    /ip firewall filter add chain=input action=accept connection-state=established,related,untracked comment="defconf: accept established,related,untracked"
+    /ip firewall filter add chain=input action=drop connection-state=invalid comment="defconf: drop invalid"
+    /ip firewall filter add chain=input action=accept protocol=icmp comment="defconf: accept ICMP"
+    /ip firewall filter add chain=input action=accept dst-address=127.0.0.1 comment="defconf: accept to local loopback (for CAPsMAN)"
+    /ip firewall filter add chain=input action=drop in-interface-list=!LAN comment="defconf: drop all not coming from LAN"
+    /ip firewall filter add chain=forward action=accept ipsec-policy=in,ipsec comment="defconf: accept in ipsec policy"
+    /ip firewall filter add chain=forward action=accept ipsec-policy=out,ipsec comment="defconf: accept out ipsec policy"
+    /ip firewall filter add chain=forward action=accept connection-state=established,related,untracked comment="defconf: accept established,related, untracked"
+    /ip firewall filter add chain=forward action=drop connection-state=invalid comment="defconf: drop invalid"
+    /ip firewall filter add chain=forward action=drop connection-state=new connection-nat-state=!dstnat in-interface-list=WAN comment="defconf: drop all from WAN not DSTNATed"
+    ```
+
+2. IPv6防火墙
+
+    ```ros
+    /ipv6 firewall address-list add list=bad_ipv6 address=::/128 comment="defconf: unspecified address"
+    /ipv6 firewall address-list add list=bad_ipv6 address=::1 comment="defconf: lo"
+    /ipv6 firewall address-list add list=bad_ipv6 address=fec0::/10 comment="defconf: site-local"
+    /ipv6 firewall address-list add list=bad_ipv6 address=::ffff:0:0/96 comment="defconf: ipv4-mapped"
+    /ipv6 firewall address-list add list=bad_ipv6 address=::/96 comment="defconf: ipv4 compat"
+    /ipv6 firewall address-list add list=bad_ipv6 address=100::/64 comment="defconf: discard only "
+    /ipv6 firewall address-list add list=bad_ipv6 address=2001:db8::/32 comment="defconf: documentation"
+    /ipv6 firewall address-list add list=bad_ipv6 address=2001:10::/28 comment="defconf: ORCHID"
+    /ipv6 firewall address-list add list=bad_ipv6 address=3ffe::/16 comment="defconf: 6bone"
+    /ipv6 firewall filter add chain=input action=accept connection-state=established,related,untracked comment="defconf: accept established,related,untracked"
+    /ipv6 firewall filter add chain=input action=drop connection-state=invalid comment="defconf: drop invalid"
+    /ipv6 firewall filter add chain=input action=accept protocol=icmpv6 comment="defconf: accept ICMPv6"
+    /ipv6 firewall filter add chain=input action=accept protocol=udp port=33434-33534 comment="defconf: accept UDP traceroute"
+    /ipv6 firewall filter add chain=input action=accept protocol=udp dst-port=546 src-address=fe80::/10 comment="defconf: accept DHCPv6-Client prefix delegation."
+    /ipv6 firewall filter add chain=input action=accept protocol=udp dst-port=500,4500 comment="defconf: accept IKE"
+    /ipv6 firewall filter add chain=input action=accept protocol=ipsec-ah comment="defconf: accept ipsec AH"
+    /ipv6 firewall filter add chain=input action=accept protocol=ipsec-esp comment="defconf: accept ipsec ESP"
+    /ipv6 firewall filter add chain=input action=accept ipsec-policy=in,ipsec comment="defconf: accept all that matches ipsec policy"
+    /ipv6 firewall filter add chain=input action=drop in-interface-list=!LAN comment="defconf: drop everything else not coming from LAN"
+    /ipv6 firewall filter add chain=forward action=accept connection-state=established,related,untracked comment="defconf: accept established,related,untracked"
+    /ipv6 firewall filter add chain=forward action=drop connection-state=invalid comment="defconf: drop invalid"
+    /ipv6 firewall filter add chain=forward action=drop src-address-list=bad_ipv6 comment="defconf: drop packets with bad src ipv6"
+    /ipv6 firewall filter add chain=forward action=drop dst-address-list=bad_ipv6 comment="defconf: drop packets with bad dst ipv6"
+    /ipv6 firewall filter add chain=forward action=drop protocol=icmpv6 hop-limit=equal:1 comment="defconf: rfc4890 drop hop-limit=1"
+    /ipv6 firewall filter add chain=forward action=accept protocol=icmpv6 comment="defconf: accept ICMPv6"
+    /ipv6 firewall filter add chain=forward action=accept protocol=139 comment="defconf: accept HIP"
+    /ipv6 firewall filter add chain=forward action=accept protocol=udp dst-port=500,4500 comment="defconf: accept IKE"
+    /ipv6 firewall filter add chain=forward action=accept protocol=ipsec-ah comment="defconf: accept ipsec AH"
+    /ipv6 firewall filter add chain=forward action=accept protocol=ipsec-esp comment="defconf: accept ipsec ESP"
+    /ipv6 firewall filter add chain=forward action=accept ipsec-policy=in,ipsec comment="defconf: accept all that matches ipsec policy"
+    /ipv6 firewall filter add chain=forward action=drop in-interface-list=!LAN comment="defconf: drop everything else not coming from LAN"
+    ```
 
 ## 安全设置
 
