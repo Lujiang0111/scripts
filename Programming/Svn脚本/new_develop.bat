@@ -13,7 +13,6 @@ mkdir trunk\develop\build\windows\vs2017
 mkdir trunk\develop\include
 mkdir trunk\develop\internal
 mkdir trunk\develop\src
-mkdir trunk\develop\doc
 mkdir trunk\develop\test
 mkdir trunk\develop\test\build
 mkdir trunk\develop\test\build\linux
@@ -25,5 +24,4 @@ mkdir trunk\develop\test\build\windows
 mkdir trunk\develop\test\build\windows\vs2017
 mkdir trunk\develop\test\include
 mkdir trunk\develop\test\src
-mkdir trunk\develop\test\doc
 mkdir trunk\develop\test\conf
