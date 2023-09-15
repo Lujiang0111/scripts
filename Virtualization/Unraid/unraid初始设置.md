@@ -26,6 +26,22 @@
 
 5. 进入config文件夹，编辑```.cfg```文件进行相应设置。
 
+    + **ident.cfg**参考配置：
+
+        ```ini
+        # Generated names
+        NAME="Square"
+        COMMENT="Media server"
+        WORKGROUP="WORKGROUP"
+        localMaster="yes"
+        timeZone="Asia/Shanghai"
+        USE_NTP="yes"
+        NTP_SERVER1="ntp.ntsc.ac.cn"
+        NTP_SERVER2="cn.ntp.org.cn"
+        NTP_SERVER3="time.pool.aliyun.com"
+        NTP_SERVER4="time1.cloud.tencent.com"
+        ```
+
     + **network.cfg**参考配置：
 
         ```ini
