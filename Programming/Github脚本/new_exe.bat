@@ -1,4 +1,5 @@
 mkdir build
+mkdir conf
 mkdir include
 mkdir src
 
