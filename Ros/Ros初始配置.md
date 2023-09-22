@@ -55,7 +55,7 @@
 
 1. 设置DNS地址与DNS缓存
 
-    点击**IP**->**DNS**，Server填写```223.5.5.5```,```114.114.114.114```，勾选```Allow Remote Requests```。
+    点击**IP**->**DNS**，Server填写```223.5.5.5```,```223.6.6.6```，勾选```Allow Remote Requests```。
 
 ## 设置IPv6
 

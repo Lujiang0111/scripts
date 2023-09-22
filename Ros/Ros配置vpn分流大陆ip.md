@@ -135,7 +135,7 @@
 
         ```ros
         /log info message="192.168.8.5 up!"
-        /ip/firewall/mangle/enable numbers=3
+        /ip/firewall/mangle/enable numbers=0
         /ip/route/enable numbers=0
         /ip dns set servers 192.168.8.5
         /ip dns cache flush
@@ -146,8 +146,8 @@
         ```ros
         /log info message="192.168.8.5 down!"
         /ip/route/disable numbers=0
-        /ip/firewall/mangle/disable numbers=3
-        /ip dns set servers 223.5.5.5,119.29.29.29
+        /ip/firewall/mangle/disable numbers=0
+        /ip dns set servers 223.5.5.5,223.6.6.6
         /ip dns cache flush
         ```
 
