@@ -62,3 +62,9 @@ ffmpeg -i input.wav -c:a libfdk_aac -b:a 256k output.m4a
 ```shell
 ffmpeg -i input.wav -codec:a libmp3lame -b:a 256k output.mp3
 ```
+
+## 输出解复用后的es数据
+
+```shell
+ffmpeg -f s337m -i s337m.dat -c copy -map 0:a:0 -f data dolby_e.es
+```
