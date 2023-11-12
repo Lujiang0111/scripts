@@ -54,7 +54,7 @@
 
         ```shell
         cat <<- EOF >> feeds.conf.default
-        src-git helloworld https://github.com/fw876/helloworld.git
+        src-git helloworld https://github.com/fw876/helloworld.git;main
         EOF
         ```
 
