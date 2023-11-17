@@ -58,5 +58,5 @@ sudo dpkg-reconfigure dash
 
 ```bash
 yum install -y man-pages
-
+yum install -y libstdc++-docs
 ```
