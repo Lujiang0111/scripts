@@ -33,17 +33,17 @@
     ```powershell
     set MSYS2_PATH_TYPE=inherit
     ::vs2017
-    call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
+    call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
     ::vs2022
-    ::call "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat"
+    ::call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
     msys2_shell.cmd -mingw
     ```
 
-5. 将msys2根目录\usr\bin\link.exe改名为link_msys2.exe，因为会和vs的link.exe重名。
+5. 将msys2根目录```\usr\bin\link.exe```改名为```link_msys2.exe```，因为会和vs的```link.exe```重名。
 
 ## 2. msys环境下FFmpeg编译
 
-1. 直接运行msys_visualstudio.bat（不要右键用管理员运行，有可能无法正确弹框）。
+1. 直接运行```msys_visualstudio.bat```（不要右键用管理员运行，有可能无法正确弹框）。
 
 ### 2.1. FFmpeg 4.0以上版本
 
