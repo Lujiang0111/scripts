@@ -73,7 +73,7 @@
 
         ```shell
         cat <<- EOF >> feeds.conf.default
-        src-git openclash https://github.com/vernesong/OpenClash.git
+        src-git openclash https://github.com/vernesong/OpenClash.git;dev
         EOF
         ```
 
