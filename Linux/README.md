@@ -50,13 +50,13 @@ echo 3 > /proc/sys/vm/drop_caches
 
 ## 切换ubuntu默认sh为dash/bash
 
-```bash
+```shell
 sudo dpkg-reconfigure dash
 ```
 
 ## CentOs7安装C/C++帮助手册
 
-```bash
+```shell
 yum install -y man-pages
 yum install -y libstdc++-docs
 ```

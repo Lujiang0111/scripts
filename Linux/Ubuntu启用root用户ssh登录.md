@@ -2,13 +2,13 @@
 
 ## 启用root用户
 
-```bash
+```shell
 sudo passwd root
 ```
 
 ## 开启ssh的root登录权限
 
-```bash
+```shell
 sudo vim /etc/ssh/sshd_config
 ```
 
@@ -16,6 +16,6 @@ sudo vim /etc/ssh/sshd_config
 
 ## 重启ssh服务
 
-```bash
+```shell
 sudo systemctl restart ssh
 ```
