@@ -68,7 +68,7 @@
 
 7. 点击**IPv6**->**ND**，选择**Prefixes**选项卡，点击**Default**，Valid Lifetime设置为```1d 00:00:00```，Preferred Lifetime设置为```00:12:00```。
 
-## 设置UPnP
+## 开启UPnP（不建议）
 
 1. 点击**IP**->**UPnp**，勾选```Enabled```、```Allow To Disable External Interface```、```Show Dummy Rule```。
 
