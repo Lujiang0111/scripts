@@ -19,6 +19,15 @@ if [ ! -f "$exe_file" ]; then
     exit 0
 fi
 
+if [ "${run_duration}" -le 0 ]; then
+    echo -e "error: run_duration <= 0"
+    exit 0
+fi
+
+if [ "${stop_duration}" -le 0 ]; then
+    stop_duration=0
+fi
+
 exe_file_pid=
 sleep_pid=
 running=true
