@@ -1,6 +1,4 @@
 #!/bin/bash
-shell_dir=$(cd "$(dirname "$0")" || exit;pwd)/
-
 if [ $# -lt 3 ]; then
     echo -e "\033[33mUsage:\033[0m"
     echo -e "Args:\t\tsh cycle_run_stop.sh exe_file run_duration(s) stop_duration(s)"
@@ -11,6 +9,16 @@ fi
 exe_file=$1
 run_duration=$2
 stop_duration=$3
+
+if [[ "$exe_file" != /* ]]; then
+    exe_file="./${exe_file}"
+fi
+
+if [ ! -f "$exe_file" ]; then
+    echo -e "file ${exe_file} not exist!"
+    exit 0
+fi
+
 exe_file_pid=
 sleep_pid=
 running=true
@@ -28,7 +36,7 @@ cycle_time=0
 while [ "$running" = true ]; do
     ((cycle_time++))
     echo -e "\033[33mcycle ${cycle_time}, run ${exe_file}\033[0m"
-    "${shell_dir}/${exe_file}" &
+    ${exe_file} &
     exe_file_pid=$!
 
     if [ "$running" = true ]; then
