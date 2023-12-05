@@ -37,6 +37,12 @@
     ./build.sh win64 nonfree
     ```
 
+## 只接收不输出
+
+```shell
+ffmpeg -i rtp://239.3.1.241:8000 -f null -
+```
+
 ## 编码H.264 CBR码流（libx264）
 
 > 参考资料：<https://trac.ffmpeg.org/wiki/Encode/H.264>
