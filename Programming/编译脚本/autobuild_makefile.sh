@@ -20,7 +20,7 @@ echo -e "\n\033[33m============= preparing =============\033[0m\n"
 function DelAFile() {
 	cd "$1" || exit
 	for file in *.a*; do
-		if [[ ${file}"x" != "x" ]]; then
+		if [ -f "${file}" ]; then
 			rm -rf "${file}"
 		fi
 	done
@@ -30,7 +30,7 @@ function DelAFile() {
 function DelSoFile() {
 	cd "$1" || exit
 	for file in *.so*; do
-		if [[ ${file}"x" != "x" ]]; then
+		if [ -f "${file}" ]; then
 			rm -rf "${file}"
 		fi
 	done
@@ -40,7 +40,7 @@ function DelSoFile() {
 function CreateSoLinker() {
 	cd "$1" || exit
 	for file in *.so.*; do
-		if [[ ${file}"x" != "x" ]]; then
+		if [ -f "${file}" ]; then
 			realname=$(echo "${file}" | rev | cut -d '/' -f 1 | rev)
 			libname=$(echo "${realname}" | cut -d '.' -f 1)
 			if [ ! -f "${libname}".so ]; then
@@ -74,11 +74,12 @@ mkdir -p "${dst_path}"lib
 \cp -rf ${install_version_path}lib/* "${dst_path}"lib/
 
 cd "${dst_path}"lib/ || exit
-find ./ -name "*.so*" -print0 | while IFS= read -r -d '' src_file; do
-	dst_file=$(readlink "${src_file}")
-
-	if [[ ${dst_file}"x" != "x" ]]; then
-		rm -f "${src_file}"
+for src_file in *.so*; do
+	if [ -f "${src_file}" ]; then
+		dst_file=$(readlink "${src_file}")
+		if [ -f "${dst_file}" ]; then
+			rm -f "${src_file}"
+		fi
 	fi
 done
 
