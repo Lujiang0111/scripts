@@ -1,3 +1,6 @@
+@echo off
+setlocal enabledelayedexpansion
+
 set dep_base=..\..\deps\
 set bin_base=..\..\bin\
 
@@ -10,6 +13,28 @@ mkdir %dep_base%lib
 set src_base=..\..\..\
 
 set lib_name=libflow
-mkdir %dep_base%include\%lib_name%
-xcopy %src_base%%lib_name%\include %dep_base%include\%lib_name% /S /Y /C
-xcopy %src_base%%lib_name%\bin %dep_base%lib /S /Y /C
+if exist %src_base%%lib_name% (
+    mkdir %dep_base%include\%lib_name%
+    xcopy %src_base%%lib_name%\include %dep_base%include\%lib_name% /S /Y /C
+    xcopy %src_base%%lib_name%\bin %dep_base%lib /S /Y /C
+) else (
+    echo please put https://github.com/Lujiang0111/libflow in %src_base%
+    goto :error
+)
+
+set lib_name=rapidjson
+if exist %src_base%%lib_name% (
+    mkdir %dep_base%include\%lib_name%
+    xcopy %src_base%%lib_name%\include %dep_base%include\%lib_name% /S /Y /C
+    xcopy %src_base%%lib_name%\bin %dep_base%lib /S /Y /C
+) else (
+    echo please put https://github.com/Tencent/rapidjson in %src_base%
+    goto :error
+)
+
+endlocal
+exit /b 0
+
+:error
+endlocal
+exit /b 1
