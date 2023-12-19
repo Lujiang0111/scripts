@@ -4,11 +4,11 @@
 
 ## 选择安装源
 
-+ 进入[qt mirror list](https://download.qt.io/static/mirrorlist/)页面，选择离自己最近的安装源，本教程选择bjtu源：<https://mirror.bjtu.edu.cn/qt>
++ 进入[qt mirror list](https://download.qt.io/static/mirrorlist/)页面，选择离自己最近的安装源，本教程选择nju源：<https://mirrors.nju.edu.cn/qt/>
 
 ## 下载qt在线安装工具
 
-+ 进入<https://mirror.bjtu.edu.cn/qt/official_releases/online_installers/>页面，下载```qt-unified-windows-x64-online.exe```在线安装工具。
++ 进入<https://mirrors.nju.edu.cn/qt/official_releases/online_installers/>页面，下载```qt-unified-windows-x64-online.exe```在线安装工具。
 
 ## 执行在线安装
 
@@ -17,7 +17,7 @@
 + 执行命令并指定源：
 
     ```powershell
-    .\qt-unified-windows-x64-online.exe --mirror https://mirror.bjtu.edu.cn/qt
+    .\qt-unified-windows-x64-online.exe --mirror https://mirrors.nju.edu.cn/qt/
     ```
 
 + 如果有任何错误提示，请关闭打开的安装窗口，检查命令并重试。
