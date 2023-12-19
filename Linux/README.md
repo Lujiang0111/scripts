@@ -54,9 +54,11 @@ echo 3 > /proc/sys/vm/drop_caches
 sudo dpkg-reconfigure dash
 ```
 
-## CentOs7安装C/C++帮助手册
+## Centos7安装C/C++运行库
 
 ```shell
+yum install -y gcc
+yum install -y gcc-c++
 yum install -y man-pages
 yum install -y libstdc++-docs
 ```
