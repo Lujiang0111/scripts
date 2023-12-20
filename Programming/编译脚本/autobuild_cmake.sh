@@ -45,7 +45,7 @@ fi
 echo -e "os_arch=\033[34m${os_arch}\033[0m"
 
 src_path=${shell_path}../../../../src/
-dst_path=${shell_path}../../../../../../../../Versions/Baselib/${project}/v${version}/${os_version}/${os_arch}/
+dst_path=${shell_path}../../../../../../../../Versions/Baselib/${project}/v${version}/${os_version}${os_arch}/
 
 echo -e "\n\033[33m============= preparing =============\033[0m\n"
 
@@ -90,10 +90,10 @@ echo -e "done!"
 echo -e "\n\033[33m============= installing =============\033[0m\n"
 
 cd "${src_path}" || exit
-rm -rf "build/${os_version}/"
-mkdir -p "build/${os_version}/"
+rm -rf "build/${os_version}"
+mkdir -p "build/${os_version}"
 
-cd "build/${os_version}/" || exit
+cd "build/${os_version}" || exit
 cmake -DCMAKE_INSTALL_PREFIX=${install_version_path} ../..
 make clean && make V=1 -j"$(nproc)" && make install
 
