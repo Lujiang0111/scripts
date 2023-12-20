@@ -45,7 +45,7 @@ fi
 echo -e "os_arch=\033[34m${os_arch}\033[0m"
 
 src_path=${shell_path}../../../../src/
-dst_path=${shell_path}../../../../../../../../Versions/Baselib/${project}/v${version}/linux/${os_version}/${os_arch}/
+dst_path=${shell_path}../../../../../../../../Versions/Baselib/${project}/v${version}/${os_version}/${os_arch}/
 
 echo -e "\n\033[33m============= preparing =============\033[0m\n"
 
