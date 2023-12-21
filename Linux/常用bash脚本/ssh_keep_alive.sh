@@ -1,5 +1,10 @@
 #!/bin/bash
 
+sleep_duration=30
+if [ $# -ge 1 ]; then
+    sleep_duration=$1
+fi
+
 sleep_pid=
 running=true
 
@@ -18,7 +23,7 @@ while [ "$running" = true ]; do
     echo -e "\033[33mcycle ${cycle_time}, keep alive\033[0m"
 
     if [ "$running" = true ]; then
-        sleep 10 &
+        sleep ${sleep_duration} &
         sleep_pid=$!
         wait ${sleep_pid}
         sleep_pid=
