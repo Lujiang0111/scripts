@@ -143,9 +143,6 @@
     mv $WORKINGDIR/luci-app-smartdns-${LUCIBRANCH}/* $WORKINGDIR/
     rmdir $WORKINGDIR/luci-app-smartdns-${LUCIBRANCH}
     rm $WORKINGDIR/${LUCIBRANCH}.zip
-
-    ./scripts/feeds update -a
-    ./scripts/feeds install -a
     ```
 
 ## 修改具体配置
@@ -205,6 +202,8 @@
 ## 编译选项
 
 ```shell
+./scripts/feeds update -a
+./scripts/feeds install -a
 make menuconfig
 ```
 
