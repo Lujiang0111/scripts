@@ -104,24 +104,6 @@
     git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
     ```
 
-+ [luci-theme-argon](https://github.com/jerrykuku/luci-theme-argon)
-
-    ```shell
-    cd package/lean
-    rm -rf luci-theme-argon
-    git clone https://github.com/jerrykuku/luci-theme-argon.git -b 18.06 luci-theme-argon
-    cd -
-    ```
-
-+ [luci-app-argon-config](https://github.com/jerrykuku/luci-app-argon-config)
-
-    ```shell
-    cd feeds/luci/applications
-    rm -rf luci-app-argon-config
-    git clone https://github.com/jerrykuku/luci-app-argon-config.git -b 18.06 luci-app-argon-config
-    cd -
-    ```
-
 + [smartdns](https://github.com/pymumu/luci-app-smartdns)
 
     ```shell
@@ -228,9 +210,9 @@ make menuconfig
 
 1. 勾选(y)```luci-theme-argon-mod```
 
-### Utilities -> Editors
+### Network -> SSH
 
-1. 勾选(y)```vim```
+1. 勾选(y)```openssh-sftp-server```。
 
 ## 无线网卡相关配置
 
