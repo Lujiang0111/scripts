@@ -1,4 +1,4 @@
-# centos7 默认防火墙firewalld配置
+# CentOS7 默认防火墙firewalld配置
 
 > 参考资料：<https://www.cnblogs.com/hubing/p/6058932.html>
 
