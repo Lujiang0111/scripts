@@ -21,3 +21,6 @@ mkdir trunk\develop\test\build\windows\vs2017
 mkdir trunk\develop\test\include
 mkdir trunk\develop\test\src
 mkdir trunk\develop\test\conf
+
+cd trunk\develop\test\src
+copy NUL main.cpp
