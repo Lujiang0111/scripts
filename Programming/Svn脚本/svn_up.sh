@@ -1,4 +1,7 @@
 #!/bin/bash
-SHELL_FOLDER=$(cd "$(dirname "${0}")";pwd)/
-svn revert -R ${SHELL_FOLDER}
-svn update ${SHELL_FOLDER}
+shell_path=$(
+    cd "$(dirname "$0")" || exit
+    pwd
+)/
+svn revert -R "${shell_path}"
+svn update "${shell_path}"
