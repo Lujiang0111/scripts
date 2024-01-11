@@ -59,9 +59,9 @@ rm OpenClash/ -rf
 ```
 
 + [uu加速器](http://router.uu.163.com/api/plugin?type=openwrt-x86_64)
+  + 修改相应的版本号和PKG_HASH值([SHA256](https://emn178.github.io/online-tools/sha256_checksum.html))
 
 ```shell
-# 修改相应的版本号和PKG_HASH值(SHA256)
 vim feeds/packages/net/uugamebooster/Makefile
 ```
 
