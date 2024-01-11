@@ -90,6 +90,36 @@ make menuconfig
 
 + Root filesystem partition size改为合适大小
 
+### Extra packages
+
++ 取消(n)```automount```
+
+### Base system
+
++ 取消(n)```block-mount```
+
+### Global build settings
+
++ 取消勾选(```n```)**Enable IPv6 support in packages**
+
 ### LuCI -> Applications
 
 + 选择相应插件
+
+### Network -> SSH
+
+1. 勾选(y)```openssh-sftp-server```。
+
+## 开始编译
+
++ 下载dl库
+
+```shell
+make -j$(nproc) download V=s
+```
+
++ 编译固件
+
+```shell
+nohup make -j$(nproc) V=s &
+```
