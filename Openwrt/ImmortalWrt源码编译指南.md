@@ -104,7 +104,7 @@ make menuconfig
 
 ### LuCI -> Applications
 
-+ 选择相应插件
++ 选择```luci-app-argon-config```、```luci-app-aria2```、```luci-app-openclash```、```luci-app-udpxy```、```luci-app-uugamebooster```、```luci-app-vlmcsd```等插件
 
 ### Network -> SSH
 
