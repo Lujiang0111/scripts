@@ -90,6 +90,10 @@ make menuconfig
 
 + Root filesystem partition size改为合适大小
 
+### Global build settings
+
++ 取消勾选(```n```)**Enable IPv6 support in packages**
+
 ### Extra packages
 
 + 取消(n)```automount```
@@ -97,10 +101,6 @@ make menuconfig
 ### Base system
 
 + 取消(n)```block-mount```
-
-### Global build settings
-
-+ 取消勾选(```n```)**Enable IPv6 support in packages**
 
 ### LuCI -> Applications
 
