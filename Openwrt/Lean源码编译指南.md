@@ -184,7 +184,6 @@
 ## 编译选项
 
 ```shell
-./scripts/feeds update -a
 ./scripts/feeds install -a
 make menuconfig
 ```
