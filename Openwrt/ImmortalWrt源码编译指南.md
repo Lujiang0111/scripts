@@ -4,7 +4,7 @@
 
 ## 安装依赖
 
-+ 首先装好Linux 系统，推荐Debian 11或Ubuntu LTS。
++ 首先装好Linux系统，推荐Ubuntu LTS。
 
 + 安装编译依赖
 
