@@ -38,6 +38,6 @@ echo -e "${project} start at $(date)" >>runlog
 
 cd "${shell_path}" || exit
 chmod +x ${project}
-./${project}
+./${project} "$@"
 
 echo -e "${project} stop at $(date)" >>runlog

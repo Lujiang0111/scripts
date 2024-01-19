@@ -89,6 +89,7 @@ postbuild: mainbuild
 	rm -rf $(SERVER_PATH)
 	mkdir -p $(SERVER_PATH)
 	\cp -r $(TARGET_PATH)* $(SERVER_PATH)
+	\cp -r ../../../../conf/* $(SERVER_PATH)
 	\cp -r *.sh $(SERVER_PATH)
 
 	python3 postbuild.py debug $(SERVER_LIB_PATH) $(VERSION_BASELIB_PATH) $(POSTBUILD_BASELIBS)
@@ -100,6 +101,7 @@ postbuild_release: mainbuild_release
 	rm -rf $(SERVER_PATH)
 	mkdir -p $(SERVER_PATH)
 	\cp -r $(TARGET_RELEASE_PATH)\* $(SERVER_PATH)
+	\cp -r ../../../../conf/* $(SERVER_PATH)
 	\cp -r *.sh $(SERVER_PATH)
 
 	python3 postbuild.py release $(SERVER_LIB_PATH) $(VERSION_BASELIB_PATH) $(POSTBUILD_BASELIBS)
