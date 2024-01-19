@@ -29,7 +29,6 @@ PREBUILD_BASELIBS="libevent 2.1.12 \
 example_lib 1.0.0"
 PREBUILD_ENGINE=""
 PREBUILD_FABRICS=""
-PREBUILD_PLUGINS=""
 
 POSTBUILD_BASELIBS="libevent 2.1.12 \
 example_lib 1.0.0"
