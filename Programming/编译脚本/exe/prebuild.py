@@ -33,6 +33,9 @@ def RmDir(dir) -> None:
 
 
 def CreateSoLink(dir) -> None:
+    if not os.path.exists(dir):
+        return
+
     so_files = [
         f
         for f in os.listdir(dir)
