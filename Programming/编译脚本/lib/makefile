@@ -13,7 +13,7 @@ GLOBAL_PATH=../../../../../../../../
 VERSION_BASELIB_PATH=$(GLOBAL_PATH)Versions/Baselib/
 VERSION_ENGINE_PATH=$(GLOBAL_PATH)Versions/Engine/
 VERSION_FABRICS_PATH=$(GLOBAL_PATH)Versions/Fabrics/
-VERSION_PLUGINS_PATH=$(GLOBAL_PATH)Versions/Plugins/
+VERSION_PLUGINS_PATH=$(GLOBAL_PATH)Versions/Plugins/Plugins/
 
 ifneq (,$(wildcard $(GLOBAL_PATH)compile.dep))
 	include $(GLOBAL_PATH)compile.dep
