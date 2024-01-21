@@ -150,10 +150,10 @@
 
 + 设置时钟
   + 点击**System**->**NTP Client**，添加NTP Server。
-    + ntp.ntsc.ac.cn
     + cn.ntp.org.cn
-    + time.pool.aliyun.com
-    + time1.cloud.tencent.com
+    + cn.pool.ntp.org
+    + ntp.aliyun.com
+    + ntp.tencent.com
   + 点击**System**->**Clock**，添加**Time Zone Name**选择```Asia/Shanghai```。
 
 + 设置管理员密码

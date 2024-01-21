@@ -36,10 +36,10 @@
         localMaster="yes"
         timeZone="Asia/Shanghai"
         USE_NTP="yes"
-        NTP_SERVER1="ntp.ntsc.ac.cn"
-        NTP_SERVER2="cn.ntp.org.cn"
-        NTP_SERVER3="time.pool.aliyun.com"
-        NTP_SERVER4="time1.cloud.tencent.com"
+        NTP_SERVER1="cn.ntp.org.cn"
+        NTP_SERVER2="cn.pool.ntp.org"
+        NTP_SERVER3="ntp.aliyun.com"
+        NTP_SERVER4="ntp.tencent.com"
         ```
 
     + **network.cfg**参考配置：
@@ -73,10 +73,10 @@
 
 2. 手动将 NTP 服务器调整为以下一项或多项。
 
-    + ntp.ntsc.ac.cn
     + cn.ntp.org.cn
-    + time.pool.aliyun.com
-    + time1.cloud.tencent.com
+    + cn.pool.ntp.org
+    + ntp.aliyun.com
+    + ntp.tencent.com
 
 3. 点击```APPLY```，观察**New date and time**是否改变。
 
