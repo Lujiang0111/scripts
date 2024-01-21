@@ -58,6 +58,7 @@
       + General
         + Name - ```vlan-iptv```
         + VLAN ID - ```3964```
+        + Interface - ```ether3-iptv```
   + Interface List
     + 添加Interface List
       + List - ```LAN```
@@ -66,7 +67,7 @@
 ### 设置组播转发
 
 + IP -> Address
-  + 添加Address（不确定是否必须）
+  + 添加Address
     + Address - ```192.168.101.1/24```（选一个没人用的网段，后续不需要此地址）
     + Interface - ```vlan-iptv```
 
@@ -96,6 +97,7 @@
   + Bind IP/Interface - ```br-lan```
   + 端口 - ```23234```
   + Source IP/Interface - ```留空```
+  + udpxy状态页面：<http://192.168.8.5:23234/status>
 
 + 系统 -> 计划任务
   + 添加Keep alive保活，防止组播信号丢失
@@ -107,4 +109,4 @@
 
 ## VLC设置
 
-+ 导入播放列表：<https://raw.githubusercontent.com/Lujiang0111/network-actions/main/cn_address_list/beijing_unicom.m3u>
++ 导入播放列表：<https://github.com/Lujiang0111/network-actions/blob/main/list/iptv/beijing_unicom.m3u>
