@@ -65,7 +65,7 @@ src-git passwall_luci https://github.com/xiaorouji/openwrt-passwall.git;luci
 EOF
 ```
 
-+ [openclash](https://github.com/vernesong/OpenClash)
++ [openclash](https://github.com/vernesong/OpenClash/tree/dev)
 
 ```shell
 cat <<- EOF >> feeds.conf.default
@@ -120,6 +120,20 @@ unzip $WORKINGDIR/${LUCIBRANCH}.zip -d $WORKINGDIR
 mv $WORKINGDIR/luci-app-smartdns-${LUCIBRANCH}/* $WORKINGDIR/
 rmdir $WORKINGDIR/luci-app-smartdns-${LUCIBRANCH}
 rm $WORKINGDIR/${LUCIBRANCH}.zip
+```
+
++ [luci-theme-argon](https://github.com/jerrykuku/luci-theme-argon/tree/18.06)
+
+```shell
+rm -rf feeds/luci/themes/luci-theme-argon
+git clone -b 18.06 --depth=1 https://github.com/jerrykuku/luci-theme-argon.git feeds/luci/themes/luci-theme-argon
+```
+
++ [luci-app-argon-config](https://github.com/jerrykuku/luci-app-argon-config/tree/18.06)
+
+```shell
+rm feeds/luci/applications/luci-app-argon-config
+git clone -b 18.06 --depth=1 https://github.com/jerrykuku/luci-app-argon-config.git feeds/luci/applications/luci-app-argon-config
 ```
 
 ## 修改具体配置
