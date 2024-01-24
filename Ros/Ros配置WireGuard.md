@@ -23,6 +23,7 @@
 
 + 点击**WireGuard**，选择**WireGuard**选项卡，点击+号。
   + Name - ```wireguard-lan```
+  + MTU - ```1500```
   + Listen Port - ```53231```
 
 + 添加完成后，可以看到**wireguard-lan**自动生成了一串**Public Key**，这里假设为```public-key-lan```。
