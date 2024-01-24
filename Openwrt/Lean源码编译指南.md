@@ -199,7 +199,7 @@ make menuconfig
 
 ### Target Images
 
-+ **Kernel partition size**改为```64```。
++ **Kernel partition size**改为```32```。
 + **Root filesystem partition size**改为```800```。
 
 ### Extra packages
