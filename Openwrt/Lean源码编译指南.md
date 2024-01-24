@@ -132,7 +132,7 @@ git clone -b 18.06 --depth=1 https://github.com/jerrykuku/luci-theme-argon.git f
 + [luci-app-argon-config](https://github.com/jerrykuku/luci-app-argon-config/tree/18.06)
 
 ```shell
-rm feeds/luci/applications/luci-app-argon-config
+rm -rf feeds/luci/applications/luci-app-argon-config
 git clone -b 18.06 --depth=1 https://github.com/jerrykuku/luci-app-argon-config.git feeds/luci/applications/luci-app-argon-config
 ```
 
