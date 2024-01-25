@@ -48,6 +48,7 @@
   + Interface - ```wireguard-lan```
   + Public Key - ```public-key-peer```
   + Allowed Address - ```192.168.9.100/32```
+  + Persistent Keepalive - ```00:00:25```
 
 ### 为WireGuard设置IP
 
@@ -68,4 +69,5 @@ DNS = 192.168.8.1               # Ros的DNS地址，可以不填
 PublicKey = public-key-lan      # wireguard-lan的公钥
 Endpoint = 123.45.67.89:52321   # 这个填ROS的公网：监听端口
 AllowedIPs = 192.168.8.0/17     # 填写需要通过WireGuard代理的地址段
+PersistentKeepalive = 25        # 心跳间隔25s
 ```
