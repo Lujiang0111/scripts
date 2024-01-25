@@ -30,6 +30,7 @@ def record_top_stats(pid, interval) -> None:
                     file.write(
                         f"{current_time}, {pid}, {virt}, {res}, {cpu_percent}, {memory_percent}\n"
                     )
+                    file.flush()
 
                 time.sleep(interval)
         except KeyboardInterrupt:
