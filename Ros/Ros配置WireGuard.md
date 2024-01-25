@@ -24,9 +24,18 @@
 + 点击**WireGuard**，选择**WireGuard**选项卡，点击+号。
   + Name - ```wireguard-lan```
   + MTU - ```1500```
-  + Listen Port - ```53231```
+  + Listen Port - ```52321```
 
 + 添加完成后，可以看到**wireguard-lan**自动生成了一串**Public Key**，这里假设为```public-key-lan```。
+
+### ROS添加防火墙
+
++ ROS默认规则有一条```defconf: drop all not coming from LAN```，需要在此规则前加一条对**wireguard-lan**的**Listen Port**的放行规则。
+
+```shell
+/ip/firewall/filter/add chain=input protocol=udp dst-port=52321
+ action=accept place-before=0 comment="accept wireguard listen port"
+```
 
 ### 设置Peer
 
