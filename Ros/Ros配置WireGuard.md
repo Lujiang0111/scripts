@@ -17,7 +17,7 @@
   + DDNS Enabled - ```✔```
   + Update Time - ```✔```
 
-+ 点击```apply```确认后，DNS Name区域会生成一段网址```xxx.sn.mynetname.net```，使用nslookup命令查看网址即可拿到公网IP。
++ 点击```apply```确认后，DNS Name区域会生成一段网址```xxx.sn.mynetname.net```，使用nslookup命令查看网址即可查询对应的公网IP。
 
 ### 设置WireGuard
 
@@ -28,13 +28,18 @@
 
 + 添加完成后，可以看到**wireguard-lan**自动生成了一串**Public Key**，这里假设为```public-key-lan```。
 
-### ROS添加防火墙
+### 防火墙放行wireguard-lan
 
 + ROS默认规则有一条```defconf: drop all not coming from LAN```，需要在此规则前加一条对**wireguard-lan**的**Listen Port**的放行规则。
 
 ```shell
-/ip/firewall/filter/add chain=input protocol=udp dst-port=52321
- action=accept place-before=0 comment="accept wireguard listen port"
+/ip/firewall/filter/add chain=input protocol=udp dst-port=52321 action=accept place-before=0 comment="accept wireguard listen port"
+```
+
++ 将**wireguard-lan**添加到**LAN**中
+
+```shell
+/interface/list/member/add list=LAN interface=wireguard-lan
 ```
 
 ### 设置Peer
@@ -58,7 +63,7 @@
 [Interface]
 PrivateKey = private-key-peer   # Windows自动生成的私钥
 Address = 192.168.9.100/32      # Ros设置中为Peer设置的IP
-DNS = 192.168.8.1               # Ros的DNS地址
+DNS = 192.168.8.1               # Ros的DNS地址，可以不填
 [peer]
 PublicKey = public-key-lan      # wireguard-lan的公钥
 Endpoint = 123.45.67.89:52321   # 这个填ROS的公网：监听端口
