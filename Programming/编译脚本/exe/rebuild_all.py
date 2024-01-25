@@ -286,7 +286,7 @@ class RebuildAll:
 if __name__ == "__main__":
     param_cnt = len(sys.argv) - 1
     if param_cnt < 1:
-        raise SystemExit("param cnt={} to less".format(param_cnt))
+        raise SystemExit("param cnt={} too less".format(param_cnt))
 
     rebuild_all = RebuildAll()
 

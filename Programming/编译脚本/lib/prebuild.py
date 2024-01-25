@@ -104,7 +104,7 @@ class Prebuild:
     def Do(self, args) -> None:
         param_cnt = len(args) - 1
         if param_cnt < 4:
-            raise SystemExit("param cnt={} to less".format(param_cnt))
+            raise SystemExit("param cnt={} too less".format(param_cnt))
 
         self.__release = args[1] == "release"
         self.__deps_path = args[2]
