@@ -21,7 +21,7 @@
 
 ### 设置防火墙
 
-+ 点击**IP**->**Firewall**，选择**NAT**选项卡，添加一条NAT规则。
++ （如果拨号时设置了总的masquerade，则可不添加这一条）点击**IP**->**Firewall**，选择**NAT**选项卡，添加一条NAT规则。
   + **General**
     + **Chain** - ```srcnat```
     + **Src. Address** - ```192.168.8.0/24```
