@@ -136,7 +136,7 @@ add address=192.168.8.6 list=FQIP
 
   + 选择**Down**选项卡，设定IP下线时的操作(On Down)：
 
-    ```ros
+    ```shell
     /log info message="192.168.8.5 down!"
     /ip/route/disable numbers=0
     /ip/firewall/mangle/disable numbers=0
