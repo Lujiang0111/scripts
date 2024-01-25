@@ -61,6 +61,6 @@ Address = 192.168.9.100/32      # Ros设置中为Peer设置的IP
 DNS = 192.168.8.1               # Ros的DNS地址
 [peer]
 PublicKey = public-key-lan      # wireguard-lan的公钥
-Endpoint = 123.45.67.89:53231   # 这个填ROS的公网：监听端口
+Endpoint = 123.45.67.89:52321   # 这个填ROS的公网：监听端口
 AllowedIPs = 192.168.8.0/17     # 填写需要通过WireGuard代理的地址段
 ```
