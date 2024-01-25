@@ -1,4 +1,4 @@
-# 常用bash脚本
+# 常用脚本
 
 ## 循环运行停止进程
 
@@ -18,4 +18,14 @@ bash cycle_run_stop.sh smartd 60 60
 
 ```shell
 bash ssh_keep_alive.sh 30
+```
+
+## 循环记录进程top状态
+
++ 文件名 : ```record_pid_top_stats.py```
++ 使用方式：
+  + ```python3 record_pid_top_stats.py pid [interval(s)]```
+
+```shell
+python3 record_pid_top_stats.py 5515 5
 ```
