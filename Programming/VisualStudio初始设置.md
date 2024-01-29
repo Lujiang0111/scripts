@@ -22,8 +22,7 @@
 
 1. Format on Save for VS2022
 
-### 关闭vs自动更新
+### Key
 
-+ 以下操作需要以用户权限和管理员权限分别操作一次：
-  + 工具->选项->环境->产品更新：取消勾选**自动下载更新**。
-  + 工具->选项->环境->扩展：取消勾选所有的**自动更新扩展**
++ Visual Studio 2022 Enterprise：```VHF9H-NXBBB-638P6-6JHCY-88JWH```
++ Visual Studio 2017 Enterprise：```N2VYX-9VR2K-T733M-MWD9X-KQCDF```
