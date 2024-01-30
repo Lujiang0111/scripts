@@ -31,51 +31,22 @@
 + 设置LAN IP。
   + 点击**IP**->**Addresses**，创建一个Address。Address填写想要分配的LAN IP```192.168.8.1/24```，Interface选择```bridge-lan```，设置完成后winbox就可以使用ip登录了。
 
-## 设置拨号上网
+## 安全设置
 
-+ 拨号上网设置。
-  + 点击**Interface**，选择**Interface**选项卡，点击+号，选择**PPPOE Client**,新建一个PPPOE Client。选择**General**选项卡，Interfaces选择WAN口(```ether2-wan```)；选择Dial Out选项卡，User和Password填写拨号的用户名和密码，勾选```Add Default Route```
++ 关闭不必要的服务
+  + 点击**IP**->**Services**，只留下winbox与www
+  + 分别点击**winbox**与**www**,Available from项填写```192.168.0.0/16```（只允许内网访问）。
 
-+ 设置IP伪装
-  + 点击**IP**->**Firewall**，选择**NAT**选项卡，添加一条NAT规则。选择General选项卡，Chain选择```srcnat```；选择Action选项卡，Action选择```masquerade```，**取消**勾选Log。
++ 设置时钟
+  + 点击**System**->**NTP Client**，添加NTP Server。
+    + ```cn.ntp.org.cn```
+    + ```cn.pool.ntp.org```
+    + ```ntp.aliyun.com```
+    + ```ntp.tencent.com```
+  + 点击**System**->**Clock**，添加**Time Zone Name**选择```Asia/Shanghai```。
 
-## 设置DHCP
-
-+ 设置DHCP IP池。
-  + 点击**IP**->**Pool**，选择**Pools**选项卡，创建一个IP Pool。Name填写```pool-ipv4```，Addresses填写想要分配的地址池```192.168.8.100-192.168.8.239```，Next Pool选择```none```。
-
-+ 设置DHCP
-  + 点击**IP**->**DHCP Server**，选择**DHCP**选项卡，创建一个DHCP Server。选择General选项卡，Name填写```server-ipv4```，Interface选择```bridge-lan```，Address Pool选择```pool-ipv4```。
-  + 选择**Networks**选项卡，新建一个DHCP Network。Address填写```192.168.8.0/24```，Gateway填写```192.168.8.1```，DNS Servers填写```192.168.8.1```
-
-## 设置DNS
-
-+ 设置DNS地址与DNS缓存
-  + 点击**IP**->**DNS**，Server填写```223.5.5.5```,```119.29.29.29```，勾选```Allow Remote Requests```。
-
-## 设置IPv6
-
-+ 点击**Interface**，选择**Interface**选项卡，查看已创建的PPPOE Client，记录下```Actual MTU```列中的实际MTU值，本文以```1492```为例。
-
-+ 点击**IPv6**->**DHCP Client**，点击+号，添加一个DHCPv6 Client，选择**DHCP**选项卡，Interface选择已创建的PPPOE Client，Request勾选```prefix```，Pool name填写```pool-ipv6```，Pool Prefix Length填```60```（电信：56，移动、联通：60），**取消**勾选```Use Peer DNS```，**取消**勾选```Add Default Route```，然后点右边的**Apply**，如果Prefix正确的话会显示状态栏**Status:Bound**，如果不正确就换个值再尝试。
-
-+ 给网桥接口分配公网IPv6地址：点击**IPv6**->**Address**,点击+号，添加一个Ipv6 Address，Address填写```::/64```，From Pool选择```pool-ipv6```，Interface选择```bridge-lan```，勾选```EUI64```、```Advertise```。
-
-+ 给网桥接口分配私有IPv6地址：点击**IPv6**->**Address**,点击+号，添加一个Ipv6 Address，Address填写```fd08::1/64```，Interface选择```bridge-lan```，勾选```Advertise```。
-
-+ 设置IPv6伪装：点击**IPv6**->**Firewall**，选择**NAT**选项卡，添加一条NAT规则。选择General选项卡，Chain选择```srcnat```；选择Action选项卡，Action选择```masquerade```，**取消**勾选Log。
-
-+ 点击**IPv6**->**ND**，选择**Interface**选项卡，选择默认的all规则，点击**Disable**禁用。点击+号，添加新的ND，Interface选择```bridge-lan```，RA Interval填写```60-120```，MTU填写之前查到的实际MTU值```1492```，DNS Servers填写```fd08::1```。
-
-+ 点击**IPv6**->**ND**，选择**Prefixes**选项卡，点击**Default**，Valid Lifetime设置为```2d 02:00:00```，Preferred Lifetime设置为```1d 01:00:00```。
-
-## 开启UPnP（不建议）
-
-+ 点击**IP**->**UPnp**，勾选```Enabled```、```Allow To Disable External Interface```、```Show Dummy Rule```。
-
-+ 点击Interfaces，创建一个Upnp，Interface选择WAN口(```ether2-wan```)，type选择```external```。
-
-+ 点击Interfaces，创建一个Upnp，Interface选择```bridge-lan```，type选择```internal```。
++ 设置管理员密码
+  + 点击**System**->**Users**，设置admin的密码。
 
 ## 防火墙设置
 
@@ -142,25 +113,51 @@
 }
 ```
 
-## 安全设置
+## 设置拨号上网
 
-+ 关闭不必要的服务
-  + 点击**IP**->**Services**，只留下winbox与www
-  + 分别点击**winbox**与**www**,Available from项填写```192.168.0.0/16```（只允许内网访问）。
++ 拨号上网设置。
+  + 点击**Interface**，选择**Interface**选项卡，点击+号，选择**PPPOE Client**,新建一个PPPOE Client。选择**General**选项卡，Interfaces选择WAN口(```ether2-wan```)；选择Dial Out选项卡，User和Password填写拨号的用户名和密码，勾选```Add Default Route```
 
-+ 设置时钟
-  + 点击**System**->**NTP Client**，添加NTP Server。
-    + cn.ntp.org.cn
-    + cn.pool.ntp.org
-    + ntp.aliyun.com
-    + ntp.tencent.com
-  + 点击**System**->**Clock**，添加**Time Zone Name**选择```Asia/Shanghai```。
++ 设置IP伪装
+  + 点击**IP**->**Firewall**，选择**NAT**选项卡，添加一条NAT规则。选择General选项卡，Chain选择```srcnat```；选择Action选项卡，Action选择```masquerade```，**取消**勾选Log。
 
-+ 设置管理员密码
-  + 点击**System**->**Users**，设置admin的密码。
+## 设置DHCP
 
-+ 升级固件
-  + 点击**System**->**Packages**，点击**Check For Updates**查找更新，一般选择stable通道。
++ 设置DHCP IP池。
+  + 点击**IP**->**Pool**，选择**Pools**选项卡，创建一个IP Pool。Name填写```pool-ipv4```，Addresses填写想要分配的地址池```192.168.8.100-192.168.8.239```，Next Pool选择```none```。
+
++ 设置DHCP
+  + 点击**IP**->**DHCP Server**，选择**DHCP**选项卡，创建一个DHCP Server。选择General选项卡，Name填写```server-ipv4```，Interface选择```bridge-lan```，Address Pool选择```pool-ipv4```。
+  + 选择**Networks**选项卡，新建一个DHCP Network。Address填写```192.168.8.0/24```，Gateway填写```192.168.8.1```，DNS Servers填写```192.168.8.1```
+
+## 设置DNS
+
++ 设置DNS地址与DNS缓存
+  + 点击**IP**->**DNS**，Server填写```223.5.5.5```,```119.29.29.29```，勾选```Allow Remote Requests```。
+
+## 设置IPv6
+
++ 点击**Interface**，选择**Interface**选项卡，查看已创建的PPPOE Client，记录下```Actual MTU```列中的实际MTU值，本文以```1492```为例。
+
++ 点击**IPv6**->**DHCP Client**，点击+号，添加一个DHCPv6 Client，选择**DHCP**选项卡，Interface选择已创建的PPPOE Client，Request勾选```prefix```，Pool name填写```pool-ipv6```，Pool Prefix Length填```60```（电信：56，移动、联通：60），**取消**勾选```Use Peer DNS```，**取消**勾选```Add Default Route```，然后点右边的**Apply**，如果Prefix正确的话会显示状态栏**Status:Bound**，如果不正确就换个值再尝试。
+
++ 给网桥接口分配公网IPv6地址：点击**IPv6**->**Address**,点击+号，添加一个Ipv6 Address，Address填写```::/64```，From Pool选择```pool-ipv6```，Interface选择```bridge-lan```，勾选```EUI64```、```Advertise```。
+
++ 给网桥接口分配私有IPv6地址：点击**IPv6**->**Address**,点击+号，添加一个Ipv6 Address，Address填写```fd08::1/64```，Interface选择```bridge-lan```，勾选```Advertise```。
+
++ 设置IPv6伪装：点击**IPv6**->**Firewall**，选择**NAT**选项卡，添加一条NAT规则。选择General选项卡，Chain选择```srcnat```；选择Action选项卡，Action选择```masquerade```，**取消**勾选Log。
+
++ 点击**IPv6**->**ND**，选择**Interface**选项卡，选择默认的all规则，点击**Disable**禁用。点击+号，添加新的ND，Interface选择```bridge-lan```，MTU填写之前查到的实际MTU值```1492```，DNS Servers填写```fd08::1```。
+
++ 点击**IPv6**->**ND**，选择**Prefixes**选项卡，点击**Default**，Valid Lifetime设置为```2d 02:00:00```，Preferred Lifetime设置为```1d 01:00:00```。
+
+## 开启UPnP（不建议）
+
++ 点击**IP**->**UPnp**，勾选```Enabled```、```Allow To Disable External Interface```、```Show Dummy Rule```。
+
++ 点击Interfaces，创建一个Upnp，Interface选择WAN口(```ether2-wan```)，type选择```external```。
+
++ 点击Interfaces，创建一个Upnp，Interface选择```bridge-lan```，type选择```internal```。
 
 ## 可选配置
 
@@ -176,3 +173,6 @@
 /tool mac-server set allowed-interface-list=LAN
 /tool mac-server mac-winbox set allowed-interface-list=LAN
 ```
+
++ 升级固件
+  + 点击**System**->**Packages**，点击**Check For Updates**查找更新，一般选择stable通道。

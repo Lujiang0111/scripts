@@ -8,6 +8,7 @@
 ## 全新安装
 
 + 使用[rufus](https://rufus.ie)制作启动U盘进行安装，此处选择的是8.1版本。
+  + 踩坑：制作完镜像后，直接拔出u盘，不要点弹出。
   + 踩坑：如果中途取消安装，再次安装前，需要清除U盘分区，重新用rufus制作镜像，否则会安装失败。
 + 默认管理网址：<https://ip:8006>
 + 默认用户名：root
@@ -189,6 +190,28 @@ reboot
 
 ### 为虚拟机添加PCI设备
 
++ **注意：不要将控制口的网卡给直通了！！**
+
++ 查看网卡pci地址:
+
+```shell
+ethtool -i enp87s0
+```
+
+```shell
+driver: igc
+version: 6.5.11-7-pve
+firmware-version: 1057:8754
+expansion-rom-version: 
+# bus-info即pci地址
+bus-info: 0000:57:00.0
+supports-statistics: yes
+supports-test: yes
+supports-eeprom-access: yes
+supports-register-dump: yes
+supports-priv-flags: yes
+```
+
 + 点击：虚拟机->硬件->添加->PCI设备
   + 所有功能
     + 如果该设备具有多个功能（例如显卡 01:00.0 和 01:00.1），勾选此选项会一起传递。
@@ -201,5 +224,3 @@ reboot
 
   + ROM-Bar (rombar=on|off)
     + 使固件 ROM 对客户机可见。默认已勾选，有些 PCI(e) 设备需要禁用。
-
-+ **注意：不要将控制口的网卡给直通了！！**
