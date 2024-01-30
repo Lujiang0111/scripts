@@ -47,7 +47,7 @@
 + 点击**WireGuard**，选择**Peers**选项卡，点击+号。
   + Interface - ```wireguard-lan```
   + Public Key - ```public-key-peer```
-  + Allowed Address - ```192.168.9.100/32```
+  + Allowed Address - ```192.168.9.21/32```
   + Persistent Keepalive - ```00:00:25```
 
 ### 为WireGuard设置IP
@@ -63,7 +63,7 @@
 ```ini
 [Interface]
 PrivateKey = private-key-peer   # Windows自动生成的私钥
-Address = 192.168.9.100/32      # Ros设置中为Peer设置的IP
+Address = 192.168.9.21/32      # Ros设置中为Peer设置的IP
 DNS = 192.168.8.1               # Ros的DNS地址，可以不填
 [peer]
 PublicKey = public-key-lan      # wireguard-lan的公钥
