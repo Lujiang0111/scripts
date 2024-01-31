@@ -212,15 +212,9 @@ make menuconfig
 
 ### LuCI -> Applications
 
-+ **取消**勾选(n)```luci-app-accesscontrol```，```luci-app-adbyby-plus```，```luci-app-ddns```，```luci-app-ipsec-vpnd```，```luci-app-turboacc```，```luci-app-unblockmusic```，```luci-app-upnp```，```luci-app-wireguard```，```luci-app-wol```，```luci-app-xlnetacc```，```luci-app-zerotier```。
-
-+ 勾选```luci-app-argon-config```、```luci-app-aria2```、```luci-app-openclash```、```luci-app-smartdns```、```luci-app-udpxy```、```luci-app-uugamebooster```、```luci-app-vlmcsd```等插件
++ 勾选```luci-app-argon-config```、```luci-app-aria2```、```luci-app-openclash```、```luci-app-smartdns```、```luci-app-udpxy```、```luci-app-uugamebooster```、```luci-app-vlmcsd```、```luci-app-vsftpd```等插件。
 
 + 编译ssrp时，如果需要IPv6解析，需要取消勾选(n)```ChinaDNS-NG```。
-
-### LuCI -> Themes
-
-+ 勾选(y)```luci-theme-argon-mod```
 
 ### Network -> SSH
 
