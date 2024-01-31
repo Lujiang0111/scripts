@@ -10,7 +10,7 @@
         | Tencent | 119.29.29.29 | 53 | udp | | |
         | 114 | 114.114.114.114 | 53 | udp | | |
         | Cloudflare | 1.1.1.1 | 853 | tls | overseas | ✔ |
-        | Google | 8.8.4.4 | 853 | tls | overseas | ✔ |
+        | Google | 8.8.8.8 | 853 | tls | overseas | ✔ |
 
 2. 配置主DNS服务器
     + 点击**常规设置**选项卡，按下表所示配置。
