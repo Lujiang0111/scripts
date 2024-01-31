@@ -11,7 +11,7 @@
   + local-lvm是存储的名字，替换为实际储存。
 
 ```shell
-qm importdisk 100 /var/lib/vz/template/iso/openwrt.img local-lvm
+qm importdisk 100 /var/lib/vz/template/iso/openwrt-x86-64-generic-squashfs-combined-efi.img local-lvm
 ```
 
 + 之后就可以在虚拟机中看到这个未使用的磁盘。编辑这个磁盘，不用改动，点**编辑**->**添加**即可。
