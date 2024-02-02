@@ -28,7 +28,7 @@ sysctl -p
 以管理员权限编辑网络配置文件。
 
 ```shell
-sudo nano /etc/network/interfaces
+sudo vim /etc/network/interfaces
 ```
 
 在文件中添加类似以下的配置（替换成你的实际网络配置）：
