@@ -1,5 +1,28 @@
 # debian设置静态IP地址
 
+## 禁止系统自动获取IPv6
+
+```shell
+sudo vim /etc/sysctl.conf
+```
+
+在文件末尾加入
+
+```ini
+# disable ipv6 autoconf
+net.ipv6.conf.enp1s0.autoconf=0
+net.ipv6.conf.enp1s0.accept_ra=0
+net.ipv6.conf.enp1s0.use_tempaddr=0
+```
+
+重启系统或执行
+
+```shell
+sysctl -p
+```
+
+生效
+
 ## 编辑网络配置文件
 
 以管理员权限编辑网络配置文件。
