@@ -24,14 +24,14 @@ network:
         - 192.168.8.22/24
         - "fd08::22/64"
       routes:
-        - to: default
+        - to: 0.0.0.0/0
           via: 192.168.8.5
-        - to: default
+          on-link: true
+        - to: ::/0
           via: fd08::5
+          on-link: true
       nameservers:
-        addresses:
-          - 192.168.8.5
-          - fd08::5
+        addresses: [192.168.8.5, fd08::5]
         search: []
 ```
 
