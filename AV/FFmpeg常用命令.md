@@ -37,6 +37,12 @@
     ./build.sh win64 nonfree
     ```
 
+## 输出udp-ts流
+
+```shell
+ffmpeg -re -i input_file -codec copy -f mpegts udp://ip:port?pkt_size=1316
+```
+
 ## 只接收不输出
 
 ```shell
