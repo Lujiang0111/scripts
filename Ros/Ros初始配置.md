@@ -22,7 +22,7 @@
 
 ### 修改接口名称
 
-点击**Interface**，选择**Interface**选项卡，确定WAN口、2.5G口、SFP口等，修改网口名称，方便记忆。
+点击**Interfaces**，选择**Interface**选项卡，确定wan口、2.5G口、SFP口等，修改网口名称，方便记忆。
 
 + 1号口 - `ether1-2.5g`
 + 2号口 - `ether2-wan`
@@ -40,12 +40,12 @@
 
 ### 添加Interface List
 
-+ 点击**Interface**，选择**Interface List**选项卡，点击**list**按钮，进入**Interface Lists**页面，添加`WAN`（外网）和`LAN`（内网）和`ONU`（光猫）
++ 点击**Interfaces**，选择**Interface List**选项卡，点击**list**按钮，进入**Interface Lists**页面，添加`WAN`（外网）和`LAN`（内网）和`ONU`（光猫）
 
-+ 点击**Interface**，选择**Interface List**选项卡，添加一个Interface List：
++ 点击**Interfaces**，选择**Interface List**选项卡，添加一个Interface List：
   + **List** - `ONU`
   + **Interface** - `ether2-wan`
-+ 点击**Interface**，选择**Interface List**选项卡，添加一个Interface List：
++ 点击**Interfaces**，选择**Interface List**选项卡，添加一个Interface List：
   + **List** - `LAN`
   + **Interface** - `bridge-lan`
 
@@ -161,7 +161,7 @@
 
 ### 添加pppoe client
 
-+ 点击**Interface**，选择**Interface**选项卡，点击+号，选择**PPPOE Client**,新建一个PPPOE Client：
++ 点击**Interfaces**，选择**Interface**选项卡，点击+号，选择**PPPOE Client**,新建一个PPPOE Client：
   + **General**
     + **Name** - `pppoe-bjlt`
     + **Interfaces** - `ether2-wan`
@@ -172,14 +172,14 @@
 
 ### 设置Interface List
 
-+ 点击**Interface**，选择**Interface List**选项卡，添加一个Interface List：
++ 点击**Interfaces**，选择**Interface List**选项卡，添加一个Interface List：
   + **List** - `WAN`
   + **Interface** - `pppoe-bjlt`
 
 ### 设置wan口IP伪装
 
 ```shell
-/ip firewall nat add action=masquerade chain=srcnat comment="defconf: masquerade IPv4" out-interface-list=WAN
+/ip firewall nat add action=masquerade chain=srcnat comment="defconf: masquerade IPv4"
 ```
 
 ## 设置DHCP
@@ -209,7 +209,7 @@
 
 ## 设置IPv6
 
-+ 点击**Interface**，选择**Interface**选项卡，查看已创建的PPPOE Client，记录下`Actual MTU`列中的实际MTU值，本文以`1492`为例。
++ 点击**Interfaces**，选择**Interface**选项卡，查看已创建的PPPOE Client，记录下`Actual MTU`列中的实际MTU值，本文以`1492`为例。
 
 ### 设置DHCPv6
 
@@ -241,7 +241,7 @@
 ### 设置IPv6伪装
 
 ```shell
-/ipv6 firewall nat add action=masquerade chain=srcnat comment="defconf: masquerade IPv6" out-interface-list=WAN
+/ipv6 firewall nat add action=masquerade chain=srcnat comment="defconf: masquerade IPv6"
 ```
 
 ### 设置IPv6 ND
@@ -254,8 +254,8 @@
   + **DNS Servers** - `fd08::1`
 
 + 点击**IPv6**->**ND**，选择**Prefixes**选项卡，点击**Default**：
-  + **Valid Lifetime** - `2d 02:00:00`
-  + **Preferred Lifetime** - `1d 01:00:00`
+  + **Valid Lifetime** - `2d 00:00:00`
+  + **Preferred Lifetime** - `1d 00:00:00`
 
 ## 设置访问光猫网段
 
@@ -268,8 +268,7 @@
 ### 添加防火墙规则
 
 ```shell
-/ip firewall nat add action=masquerade chain=srcnat comment="onuconf: access to ONU" out-interface-list=ONU src-address-list=192.168.8.0/24 dst-address-list=192.168.100.0/24
-/ip firewall mangle add action=accept chain=prerouting comment="onuconf: access to ONU" src-address-list=192.168.8.0/24 dst-address-list=192.168.100.0/24
+/ip firewall mangle add action=accept chain=prerouting comment="onuconf: access to ONU" src-address=192.168.8.0/24 dst-address=192.168.100.0/24
 ```
 
 ## 开启UPnP（不建议）

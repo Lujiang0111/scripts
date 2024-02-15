@@ -101,7 +101,7 @@ add address=192.168.8.6 list=FQIP
 点击**Ip**->**Routes**，新建一个Route，Dst. Address填写```0.0.0.0/0```，Gateway填写```192.168.8.5```，Routing Table选择```rtab-fq```。
 
 ```shell
-/ip/route/add dst-address=0.0.0.0/0 routing-table="rtab-fq" gateway=192.168.8.5 place-before=0
+/ip/route/add dst-address=0.0.0.0/0 routing-table="rtab-fq" gateway=192.168.8.5
 ```
 
 ### 给需要翻墙的内网ip添加标记
@@ -140,7 +140,7 @@ add address=192.168.8.6 list=FQIP
     /log info message="192.168.8.5 down!"
     /ip/route/disable numbers=0
     /ip/firewall/mangle/disable numbers=0
-    /ip dns set servers 223.5.5.5,223.6.6.6
+    /ip dns set servers 223.5.5.5,119.29.29.29
     /ip dns cache flush
     ```
 

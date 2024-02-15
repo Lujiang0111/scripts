@@ -52,22 +52,27 @@
 
 ### 为WireGuard设置IP
 
-+ 点击**IP**->**Addresses**，选择**Peers**选项卡，点击+号。
++ 点击**IP**->**Addresses**，点击+号。
   + Address - ```192.168.9.1/24```
   + Interface - ```wireguard-lan```
 
 ## 客户端配置
 
 + 不同的客户端配置方法是大同小异的，我就以刚刚Windows生成的继续往下配置了，名称填写```wireguard-peer```。
+  + **PrivateKey** - Windows自动生成的私钥
+  + **Address** - Ros设置中为Peer设置的IP
+  + **PublicKey** - wireguard-lan的公钥
+  + **Endpoint** - 填写OS的公网IP：监听端口
+  + **AllowedIPs** - 填写需要通过WireGuard代理的地址段
+  + **PersistentKeepalive** - 心跳间隔
 
 ```ini
 [Interface]
-PrivateKey = private-key-peer   # Windows自动生成的私钥
-Address = 192.168.9.21/32      # Ros设置中为Peer设置的IP
-DNS = 192.168.8.1               # Ros的DNS地址，可以不填
+PrivateKey = private-key-peer
+Address = 192.168.9.21/32
 [peer]
-PublicKey = public-key-lan      # wireguard-lan的公钥
-Endpoint = 123.45.67.89:52321   # 这个填ROS的公网：监听端口
-AllowedIPs = 192.168.8.0/21     # 填写需要通过WireGuard代理的地址段
-PersistentKeepalive = 25        # 心跳间隔25s
+PublicKey = public-key-lan
+Endpoint = 123.45.67.89:52321
+AllowedIPs = 192.168.8.0/21
+PersistentKeepalive = 25
 ```
