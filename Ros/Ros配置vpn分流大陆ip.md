@@ -101,7 +101,7 @@ add address=192.168.8.6 list=FQIP
 点击**Ip**->**Routes**，新建一个Route，Dst. Address填写```0.0.0.0/0```，Gateway填写```192.168.8.5```，Routing Table选择```rtab-fq```。
 
 ```shell
-/ip/route/add dst-address=0.0.0.0/0 routing-table="rtab-fq" gateway=192.168.8.5
+/ip/route/add dst-address=0.0.0.0/0 routing-table="rtab-fq" gateway=192.168.8.5 place-before=0
 ```
 
 ### 给需要翻墙的内网ip添加标记
@@ -117,7 +117,7 @@ add address=192.168.8.6 list=FQIP
 + 查看此Mangle Rule的序号(#)，这里假设为```3```。
 
 ```shell
-/ip/firewall/mangle/add chain=prerouting action=mark-routing new-routing-mark=rtab-fq passthrough=yes dst-address-type=!local src-address-list=FQIP dst-address-list=!CNIP log=no log-prefix=""
+/ip/firewall/mangle/add chain=prerouting action=mark-routing new-routing-mark=rtab-fq passthrough=yes dst-address-type=!local src-address-list=FQIP dst-address-list=!CNIP log=no place-before=0
 ```
 
 ### 设置Netwatch，根据旁路由启停状况自动切换配置
