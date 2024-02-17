@@ -101,7 +101,7 @@ add address=192.168.8.6 list=FQIP
 点击**Ip**->**Routes**，新建一个Route，Dst. Address填写```0.0.0.0/0```，Gateway填写```192.168.8.5```，Routing Table选择```rtab-fq```。
 
 ```shell
-/ip/route/add dst-address=0.0.0.0/0 routing-table="rtab-fq" gateway=192.168.8.5
+/ip/route/add dst-address=0.0.0.0/0 routing-table="rtab-fq" gateway=192.168.8.5 check-gateway=ping
 ```
 
 ### 给需要翻墙的内网ip添加标记
@@ -114,7 +114,7 @@ add address=192.168.8.6 list=FQIP
 
 + 选择Action标签，Action选择```mark routing```，取消勾选Log，New Routing Make选择```rtab-fq```，勾选```Passthrough```。
 
-+ 查看此Mangle Rule的序号(#)，这里假设为```3```。
++ 将词条Mangle规则移至最上（number=0）。
 
 ```shell
 /ip/firewall/mangle/add chain=prerouting action=mark-routing new-routing-mark=rtab-fq passthrough=yes dst-address-type=!local src-address-list=FQIP dst-address-list=!CNIP log=no place-before=0
@@ -129,7 +129,6 @@ add address=192.168.8.6 list=FQIP
     ```shell
     /log info message="192.168.8.5 up!"
     /ip/firewall/mangle/enable numbers=0
-    /ip/route/enable numbers=0
     /ip dns set servers 192.168.8.5
     /ip dns cache flush
     ```
@@ -138,10 +137,13 @@ add address=192.168.8.6 list=FQIP
 
     ```shell
     /log info message="192.168.8.5 down!"
-    /ip/route/disable numbers=0
     /ip/firewall/mangle/disable numbers=0
     /ip dns set servers 223.5.5.5,119.29.29.29
     /ip dns cache flush
     ```
 
-    + 其中**mangle**的```numbers```数值为之前记录的Mangle Rule的序号。
+### 修改Ros默认防火墙（ROS初始配置已包含）
+
++ 打开 **IP** > **Firewall** > **Filter Rules**，找到 `action=drop chain=forward comment="drop invalid" connection-state=invalid` 这一条，将**General**下的**In. Interface List**改为`!LAN`防止防火墙将加密过后的流量标记为invalid而造成TCP流量握手缓慢。
+
++ 打开 **IP** > **Firewall** > **Filter Rules**，找到`defconf: fasttrack`这一条, 将**General**下的**In. Interface List**设置为`WAN`，防止Fasttrack与Mangle冲突。

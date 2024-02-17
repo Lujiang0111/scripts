@@ -77,20 +77,20 @@
 
 ```shell
 /ip firewall connection tracking {
-  set tcp-syn-sent-timeout=120s
-  set tcp-syn-received-timeout=60s
-  set tcp-established-timeout=7440s
-  set tcp-fin-wait-timeout=120s
-  set tcp-close-wait-timeout=60s
-  set tcp-last-ack-timeout=30s
-  set tcp-time-wait-timeout=120s
-  set tcp-close-timeout=10s
-  set tcp-max-retrans-timeout=300s
-  set tcp-unacked-timeout=300s
-  set udp-timeout=30s
-  set udp-stream-timeout=120s
-  set icmp-timeout=30s
-  set generic-timeout=600s
+    set tcp-syn-sent-timeout=120s
+    set tcp-syn-received-timeout=60s
+    set tcp-established-timeout=7440s
+    set tcp-fin-wait-timeout=120s
+    set tcp-close-wait-timeout=60s
+    set tcp-last-ack-timeout=30s
+    set tcp-time-wait-timeout=120s
+    set tcp-close-timeout=10s
+    set tcp-max-retrans-timeout=300s
+    set tcp-unacked-timeout=300s
+    set udp-timeout=30s
+    set udp-stream-timeout=120s
+    set icmp-timeout=30s
+    set generic-timeout=600s
 }
 ```
 
@@ -107,8 +107,9 @@
     filter add chain=input action=drop in-interface-list=!LAN comment="defconf: drop all not coming from LAN"
     filter add chain=forward action=accept ipsec-policy=in,ipsec comment="defconf: accept in ipsec policy"
     filter add chain=forward action=accept ipsec-policy=out,ipsec comment="defconf: accept out ipsec policy"
+    filter add chain=forward in-interface-list=WAN action=fasttrack-connection connection-state=established,related comment="defconf: fasttrack"
     filter add chain=forward action=accept connection-state=established,related,untracked comment="defconf: accept established,related, untracked"
-    filter add chain=forward action=drop connection-state=invalid comment="defconf: drop invalid"
+    filter add chain=forward in-interface-list=!LAN action=drop connection-state=invalid comment="defconf: drop invalid"
     filter add chain=forward action=drop connection-state=new connection-nat-state=!dstnat in-interface-list=WAN comment="defconf: drop all from WAN not DSTNATed"
     filter add chain=forward action=drop connection-state=new connection-nat-state=!dstnat in-interface-list=ONU comment="defconf: drop all from ONU not DSTNATed"
 }
@@ -157,6 +158,27 @@
 }
 ```
 
+### 设置IPv4黑洞路由
+
+```shell
+/ip route {
+    add blackhole comment="defconf: RFC6890 - this network" disabled=no dst-address=0.0.0.0/8
+    add blackhole comment="defconf: RFC6890 - private networks" disabled=no dst-address=10.0.0.0/8
+    add blackhole comment="defconf: RFC6890 - shared address" disabled=no dst-address=100.64.0.0/10
+    add blackhole comment="defconf: RFC6890 - link local" disabled=no dst-address=169.254.0.0/16
+    add blackhole comment="defconf: RFC6890 - private networks" disabled=no dst-address=172.16.0.0/12
+    add blackhole comment="defconf: RFC6890 - reserved" disabled=no dst-address=192.0.0.0/24
+    add blackhole comment="defconf: RFC6890 - DS-Lite" disabled=no dst-address=192.0.0.0/29
+    add blackhole comment="defconf: RFC6890 - TEST-NET-1" disabled=no dst-address=192.0.2.0/24
+    add blackhole comment="defconf: RFC6890 - 6to4 relay" disabled=no dst-address=192.88.99.0/24
+    add blackhole comment="defconf: RFC6890 - private networks" disabled=no dst-address=192.168.0.0/16
+    add blackhole comment="defconf: RFC6890 - benchmarking" disabled=no dst-address=198.18.0.0/15
+    add blackhole comment="defconf: RFC6890 - TEST-NET-2" disabled=no dst-address=198.51.100.0/24
+    add blackhole comment="defconf: RFC6890 - TEST-NET-3" disabled=no dst-address=203.0.113.0/24
+    add blackhole comment="defconf: RFC6890 - reserved" disabled=no dst-address=240.0.0.0/4
+}
+```
+
 ## 设置拨号上网
 
 ### 添加pppoe client
@@ -179,8 +201,14 @@
 ### 设置wan口IP伪装
 
 ```shell
-/ip firewall nat add action=masquerade chain=srcnat comment="defconf: masquerade IPv4"
+/ip firewall nat add action=masquerade chain=srcnat out-interface-list=!LAN comment="defconf: masquerade IPv4"
 ```
+
+## 设置DNS地址与DNS缓存
+
++ 点击**IP**->**DNS**：
+  + **Server** - `223.5.5.5`,`119.29.29.29`
+  + **Allow Remote Requests** - ✔
 
 ## 设置DHCP
 
@@ -192,20 +220,14 @@
 
 ### 设置DHCP Server
 
-+ 点击**IP**->**DHCP Server**，选择**DHCP**选项卡，创建一个DHCP Server：
-  + **Name** - `server-ipv4`
-  + **Interface** - `bridge-lan`
-  + **Address Pool** - `pool-ipv4`
 + 点击**IP**->**DHCP Server**，选择**Networks**选项卡，新建一个DHCP Network：
   + **Address** - `192.168.8.0/24`
   + **Gateway** - `192.168.8.1`
   + **DNS Servers** - `192.168.8.1`
-
-## 设置DNS地址与DNS缓存
-
-+ 点击**IP**->**DNS**：
-  + **Server** - `223.5.5.5`,`119.29.29.29`
-  + **Allow Remote Requests** - ✔
++ 点击**IP**->**DHCP Server**，选择**DHCP**选项卡，创建一个DHCP Server：
+  + **Name** - `server-ipv4`
+  + **Interface** - `bridge-lan`
+  + **Address Pool** - `pool-ipv4`
 
 ## 设置IPv6
 
