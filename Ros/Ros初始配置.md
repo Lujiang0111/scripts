@@ -263,7 +263,7 @@
 ### 设置IPv6伪装
 
 ```shell
-/ipv6 firewall nat add action=masquerade chain=srcnat comment="defconf: masquerade IPv6"
+/ipv6 firewall nat add action=masquerade chain=srcnat out-interface-list=!LAN comment="defconf: masquerade IPv6"
 ```
 
 ### 设置IPv6 ND

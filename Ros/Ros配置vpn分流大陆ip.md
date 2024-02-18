@@ -114,10 +114,10 @@ add address=192.168.8.6 list=FQIP
 
 + 选择Action标签，Action选择```mark routing```，取消勾选Log，New Routing Make选择```rtab-fq```，勾选```Passthrough```。
 
-+ 将词条Mangle规则移至最上（number=0）。
++ 将词条Mangle规则移至fasttrack后面（number=3）。
 
 ```shell
-/ip/firewall/mangle/add chain=prerouting action=mark-routing new-routing-mark=rtab-fq passthrough=yes dst-address-type=!local src-address-list=FQIP dst-address-list=!CNIP log=no place-before=0
+/ip/firewall/mangle/add chain=prerouting action=mark-routing new-routing-mark=rtab-fq passthrough=yes dst-address-type=!local src-address-list=FQIP dst-address-list=!CNIP log=no place-before=3
 ```
 
 ### 设置Netwatch，根据旁路由启停状况自动切换配置
@@ -128,7 +128,7 @@ add address=192.168.8.6 list=FQIP
 
     ```shell
     /log info message="192.168.8.5 up!"
-    /ip/firewall/mangle/enable numbers=0
+    /ip/firewall/mangle/enable numbers=3
     /ip dns set servers 192.168.8.5
     /ip dns cache flush
     ```
@@ -137,7 +137,7 @@ add address=192.168.8.6 list=FQIP
 
     ```shell
     /log info message="192.168.8.5 down!"
-    /ip/firewall/mangle/disable numbers=0
+    /ip/firewall/mangle/disable numbers=3
     /ip dns set servers 223.5.5.5,119.29.29.29
     /ip dns cache flush
     ```
