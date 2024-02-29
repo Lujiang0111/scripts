@@ -40,7 +40,7 @@
 
 ### 添加Interface List
 
-+ 点击**Interfaces**，选择**Interface List**选项卡，点击**list**按钮，进入**Interface Lists**页面，添加`WAN`（外网）和`LAN`（内网）和`ONU`（光猫）
++ 点击**Interfaces**，选择**Interface List**选项卡，点击**list**按钮，进入**Interface Lists**页面，添加`WAN`、`LAN`、`ONU`和`VIRT`。
 
 + 点击**Interfaces**，选择**Interface List**选项卡，添加一个Interface List：
     | List | Interface |
@@ -76,7 +76,7 @@
 ### 设置连接属性
 
 ```shell
-/ip firewall connection tracking {
+/ip/firewall/connection/tracking {
     set tcp-syn-sent-timeout=120s
     set tcp-syn-received-timeout=60s
     set tcp-established-timeout=7440s
@@ -99,7 +99,7 @@
 + IPv4防火墙：
 
 ```shell
-/ip firewall {
+/ip/firewall {
     filter add chain=input action=accept connection-state=established,related,untracked comment="defconf: accept established,related,untracked"
     filter add chain=input action=drop connection-state=invalid comment="defconf: drop invalid"
     filter add chain=input action=accept protocol=icmp comment="defconf: accept ICMP"
@@ -118,7 +118,7 @@
 + IPv6防火墙
 
 ```shell
-/ipv6 firewall {
+/ipv6/firewall {
     address-list add list=bad_ipv6 address=::/128 comment="defconf: unspecified address"
     address-list add list=bad_ipv6 address=::1 comment="defconf: lo"
     address-list add list=bad_ipv6 address=fec0::/10 comment="defconf: site-local"
@@ -161,7 +161,7 @@
 ### 设置IPv4黑洞路由
 
 ```shell
-/ip route {
+/ip/route {
     add blackhole comment="defconf: RFC6890 - this network" disabled=no dst-address=0.0.0.0/8
     add blackhole comment="defconf: RFC6890 - private networks" disabled=no dst-address=10.0.0.0/8
     add blackhole comment="defconf: RFC6890 - shared address" disabled=no dst-address=100.64.0.0/10
@@ -202,7 +202,7 @@
 ### 设置wan口IP伪装
 
 ```shell
-/ip firewall nat add action=masquerade chain=srcnat out-interface-list=!LAN comment="defconf: masquerade IPv4"
+/ip/firewall/nat/add action=masquerade chain=srcnat out-interface-list=!LAN comment="defconf: masquerade IPv4"
 ```
 
 ## 设置DNS地址与DNS缓存
@@ -264,7 +264,7 @@
 ### 设置IPv6伪装
 
 ```shell
-/ipv6 firewall nat add action=masquerade chain=srcnat out-interface-list=!LAN comment="defconf: masquerade IPv6"
+/ipv6/firewall/nat/add action=masquerade chain=srcnat out-interface-list=!LAN comment="defconf: masquerade IPv6"
 ```
 
 ### 设置IPv6 ND
@@ -291,7 +291,7 @@
 ### 添加防火墙规则
 
 ```shell
-/ip firewall mangle add action=accept chain=prerouting comment="onuconf: access to ONU" src-address=192.168.8.0/24 dst-address=192.168.100.0/24
+/ip/firewall/mangle/add action=accept chain=prerouting comment="onuconf: access to ONU" src-address=192.168.8.0/24 dst-address=192.168.100.0/24
 ```
 
 ## 开启UPnP（不建议）
@@ -307,14 +307,14 @@
 + ip neighbor
 
 ```shell
-/ip neighbor discovery-settings set discover-interface-list=LAN
+/ip/neighbor/discovery-settings/set discover-interface-list=LAN
 ```
 
 + mac-server
 
 ```shell
-/tool mac-server set allowed-interface-list=LAN
-/tool mac-server mac-winbox set allowed-interface-list=LAN
+/tool/mac-server/set allowed-interface-list=LAN
+/tool/mac-server/mac-winbox/set allowed-interface-list=LAN
 ```
 
 + 升级固件

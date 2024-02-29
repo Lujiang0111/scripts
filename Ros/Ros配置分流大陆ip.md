@@ -1,4 +1,4 @@
-# ros配置vpn分流大陆ip
+# ros配置分流大陆ip
 
 > 参考资料：<https://www.willnet.net/index.php/archives/369/>
 
@@ -117,7 +117,7 @@ add address=192.168.8.6 list=FQIP
 + 将词条Mangle规则移至fasttrack后面（number=3）。
 
 ```shell
-/ip/firewall/mangle/add chain=prerouting action=mark-routing new-routing-mark=rtab-fq passthrough=yes dst-address-type=!local src-address-list=FQIP dst-address-list=!CNIP log=no place-before=3
+/ip/firewall/mangle/add chain=prerouting src-address-list=FQIP dst-address-list=!CNIP dst-address-type=!local action=mark-routing new-routing-mark=rtab-fq passthrough=yes place-before=3 comment="routing to !CNIP"
 ```
 
 ### 设置Netwatch，根据旁路由启停状况自动切换配置
@@ -129,8 +129,8 @@ add address=192.168.8.6 list=FQIP
     ```shell
     /log info message="192.168.8.5 up!"
     /ip/firewall/mangle/enable numbers=3
-    /ip dns set servers 192.168.8.5
-    /ip dns cache flush
+    /ip/dns/set servers 192.168.8.5
+    /ip/dns/cache/flush
     ```
 
   + 选择**Down**选项卡，设定IP下线时的操作(On Down)：
@@ -138,8 +138,8 @@ add address=192.168.8.6 list=FQIP
     ```shell
     /log info message="192.168.8.5 down!"
     /ip/firewall/mangle/disable numbers=3
-    /ip dns set servers 223.5.5.5,119.29.29.29
-    /ip dns cache flush
+    /ip/dns/set servers 223.5.5.5,119.29.29.29
+    /ip/dns/cache/flush
     ```
 
 ### 修改Ros默认防火墙（ROS初始配置已包含）

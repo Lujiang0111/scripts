@@ -36,10 +36,10 @@
 /ip/firewall/filter/add chain=input protocol=udp dst-port=52321 action=accept place-before=0 comment="accept wireguard listen port"
 ```
 
-+ 将**wireguard-lan**添加到**LAN**中
++ 将**wireguard-lan**添加到**VIRT**中
 
 ```shell
-/interface/list/member/add list=LAN interface=wireguard-lan
+/interface/list/member/add list=VIRT interface=wireguard-lan
 ```
 
 ### 设置Peer
