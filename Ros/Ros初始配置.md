@@ -40,7 +40,7 @@
 
 ### 添加Interface List
 
-+ 点击**Interfaces**，选择**Interface List**选项卡，点击**list**按钮，进入**Interface Lists**页面，添加`WAN`、`LAN`、`ONU`和`VIRT`。
++ 点击**Interfaces**，选择**Interface List**选项卡，点击**list**按钮，进入**Interface Lists**页面，添加`WAN`、`LAN`和`ONU`。
 
 + 点击**Interfaces**，选择**Interface List**选项卡，添加一个Interface List：
     | List | Interface |
