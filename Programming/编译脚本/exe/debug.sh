@@ -35,10 +35,10 @@ function TrapSigint() {
 }
 trap TrapSigint 2
 
-echo -e "${project} start at $(date)" >>runlog
+echo -e "${project}-debug start at $(date)" >>runlog
 
 cd "${shell_path}" || exit
 chmod +x ${project}
 gdb --args ${project} "$@"
 
-echo -e "${project} stop at $(date)" >>runlog
+echo -e "${project}-debug stop at $(date)" >>runlog
