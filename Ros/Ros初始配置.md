@@ -196,6 +196,10 @@
     | - | - |
     | WAN | pppoe-bjlt |
 
+```shell
+/interface/list/member/add list=WAN interface=pppoe-bjlt
+```
+
 ### 设置wan口IP伪装
 
 ```shell
