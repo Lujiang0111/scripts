@@ -102,16 +102,14 @@
 /ip/firewall {
     filter add chain=input action=accept connection-state=established,related,untracked comment="defconf: accept established,related,untracked"
     filter add chain=input action=drop connection-state=invalid comment="defconf: drop invalid"
-    filter add chain=input action=accept protocol=icmp comment="defconf: accept ICMP"
     filter add chain=input action=accept dst-address=127.0.0.1 comment="defconf: accept to local loopback (for CAPsMAN)"
-    filter add chain=input action=drop in-interface-list=!LAN comment="defconf: drop all not coming from LAN"
+    filter add chain=input action=drop in-interface-list=!LAN comment="defconf: drop all coming from !LAN"
     filter add chain=forward action=accept ipsec-policy=in,ipsec comment="defconf: accept in ipsec policy"
     filter add chain=forward action=accept ipsec-policy=out,ipsec comment="defconf: accept out ipsec policy"
     filter add chain=forward in-interface-list=WAN action=fasttrack-connection connection-state=established,related comment="defconf: fasttrack"
     filter add chain=forward action=accept connection-state=established,related,untracked comment="defconf: accept established,related, untracked"
     filter add chain=forward in-interface-list=!LAN action=drop connection-state=invalid comment="defconf: drop invalid"
-    filter add chain=forward action=drop connection-state=new connection-nat-state=!dstnat in-interface-list=WAN comment="defconf: drop all from WAN not DSTNATed"
-    filter add chain=forward action=drop connection-state=new connection-nat-state=!dstnat in-interface-list=ONU comment="defconf: drop all from ONU not DSTNATed"
+    filter add chain=forward action=drop connection-state=new connection-nat-state=!dstnat in-interface-list=!LAN comment="defconf: drop all from !LAN not DSTNATed"
 }
 ```
 
@@ -135,14 +133,13 @@
 /ipv6 firewall {
     filter add chain=input action=accept connection-state=established,related,untracked comment="defconf: accept established,related,untracked"
     filter add chain=input action=drop connection-state=invalid comment="defconf: drop invalid"
-    filter add chain=input action=accept protocol=icmpv6 comment="defconf: accept ICMPv6"
     filter add chain=input action=accept protocol=udp port=33434-33534 comment="defconf: accept UDP traceroute"
     filter add chain=input action=accept protocol=udp dst-port=546 src-address=fe80::/10 comment="defconf: accept DHCPv6-Client prefix delegation."
     filter add chain=input action=accept protocol=udp dst-port=500,4500 comment="defconf: accept IKE"
     filter add chain=input action=accept protocol=ipsec-ah comment="defconf: accept ipsec AH"
     filter add chain=input action=accept protocol=ipsec-esp comment="defconf: accept ipsec ESP"
     filter add chain=input action=accept ipsec-policy=in,ipsec comment="defconf: accept all that matches ipsec policy"
-    filter add chain=input action=drop in-interface-list=!LAN comment="defconf: drop everything else not coming from LAN"
+    filter add chain=input action=drop in-interface-list=!LAN comment="defconf: drop everything else coming from !LAN"
     filter add chain=forward action=accept connection-state=established,related,untracked comment="defconf: accept established,related,untracked"
     filter add chain=forward action=drop connection-state=invalid comment="defconf: drop invalid"
     filter add chain=forward action=drop src-address-list=bad_ipv6 comment="defconf: drop packets with bad src ipv6"
@@ -154,7 +151,7 @@
     filter add chain=forward action=accept protocol=ipsec-ah comment="defconf: accept ipsec AH"
     filter add chain=forward action=accept protocol=ipsec-esp comment="defconf: accept ipsec ESP"
     filter add chain=forward action=accept ipsec-policy=in,ipsec comment="defconf: accept all that matches ipsec policy"
-    filter add chain=forward action=drop in-interface-list=!LAN comment="defconf: drop everything else not coming from LAN"
+    filter add chain=forward action=drop in-interface-list=!LAN comment="defconf: drop everything else coming from !LAN"
 }
 ```
 
@@ -291,7 +288,7 @@
 ### 添加防火墙规则
 
 ```shell
-/ip/firewall/mangle/add action=accept chain=prerouting comment="onuconf: access to ONU" src-address=192.168.8.0/24 dst-address=192.168.100.0/24
+/ip/firewall/mangle/add action=accept chain=prerouting comment="access to ONU" src-address=192.168.8.0/24 dst-address=192.168.100.0/24
 ```
 
 ## 开启UPnP（不建议）
