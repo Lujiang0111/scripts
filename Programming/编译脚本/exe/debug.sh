@@ -21,10 +21,11 @@ for file in *.so.*; do
 done
 ldconfig -n ./
 
+runlog_max_size=10000000
 cd "${shell_path}" || exit
 if [ -f runlog ]; then
     runlog_size=$(stat --format=%s runlog)
-    if [ "${runlog_size}" -gt 10000000 ]; then
+    if [ "${runlog_size}" -gt ${runlog_max_size} ]; then
         echo -e "runlog too big, restart at $(date)" >runlog
     fi
 fi
