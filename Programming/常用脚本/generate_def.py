@@ -4,7 +4,7 @@ import sys
 
 
 def extract_functions(file_path):
-    pattern = r"^[^\S\n]*\w+[\*\&]?\s+[\*\&]?\s*(\w+)\s*\("
+    pattern = r"^[^\S\n]*\w+[\*\&]?\s+[\*\&]?\s*([a-zA-Z]\w+)\s*\("
 
     header_files = [
         f
