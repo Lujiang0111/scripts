@@ -295,6 +295,13 @@
 /ip/firewall/mangle/add action=accept chain=prerouting comment="access to ONU" src-address=192.168.8.0/24 dst-address=192.168.100.0/24
 ```
 
+## 设置 Endpoint-Independent NAT(仅对UDP生效)
+
+```shell
+/ip/firewall/nat/add action=endpoint-independent-nat chain=srcnat out-interface-list=WAN protocol=udp comment="udp endpoint-independent nat"
+/ip/firewall/nat/add action=endpoint-independent-nat chain=dstnat in-interface-list=WAN protocol=udp comment="udp endpoint-independent nat"
+```
+
 ## 开启UPnP（不建议）
 
 + 点击**IP**->**UPnp**，勾选`Enabled`、`Allow To Disable External Interface`、`Show Dummy Rule`。
