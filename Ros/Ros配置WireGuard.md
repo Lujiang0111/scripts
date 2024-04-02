@@ -67,7 +67,7 @@
   + **AllowedIPs** - 填写需要通过WireGuard代理的地址段
   + **PersistentKeepalive** - 心跳间隔
 
-`ini
+```ini
 [Interface]
 PrivateKey = private-key-peer
 Address = 192.168.9.21/32
@@ -76,4 +76,4 @@ PublicKey = public-key-lan
 Endpoint = 123.45.67.89:52321
 AllowedIPs = 192.168.8.0/21
 PersistentKeepalive = 25
-`
+```
