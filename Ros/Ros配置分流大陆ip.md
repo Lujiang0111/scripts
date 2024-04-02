@@ -10,8 +10,8 @@
 curl -s https://raw.githubusercontent.com/firehol/blocklist-ipsets/master/geolite2_country/country_cn.netset \
 | sed -e '/^#/d'\
 | sed -e 's/^/add address=/g' -e 's/$/ list=CNIP/g' \
-| sed -e '1i/ip firewall address-list' -e '1iremove [/ip firewall address-list find list=CNIP]' -e '1iadd address=10.0.0.0/8 list=CNIP comment=private-network' -e '1iadd address=172.16.0.0/12 list=CNIP comment=private-network' -e '1iadd address=192.168.0.0/16 list=CNIP comment=private-network' \
-> CNIP.rsc
+| sed -e '1i/ip firewall address-list' -e '1iremove [/ip firewall address-list find list=CNIP]' -e '1iadd address=10.0.0.0/8 list=CNIP comment=private-network' -e '1iadd address=172.16.0.0/12 list=CNIP comment=private-network' -e '1iadd address=192.168.0.0/16 list=CNIP comment=private-network' -e '1iadd address=224.0.0.0/4 list=CNIP comment=private-network' \
+> cnip.rsc
 ```
 
 + 使用[chnroutes2](https://github.com/misakaio/chnroutes2)生成（更小巧，推荐）
@@ -20,8 +20,8 @@ curl -s https://raw.githubusercontent.com/firehol/blocklist-ipsets/master/geolit
 curl -s https://raw.githubusercontent.com/misakaio/chnroutes2/master/chnroutes.txt \
 | sed -e '/^#/d'\
 | sed -e 's/^/add address=/g' -e 's/$/ list=CNIP/g' \
-| sed -e '1i/ip firewall address-list' -e '1iremove [/ip firewall address-list find list=CNIP]' -e '1iadd address=10.0.0.0/8 list=CNIP comment=private-network' -e '1iadd address=172.16.0.0/12 list=CNIP comment=private-network' -e '1iadd address=192.168.0.0/16 list=CNIP comment=private-network' \
-> CNIP.rsc
+| sed -e '1i/ip firewall address-list' -e '1iremove [/ip firewall address-list find list=CNIP]' -e '1iadd address=10.0.0.0/8 list=CNIP comment=private-network' -e '1iadd address=172.16.0.0/12 list=CNIP comment=private-network' -e '1iadd address=192.168.0.0/16 list=CNIP comment=private-network' -e '1iadd address=224.0.0.0/4 list=CNIP comment=private-network' \
+> cnip.rsc
 ```
 
 ## ros配置
@@ -30,19 +30,19 @@ curl -s https://raw.githubusercontent.com/misakaio/chnroutes2/master/chnroutes.t
 
 ### 导入大陆IP列表
 
-winbox中点击**Files**->**Upload**上传cnip.rsc脚本文件。点击**New Terminal**打开控制台，在terminal中输入
+winbox中点击**Files**->**Upload**上传`cnip.rsc`脚本文件。点击**New Terminal**打开控制台，在terminal中输入
 
 ```shell
-import CNIP.rsc
+import cnip.rsc
 ```
 
-导入脚本，此脚本会添加名称为```CNIP```的Address List。
+导入脚本，此脚本会添加名称为`CNIP`的Address List。
 
 ### 配置需要翻墙的内网地址列表
 
-点击**Ip**->**Firewall**，选择**Address Lists**标签，新建名称为```FQIP```的Address List，地址为需要翻墙的内网IP，可用脚本批量添加）。
+点击**Ip**->**Firewall**，选择**Address Lists**标签，新建名称为`FQIP`的Address List，地址为需要翻墙的内网IP，可用脚本批量添加）。
 
-+ 命令行方式为：
+#### 命令行方式
 
 ```shell
 /ip firewall address-list
@@ -53,44 +53,45 @@ add address=192.168.8.6 list=FQIP
 ......
 ```
 
-+ 脚本方式为：
-  + Linux下编写名称为FQIP.sh的脚本文件
+#### 脚本方式
 
-    ```shell
-    #!/bin/bash
-    fqip_file=FQIP.rsc
++ Linux下编写名称为`generate_fqip.sh`的脚本文件
 
-    cat <<- EOF > ${fqip_file}
-    /ip firewall address-list
-    remove [/ip firewall address-list find list=FQIP]
-    EOF
+```shell
+#!/bin/bash
+fqip_file=fqip.rsc
 
-    for ((i=2; i<=4; i++))
-    do
-        echo -e "add address=192.168.8.${i} list=FQIP" >> ${fqip_file}
-    done
+cat <<- EOF > ${fqip_file}
+/ip firewall address-list
+remove [/ip firewall address-list find list=FQIP]
+EOF
 
-    for ((i=6; i<=239; i++))
-    do
-        echo -e "add address=192.168.8.${i} list=FQIP" >> ${fqip_file}
-    done
-    ```
+for ((i=2; i<=4; i++))
+do
+    echo -e "add address=192.168.8.${i} list=FQIP" >> ${fqip_file}
+done
 
-  + Linux下运行FQIP.sh，生成FQIP.rsc
+for ((i=6; i<=239; i++))
+do
+    echo -e "add address=192.168.8.${i} list=FQIP" >> ${fqip_file}
+done
+```
 
-    ```shell
-    bash FQIP.sh
-    ```
++ Linux下运行`generate_fqip.sh`，生成`fqip.rsc`
 
-  + ros下导入FQIP.rsc
+```shell
+bash generate_fqip.sh
+```
 
-    ```shell
-    import FQIP.rsc
-    ```
++ ros下导入`fqip.rsc`
+
+```shell
+import fqip.rsc
+```
 
 ### 配置分流路由表
 
-点击**Routing**->**Tables**，新建一个Routing Table，名称为```rtab-fq```，勾选```FIB```。
+点击**Routing**->**Tables**，新建一个Routing Table，名称为`rtab-fq`，勾选`FIB`。
 
 ```shell
 /routing/table/add name="rtab-fq" fib
@@ -98,37 +99,50 @@ add address=192.168.8.6 list=FQIP
 
 ### 添加IP分流策略路由
 
-点击**Ip**->**Routes**，新建一个Route，Dst. Address填写```0.0.0.0/0```，Gateway填写```192.168.8.5```，Routing Table选择```rtab-fq```。
+点击**Ip**->**Routes**，新建一个Route，Dst. Address填写`0.0.0.0/0`，Gateway填写`192.168.8.5`，Routing Table选择`rtab-fq`。
 
 ```shell
-/ip/route/add dst-address=0.0.0.0/0 routing-table="rtab-fq" gateway=192.168.8.5 check-gateway=ping
+/ip/route/add dst-address=0.0.0.0/0 routing-table="rtab-fq" gateway=192.168.8.5 comment="routing to openwrt"
 ```
 
 ### 给需要翻墙的内网ip添加标记
 
 + 点击**Ip**->**Firewall**，选择**Mangle**标签，新建一个Mangle Rule。
 
-+ 选择Gereral标签，Chain选择```prerouting```，Src. Address List选择```FQIP```，Dst. Address List选择```CNIP```，勾选```CNIP```前面的感叹号（取反）。
++ 选择Gereral标签，Chain选择`prerouting`，Src. Address List选择`FQIP`，Dst. Address List选择`CNIP`，勾选`CNIP`前面的感叹号（取反）。
 
-+ 选择Extra标签，Dst. Address Type选择```local```，勾选```local```前面的感叹号（取反）。
++ 选择Extra标签，Dst. Address Type选择`local`，勾选`local`前面的感叹号（取反）。
 
-+ 选择Action标签，Action选择```mark routing```，取消勾选Log，New Routing Make选择```rtab-fq```，勾选```Passthrough```。
-
-+ 将词条Mangle规则移至fasttrack后面（number=3）。
++ 选择Action标签，Action选择`mark routing`，取消勾选Log，New Routing Make选择`rtab-fq`，勾选`Passthrough`。
 
 ```shell
-/ip/firewall/mangle/add chain=prerouting src-address-list=FQIP dst-address-list=!CNIP dst-address-type=!local action=mark-routing new-routing-mark=rtab-fq passthrough=yes place-before=3 comment="routing to !CNIP"
+/ip/firewall/mangle/add chain=prerouting src-address-list=FQIP dst-address-list=!CNIP dst-address-type=!local action=mark-routing new-routing-mark=rtab-fq passthrough=yes comment="mark routing !CNIP"
+```
+
+### 路由器本机代理
+
++ 点击**Ip**->**Firewall**，选择**Mangle**标签，新建一个Mangle Rule。
+
++ 选择Gereral标签，Chain选择`output`，Dst. Address List选择`CNIP`，勾选`CNIP`前面的感叹号（取反）。
+
++ 选择Extra标签，Dst. Address Type选择`local`，勾选`local`前面的感叹号（取反）。
+
++ 选择Action标签，Action选择`mark routing`，取消勾选Log，New Routing Make选择`rtab-fq`，勾选`Passthrough`。
+
+```shell
+/ip/firewall/mangle/add chain=output dst-address-list=!CNIP dst-address-type=!local action=mark-routing new-routing-mark=rtab-fq passthrough=yes comment="mark routing !CNIP"
 ```
 
 ### 设置Netwatch，根据旁路由启停状况自动切换配置
 
 + 点击**Tools**->**Netwatch**，点击+号，添加一个新的Netwatch Host。
-  + 选择**Host**选项卡。Host填写```192.168.8.5```，Type选择```icmp```。
+  + 选择**Host**选项卡。Host填写`192.168.8.5`，Type选择`icmp`。
   + 选择**Up**选项卡，设定IP上线时的操作(On Up)：
 
     ```shell
-    /log info message="192.168.8.5 up!"
-    /ip/firewall/mangle/enable numbers=3
+    /log/info message="192.168.8.5 up!"
+    /ip/route/enable [find where comment="routing to openwrt"]
+    /ip/firewall/mangle/enable [find where comment="mark routing !CNIP"]
     /ip/dns/set servers 192.168.8.5
     /ip/dns/cache/flush
     ```
@@ -136,8 +150,9 @@ add address=192.168.8.6 list=FQIP
   + 选择**Down**选项卡，设定IP下线时的操作(On Down)：
 
     ```shell
-    /log info message="192.168.8.5 down!"
-    /ip/firewall/mangle/disable numbers=3
+    /log/info message="192.168.8.5 down!"
+    /ip/route/disable [find where comment="routing to openwrt"]
+    /ip/firewall/mangle/disable [find where comment="mark routing !CNIP"]
     /ip/dns/set servers 223.5.5.5,119.29.29.29
     /ip/dns/cache/flush
     ```
