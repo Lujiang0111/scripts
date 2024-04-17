@@ -25,5 +25,5 @@
 添加静态路由，目的地址`192.168.8.22`，网关`192.168.8.5`。
 
 ```shell
-/ip/route/add dst-address=192.168.8.22 gateway=192.168.8.5
+/ip/route/add dst-address=192.168.8.22 gateway=192.168.8.5 comment="routing to 192.168.8.22"
 ```
