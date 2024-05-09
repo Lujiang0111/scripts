@@ -20,3 +20,10 @@ nohup python3 -u record_pid_top_stats.py 5524 1 &
 route add default gw 192.168.1.1
 route del default gw 192.168.1.1
 ```
+
+## 配置http、ftp代理
+
+```shell
+export http_proxy=http://username:password@ip:port
+export ftp_proxy=http://username:password@ip:port
+```
