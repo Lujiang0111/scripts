@@ -4,10 +4,10 @@
 
 ## 控制firewalld启停
 
-+ 启动：```systemctl start  firewalld```
-+ 状态：```systemctl status firewalld```或者```firewall-cmd --state```
-+ 停止：```systemctl disable firewalld```
-+ 禁用：```systemctl stop firewalld```
++ 启动：`systemctl start  firewalld`
++ 状态：`systemctl status firewalld`或者`firewall-cmd --state`
++ 停止：`systemctl disable firewalld`
++ 禁用：`systemctl stop firewalld`
 
 ## 查看default zone和active zone
 
@@ -20,7 +20,7 @@ firewall-cmd --get-active-zones
 
 ## 查看当前启用了那些服务（端口）
 
-一个服务对应一系列端口，每个服务对应```/usr/lib/firewalld/services```下面一个xml文件。
+一个服务对应一系列端口，每个服务对应`/usr/lib/firewalld/services`下面一个xml文件。
 
 ```shell
 firewall-cmd --list-services
@@ -38,18 +38,23 @@ firewall-cmd --reload
 firewall-cmd --permanent --add-service=http #http换成想要开放的service
 ```
 
-```--permanent```代表永久启用
+`--permanent`代表永久启用
 
 ## 添加自定义服务并启用
 
-1. 在```/usr/lib/firewalld/services```目录下新建一个xml文件，如test.xml。
-2. 修改test.xml为如下格式
+1. 在`/usr/lib/firewalld/services`目录下新建一个xml文件，如`medias.xml`。
+
+    ```shell
+    vim /usr/lib/firewalld/services/medias.xml
+    ```
+
+1. 修改`medias.xml`为如下格式
 
     ```xml
     <?xml version="1.0" encoding="utf-8"?>
     <service>
-        <short>test</short>
-        <description>test service file</description>
+        <short>medias</short>
+        <description>medias service file</description>
 
         <!-- custom -->
         <port protocol="tcp" port="5656" />
@@ -82,4 +87,14 @@ firewall-cmd --permanent --add-service=http #http换成想要开放的service
     </service>
     ```
 
-3. 启用该服务```firewall-cmd --permanent --add-service=test```
+1. 启用该服务
+
+    ```shell
+    firewall-cmd --permanent --add-service=medias
+    ```
+
+1. 更新防火墙规则
+
+    ```shell
+    firewall-cmd --reload
+    ```
