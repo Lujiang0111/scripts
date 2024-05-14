@@ -27,3 +27,15 @@ route del default gw 192.168.1.1
 export http_proxy=http://username:password@ip:port
 export ftp_proxy=http://username:password@ip:port
 ```
+
+## 配置DNS服务器
+
+```shell
+vim /etc/resolv.conf
+```
+
+添加相应DNS服务器
+
+```conf
+nameserver 192.168.1.12
+```
