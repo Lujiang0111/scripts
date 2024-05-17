@@ -1,5 +1,10 @@
 # 内容：自定义直连列表
 
+# DNS
+IP-CIDR,223.5.5.5/32,no-resolve
+IP-CIDR,119.29.29.29/32,no-resolve
+IP-CIDR,114.114.114.114/32,no-resolve
+
 # nexitally
 DOMAIN-SUFFIX,nexconvert.com
 DOMAIN-SUFFIX,jzieel.lol
