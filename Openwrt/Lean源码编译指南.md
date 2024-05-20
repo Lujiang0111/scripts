@@ -144,7 +144,7 @@ git clone -b 18.06 --depth=1 https://github.com/jerrykuku/luci-app-argon-config.
 vim target/linux/x86/Makefile
 ```
 
-修改```KERNEL_PATCHVER:```为自己所需要的内核版本：
+修改`KERNEL_PATCHVER:`为自己所需要的内核版本：
 
 ```makefile
 # 修改为5.4内核
@@ -157,7 +157,7 @@ KERNEL_PATCHVER:=5.4
 vim package/base-files/files/bin/config_generate
 ```
 
-修改LAN口ip```192.168.1.1```为自己所需要的：
+修改LAN口ip`192.168.1.1`为自己所需要的：
 
 ```shell
 lan) ipad=${ipaddr:-"192.168.1.1"} ;;
@@ -169,7 +169,7 @@ lan) ipad=${ipaddr:-"192.168.1.1"} ;;
 vim feeds/helloworld/luci-app-ssr-plus/root/usr/share/shadowsocksr/subscribe.lua
 ```
 
-修改processData函数Trojan分支的result.insecure选项为```1```
+修改processData函数Trojan分支的**result.insecure**选项为`1`
 
 ```lua
 -- 将下方result.insecure的值修改为1
@@ -184,7 +184,7 @@ result.insecure = "0"
 vim feeds/passwall_luci/luci-app-passwall/root/usr/share/passwall/0_default_config
 ```
 
-将```option start_delay```的值从60修改为```5```
+将`option start_delay`的值从60修改为`5`
 
 ```lua
 option start_delay '5'
@@ -199,37 +199,39 @@ make menuconfig
 
 ### Target Images
 
-+ **Kernel partition size**改为```32```。
-+ **Root filesystem partition size**改为```800```。
++ 勾选(y)`Build PVE/KVM image files`
++ 取消(n)`Build VMware image files`
++ **Kernel partition size**改为`32`。
++ **Root filesystem partition size**改为`8000`。
 
 ### Extra packages
 
-+ 取消(n)```automount```
++ 取消(n)`automount`
 
 ### Base system
 
-+ 取消(n)```block-mount```
++ 取消(n)`block-mount`
 
 ### LuCI -> Applications
 
-+ 勾选```luci-app-argon-config```、```luci-app-aria2```、```luci-app-openclash```、```luci-app-smartdns```、```luci-app-udpxy```、```luci-app-uugamebooster```、```luci-app-vlmcsd```、```luci-app-vsftpd```等插件。
++ 勾选(y)`luci-app-argon-config`、`luci-app-aria2`、`luci-app-openclash`、`luci-app-smartdns`、`luci-app-udpxy`、`luci-app-uugamebooster`、`luci-app-vlmcsd`、`luci-app-vsftpd`等插件。
 
-+ 编译ssrp时，如果需要IPv6解析，需要取消勾选(n)```ChinaDNS-NG```。
++ 编译ssrp时，如果需要IPv6解析，需要取消勾选(n)`ChinaDNS-NG`。
 
 ### Network -> SSH
 
-+ 勾选(y)```openssh-sftp-server```。
++ 勾选(y)`openssh-sftp-server`。
 
 ## 无线网卡相关配置
 
 ### Kernel modules -> Wireless Drivers
 
-+ 勾选(y)```kmod-mt76x2u``` *(NETGEAR A6210)*
-+ 勾选(y)```kmod-rtl8821cu``` *(COMFAST CF-811AC)*
++ 勾选(y)`kmod-mt76x2u` *(NETGEAR A6210)*
++ 勾选(y)`kmod-rtl8821cu` *(COMFAST CF-811AC)*
 
 ### Network -> WirelessAPD
 
-+ 勾选(y)```hostapd```
++ 勾选(y)`hostapd`
 
 ## 开始编译
 
