@@ -11,24 +11,29 @@
 ### 1.2. msys2环境搭建
 
 1. 下载msys2：<https://www.msys2.org/>
-2. 更新msys2：
+1. 更新msys2：
 
     ```shell
     pacman -Syu
+    ```
+
+    ```shell
     pacman -Su
     ```
 
-3. 下载FFmpeg的依赖库：
+1. 下载FFmpeg的依赖库：
 
     ```shell
     # normal msys2 packages
     pacman -S make pkgconf diffutils
+    ```
 
+    ```shell
     # mingw-w64 packages and toolchains
     pacman -S mingw-w64-x86_64-nasm mingw-w64-x86_64-gcc mingw-w64-x86_64-SDL2
     ```
 
-4. 在msys2根目录下创建一个```msys_visualstudio.bat```的文件，具体内容：
+1. 在msys2根目录下创建一个`msys_visualstudio.bat`的文件，具体内容：
 
     ```powershell
     set MSYS2_PATH_TYPE=inherit
@@ -39,11 +44,11 @@
     msys2_shell.cmd -mingw
     ```
 
-5. 将msys2根目录```\usr\bin\link.exe```改名为```link_msys2.exe```，因为会和vs的```link.exe```重名。
+1. 将msys2根目录`\usr\bin\link.exe`改名为`link_msys2.exe`，因为会和vs的`link.exe`重名。
 
 ## 2. msys环境下FFmpeg编译
 
-1. 直接运行```msys_visualstudio.bat```（不要右键用管理员运行，有可能无法正确弹框）。
+1. 直接运行`msys_visualstudio.bat`（不要右键用管理员运行，有可能无法正确弹框）。
 
 ### 2.1. FFmpeg 4.0以上版本
 
@@ -79,10 +84,10 @@
 ### 3.1. FFmpeg4.0以下版本常见编译错误
 
 1. C2001：常量中有换行符
-    + 文件中不能出现中文，一般是config.h的```#define CC_IDENT```行，将中文改为纯英文即可。
-    + 使用sed修改文件某一行：```sed -i '9c #define CC_IDENT "Microsoft C/C++"' config.h```
+    + 文件中不能出现中文，一般是config.h的`#define CC_IDENT`行，将中文改为纯英文即可。
+    + 使用sed修改文件某一行：`sed -i '9c #define CC_IDENT "Microsoft C/C++"' config.h`
 
-2. C4005：“vsnprintf”: 宏重定义
+1. C4005：“vsnprintf”: 宏重定义
     + vs2013及以上版本自带vsnprintf，不需要用avpriv_snprintf了，所以需要将相关地方注释掉。
     + 修改configure文件，将
 
@@ -117,7 +122,7 @@
     esac
     ```
 
-3. LNK2001：avpriv_snprintf相关错误
+1. LNK2001：avpriv_snprintf相关错误
     + 将libavutil/internal.h的这几行注释掉即可。
 
     ```c
@@ -127,5 +132,5 @@
     #endif
     ```
 
-4. LNK2019：unresolved external symbol ff_get_cpu_flags_aarch64 referenced in function av_get_cpu_flags
+1. LNK2019：unresolved external symbol ff_get_cpu_flags_aarch64 referenced in function av_get_cpu_flags
     + 将configure命令中的--disable-optimizations选项去掉即可。
