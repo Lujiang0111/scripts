@@ -49,6 +49,12 @@ firewall-cmd --permanent --add-service=squid
 firewall-cmd --reload
 ```
 
+## 配置squid自动启动
+
+```shell
+systemctl enable squid
+```
+
 ## 启动squid服务
 
 ```shell
