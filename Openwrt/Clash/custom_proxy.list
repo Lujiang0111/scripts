@@ -7,3 +7,4 @@ IP-CIDR,8.8.8.8/32,no-resolve
 
 DOMAIN-SUFFIX,byr.pt
 DOMAIN-SUFFIX,nuget.org
+DOMAIN-SUFFIX,rutracker.org
