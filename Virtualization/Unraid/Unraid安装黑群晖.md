@@ -13,7 +13,7 @@
     | BIOS | OVMF |
     | Enable USB boot | Yes |
     | USB Controller | 3.0(qemu XHCI) |
-    | Primary vDisk Location | Manual，路径手段选择`/mnt/user/domains/DSM/rr-24.6.5.img` |
+    | Primary vDisk Location | Manual，路径选择`/mnt/user/domains/DSM/rr.img` |
     | Primary vDisk Bus | USB |
     | 2nd vDisk Location | Auto(默认是`/mnt/user/domains/Linux/vdisk2.img`) |
     | 2nd vDisk Type | qcow2 |
@@ -23,8 +23,16 @@
 
 ## 编译黑群晖引导文件
 
-1. 根据虚拟机shell提示，访问<http://ip:7681>进入群晖安装画面。
+1. 启动虚拟机，选择`Configure Loader`。
+1. 根据虚拟机shell提示，访问`http://ip:7681`进入群晖安装画面。
 1. 选择`Choose a model`，型号的选择参考<https://bbs.nga.cn/read.php?tid=38650456>，不使用硬解的话选择`DS3622xs+`。
 1. 选择`Choose a version`，选择安装版本。
 1. 复制pat的url，下载并保存，后续需要上传。
 1. 选择`Build the loader`，开始编译黑群晖引导文件。
+1. 选择`Boot the loader`，等待一段时间后web会提示编译成功。
+
+## 安装并设置群晖
+
+1. 访问`http://ip:5000`，开始安装群晖。
+1. 选择`从计算机手动上传.pat文件`，选择刚才下载的pat文件上传。
+1. 创建Synology账户页面选择`跳过`。
