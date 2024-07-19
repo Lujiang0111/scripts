@@ -95,7 +95,7 @@ sed -i 's|^deb http://ftp.debian.org|deb https://mirrors.ustc.edu.cn|g' /etc/apt
 sed -i 's|^deb http://security.debian.org|deb https://mirrors.ustc.edu.cn/debian-security|g' /etc/apt/sources.list
 ```
 
-+ 修改 Proxmox 的源文件，可以使用如下命令：
++ 修改 Proxmox 的源文件，可以使用如下命令（可选，不太稳定）：
 
 ```shell
 source /etc/os-release
@@ -108,7 +108,7 @@ echo "deb https://mirrors.ustc.edu.cn/proxmox/debian/pve $VERSION_CODENAME pve-n
 if [ -f /etc/apt/sources.list.d/ceph.list ]; then CEPH_CODENAME=`ceph -v | grep ceph | awk '{print $(NF-1)}'`; source /etc/os-release; echo "deb https://mirrors.ustc.edu.cn/proxmox/debian/ceph-$CEPH_CODENAME $VERSION_CODENAME no-subscription" > /etc/apt/sources.list.d/ceph.list; fi
 ```
 
-+ CT Templates源替换（可选）
++ CT Templates源替换（可选，升级pve版本后需要重新设置）
 
 ```shell
 cp /usr/share/perl5/PVE/APLInfo.pm /usr/share/perl5/PVE/APLInfo.pm_back
