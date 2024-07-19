@@ -71,6 +71,15 @@ reboot
 
 > 参考资料：<https://mirrors.ustc.edu.cn/help/proxmox.html>
 
++ 备份源文件
+
+```shell
+mkdir /etc/apt/sources_backup
+cp /etc/apt/sources.list /etc/apt/sources_backup/sources.list.bak
+cp /etc/apt/sources.list.d/ceph.list /etc/apt/sources_backup/ceph.list.bak
+cp /etc/apt/sources.list.d/pve-enterprise.list /etc/apt/sources_backup/pve-enterprise.list.bak
+```
+
 + 将```/etc/apt/sources.list.d/pve-enterprise.list```文件清空
 
 ```shell
@@ -99,7 +108,7 @@ echo "deb https://mirrors.ustc.edu.cn/proxmox/debian/pve $VERSION_CODENAME pve-n
 if [ -f /etc/apt/sources.list.d/ceph.list ]; then CEPH_CODENAME=`ceph -v | grep ceph | awk '{print $(NF-1)}'`; source /etc/os-release; echo "deb https://mirrors.ustc.edu.cn/proxmox/debian/ceph-$CEPH_CODENAME $VERSION_CODENAME no-subscription" > /etc/apt/sources.list.d/ceph.list; fi
 ```
 
-+ CT Templates源替换
++ CT Templates源替换（可选）
 
 ```shell
 cp /usr/share/perl5/PVE/APLInfo.pm /usr/share/perl5/PVE/APLInfo.pm_back
