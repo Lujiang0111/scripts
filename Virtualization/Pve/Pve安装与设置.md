@@ -20,19 +20,26 @@
 
 ## 使用ssh连接到pve
 
-+ 关机：```poweroff```
-+ 重启：```reboot```
++ 关机：`poweroff`
++ 重启：`reboot`
+
+## 安装vim
+
+```shell
+apt update -y
+apt install -y vim
+```
 
 ## 去除未订阅提示
 
 + 使用ssh连接到pve
-+ 编辑```proxmoxlib.js```文件
++ 编辑`proxmoxlib.js`文件
 
 ```shell
-nano /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js
+vim /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js
 ```
 
-+ 将```if (res === null || res === undefined || !res || res.data.status.toLowerCase() !== 'active')```判断改为```if (false)```
++ 将`if (res === null || res === undefined || !res || res.data.status.toLowerCase() !== 'active')`判断改为`if (false)`
 
 ```js
 if (false) {
@@ -67,7 +74,7 @@ reboot
 
 生效。
 
-## 替换软件源为国内源
+## 替换软件源为国内源（可选）
 
 > 参考资料：<https://mirrors.ustc.edu.cn/help/proxmox.html>
 
@@ -80,7 +87,7 @@ cp /etc/apt/sources.list.d/ceph.list /etc/apt/sources_backup/ceph.list.bak
 cp /etc/apt/sources.list.d/pve-enterprise.list /etc/apt/sources_backup/pve-enterprise.list.bak
 ```
 
-+ 将```/etc/apt/sources.list.d/pve-enterprise.list```文件清空
++ 将`/etc/apt/sources.list.d/pve-enterprise.list`文件清空
 
 ```shell
 echo "" > /etc/apt/sources.list.d/pve-enterprise.list
@@ -127,13 +134,13 @@ reboot
 
 > 参考资料：<https://pve.proxmox.com/wiki/Time_Synchronization>
 
-+ 修改```/etc/chrony/chrony.conf```文件
++ 修改`/etc/chrony/chrony.conf`文件
 
 ```shell
-nano /etc/chrony/chrony.conf
+vim /etc/chrony/chrony.conf
 ```
 
-用```#```注释掉原有的```pool 2.debian.pool.ntp.org iburst```，在这行下面添加自定义NTP服务器
+用`#`注释掉原有的`pool 2.debian.pool.ntp.org iburst`，在这行下面添加自定义NTP服务器
 
 ```conf
 server cn.ntp.org.cn iburst
@@ -150,17 +157,19 @@ systemctl restart chronyd
 
 ## 设置PCI直通
 
+> 参考资料：<https://pve.proxmox.com/pve-docs/pve-admin-guide.html#qm_pci_passthrough>
+
 ### 修改grub文件
 
-+ 修改```/etc/default/grub```文件
++ 修改`/etc/default/grub`文件
 
 ```shell
-nano /etc/default/grub
+vim /etc/default/grub
 ```
 
-+ 找到```GRUB_CMDLINE_LINUX_DEFAULT```行，Intel CPU添加```intel_iommu=on```，AMD CPU应该默认就有
++ 找到`GRUB_CMDLINE_LINUX_DEFAULT`行，Intel CPU添加`intel_iommu=on`，AMD CPU应该默认就有
 
-+ ```GRUB_CMDLINE_LINUX_DEFAULT```添加```iommu=pt```
++ `GRUB_CMDLINE_LINUX_DEFAULT`添加`iommu=pt`
 
 ```ini
 GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on iommu=pt"
@@ -175,10 +184,10 @@ reboot
 
 ### 添加Kernel Modules
 
-+ 修改```/etc/modules```文件
++ 修改`/etc/modules`文件
 
 ```shell
-nano /etc/modules
+vim /etc/modules
 ```
 
 + 添加以下几行
