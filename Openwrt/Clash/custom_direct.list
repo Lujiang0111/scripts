@@ -9,6 +9,10 @@ IP-CIDR,114.114.114.114/32,no-resolve
 DOMAIN-SUFFIX,nexconvert.com
 DOMAIN-SUFFIX,jzieel.lol
 
+# ffxiv
+DOMAIN-SUFFIX,ffxiv.com
+DOMAIN-SUFFIX,finalfantasyxiv.com
+
 DOMAIN-SUFFIX,todesk.com
 DOMAIN-SUFFIX,speedtest.net
 PROCESS-NAME,uugamebooster
