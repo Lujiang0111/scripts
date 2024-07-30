@@ -21,6 +21,68 @@
 + 关机：`poweroff`
 + 重启：`reboot`
 
+## 修改储存库为无订阅存储库
+
+> 参考资料：<https://pve.proxmox.com/wiki/Package_Repositories>
+
+### 修改pve软件源
+
++ 屏蔽原有企业版软件源
+
+```shell
+nano /etc/apt/sources.list.d/pve-enterprise.list
+```
+
+修改为以下内容（把`bookworm`修改为对应版本）
+
+```plain
+# 注释掉原有企业源
+# deb https://enterprise.proxmox.com/debian/pve bookworm pve-enterprise
+```
+
++ 添加无订阅存储库
+
+```shell
+nano /etc/apt/sources.list
+```
+
+修改为以下内容（把`bookworm`修改为对应版本）
+
+```plain
+deb http://ftp.debian.org/debian bookworm main contrib
+deb http://ftp.debian.org/debian bookworm-updates main contrib
+
+# Proxmox VE pve-no-subscription repository provided by proxmox.com,
+# NOT recommended for production use
+deb http://download.proxmox.com/debian/pve bookworm pve-no-subscription
+
+# security updates
+deb http://security.debian.org/debian-security bookworm-security main contrib
+```
+
+### 修改Ceph软件源
+
+```shell
+nano /etc/apt/sources.list.d/ceph.list
+```
+
+修改为以下内容（把`bookworm`修改为对应版本）
+
+```plain
+# 注释掉原有企业源
+# deb https://enterprise.proxmox.com/debian/ceph-quincy bookworm enterprise
+# 添加无订阅软件源
+deb http://download.proxmox.com/debian/ceph-reef bookworm no-subscription
+```
+
+### 更新软件源
+
+```shell
+apt update -y
+apt full-upgrade -y
+reboot
+```
+
 ## 安装vim
 
 ```shell
@@ -71,62 +133,6 @@ reboot
 ```
 
 生效。
-
-## 替换软件源为国内源（可选）
-
-> 参考资料：<https://mirrors.ustc.edu.cn/help/proxmox.html>
-
-+ 备份源文件
-
-```shell
-mkdir /etc/apt/sources_backup
-cp /etc/apt/sources.list /etc/apt/sources_backup/sources.list.bak
-cp /etc/apt/sources.list.d/ceph.list /etc/apt/sources_backup/ceph.list.bak
-cp /etc/apt/sources.list.d/pve-enterprise.list /etc/apt/sources_backup/pve-enterprise.list.bak
-```
-
-+ 将`/etc/apt/sources.list.d/pve-enterprise.list`文件清空
-
-```shell
-echo "" > /etc/apt/sources.list.d/pve-enterprise.list
-```
-
-+ 一般情况下，需要同时修改基础系统（Debian）的源文件 /etc/apt/sources.list 和 Proxmox 的源文件。
-
-+ 修改基础系统（Debian）的源文件，可以使用如下命令：
-
-```shell
-sed -i 's|^deb http://ftp.debian.org|deb https://mirrors.ustc.edu.cn|g' /etc/apt/sources.list
-sed -i 's|^deb http://security.debian.org|deb https://mirrors.ustc.edu.cn/debian-security|g' /etc/apt/sources.list
-```
-
-+ 修改 Proxmox 的源文件，可以使用如下命令（可选，不太稳定）：
-
-```shell
-source /etc/os-release
-echo "deb https://mirrors.ustc.edu.cn/proxmox/debian/pve $VERSION_CODENAME pve-no-subscription" > /etc/apt/sources.list.d/pve-no-subscription.list
-```
-
-+ PVE 8 之后默认安装 ceph 仓库源文件 /etc/apt/sources.list.d/ceph.list，可以使用如下命令更换源：
-
-```shell
-if [ -f /etc/apt/sources.list.d/ceph.list ]; then CEPH_CODENAME=`ceph -v | grep ceph | awk '{print $(NF-1)}'`; source /etc/os-release; echo "deb https://mirrors.ustc.edu.cn/proxmox/debian/ceph-$CEPH_CODENAME $VERSION_CODENAME no-subscription" > /etc/apt/sources.list.d/ceph.list; fi
-```
-
-+ CT Templates源替换（可选，升级pve版本后需要重新设置）
-
-```shell
-cp /usr/share/perl5/PVE/APLInfo.pm /usr/share/perl5/PVE/APLInfo.pm_back
-sed -i 's|http://download.proxmox.com|https://mirrors.ustc.edu.cn/proxmox|g' /usr/share/perl5/PVE/APLInfo.pm
-```
-
-+ 替换后操作
-
-```shell
-apt update -y
-apt full-upgrade -y
-reboot
-```
 
 ## 设置NTP时钟同步
 
