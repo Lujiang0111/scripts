@@ -21,11 +21,44 @@
 + 关机：`poweroff`
 + 重启：`reboot`
 
-## 修改储存库为无订阅存储库
+## 修改软件源
+
+可选ustc软件源或无订阅软件源
+
+### 屏蔽原有企业版软件源
+
+```shell
+nano /etc/apt/sources.list.d/pve-enterprise.list
+```
+
+修改为以下内容（把`bookworm`修改为对应版本）
+
+```plain
+# 注释掉原有企业源
+# deb https://enterprise.proxmox.com/debian/pve bookworm pve-enterprise
+```
+
+### ustc软件源
+
+```shell
+# 修改基础系统（Debian）的源文件
+sed -i 's|^deb http://ftp.debian.org|deb https://mirrors.ustc.edu.cn|g' /etc/apt/sources.list
+sed -i 's|^deb http://security.debian.org|deb https://mirrors.ustc.edu.cn/debian-security|g' /etc/apt/sources.list
+
+# 修改 Proxmox 的源文件
+echo "deb https://mirrors.ustc.edu.cn/proxmox/debian/pve bookworm pve-no-subscription" > /etc/apt/sources.list.d/pve-no-subscription.list
+
+# 修改 Ceph 的源文件
+if [ -f /etc/apt/sources.list.d/ceph.list ]; then
+  CEPH_CODENAME=`ceph -v | grep ceph | awk '{print $(NF-1)}'`
+  source /etc/os-release
+  echo "deb https://mirrors.ustc.edu.cn/proxmox/debian/ceph-$CEPH_CODENAME $VERSION_CODENAME no-subscription" > /etc/apt/sources.list.d/ceph.list
+fi
+```
+
+### 无订阅软件源
 
 > 参考资料：<https://pve.proxmox.com/wiki/Package_Repositories>
-
-### 修改pve软件源
 
 + 屏蔽原有企业版软件源
 
@@ -60,7 +93,7 @@ deb http://download.proxmox.com/debian/pve bookworm pve-no-subscription
 deb http://security.debian.org/debian-security bookworm-security main contrib
 ```
 
-### 修改Ceph软件源
+#### 修改Ceph软件源
 
 ```shell
 nano /etc/apt/sources.list.d/ceph.list
