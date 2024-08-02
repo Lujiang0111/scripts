@@ -21,6 +21,20 @@
 + 关机：`poweroff`
 + 重启：`reboot`
 
+## 设置http代理
+
+如果pve主机本身无法联网但有联网需求，需要设置http代理
+
+```shell
+cat <<- EOF > /etc/profile.d/proxy.sh
+export http_proxy="http://username:password@ip:port"
+export https_proxy="http://username:password@ip:port"
+export no_proxy="localhost,127.0.0.1,::1"
+EOF
+
+source /etc/profile
+```
+
 ## 修改软件源
 
 可选ustc软件源或无订阅软件源
