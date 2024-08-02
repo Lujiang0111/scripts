@@ -6,19 +6,21 @@
 ```shell
 #!/bin/bash
 
-new_repo_url="https://mirror.moack.co.kr/.resource/CentOS-Base-7-Vault.repo"
-old_repo_path="/etc/yum.repos.d/CentOS-Base.repo"
+repo_file="/etc/yum.repos.d/CentOS-Base.repo"
 
 if [ "$(id -u)" != "0" ]; then
-   echo "Error: This script needs to be run with root privileges" 1>&2
-   exit 1
+  echo "Error: This script needs to be run with root privileges" 1>&2
+  exit 1
 fi
 
 echo -e "Backup old CentOS-Base.repo file..."
-cp ${old_repo_path} "${old_repo_path}.bak"
+cp ${repo_file} "${repo_file}.bak"
 
-echo -e "Downloading new CentOS-Base-7-Vault.repo file..."
-curl -o ${old_repo_path} ${new_repo_url}
+# ustc mirror
+sudo sed -i.bak \
+  -e 's|^mirrorlist=|#mirrorlist=|g' \
+  -e 's|^#baseurl=http://mirror.centos.org/centos|baseurl=https://mirrors.ustc.edu.cn/centos-vault/centos|g' \
+  ${repo_file}
 
 echo "updating yum cache..."
 yum clean all
