@@ -133,7 +133,6 @@ reboot
 ## 安装vim
 
 ```shell
-apt update -y
 apt install -y vim
 ```
 
