@@ -10,8 +10,8 @@
     | Ali | 223.5.5.5 | 53 | udp | | |
     | Tencent | 119.29.29.29 | 53 | udp | | |
     | 114dns | 114.114.114.114 | 53 | udp | | |
-    | Cloudflare | 1.1.1.1 | 853 | tls | overseas | ✔ |
     | Google | 8.8.8.8 | 853 | tls | overseas | ✔ |
+    | Cloudflare | 1.1.1.1 | 853 | tls | overseas | ✔ |
 
 ### 配置主DNS服务器
 
