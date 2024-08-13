@@ -39,7 +39,7 @@ update-initramfs -u -k all
 reboot
 ```
 
-### 完成PCI配置
+### 设置拆分数量
 
 + 现在我们需要找到VGA卡位于哪个PCIe总线上，通常为`00:02.0`
 
@@ -51,7 +51,8 @@ lspci | grep VGA
 00:02.0 VGA compatible controller: Intel Corporation Raptor Lake-S GT1 [UHD Graphics 770] (rev 0c)
 ```
 
-+ 运行以下命令并根据需要修改PCIe总线号。在本例中，我使用的是`00:02.0`。要验证文件是否已修改，请cat该文件并确保它已被修改。
++ 设置需要拆分的VF数量，最大为`max_vfs`（本例为7）
++ **注意：拆分数量越多，性能越差，按需拆分**
 
 ```shell
 echo "devices/pci0000:00/0000:00:02.0/sriov_numvfs = 7" >> /etc/sysfs.conf
