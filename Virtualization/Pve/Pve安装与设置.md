@@ -211,23 +211,11 @@ systemctl restart chronyd
 
 ### 修改grub文件
 
-+ 修改`/etc/default/grub`文件
++ 编辑`/etc/default/grub`文件
++ 修改`GRUB_CMDLINE_LINUX_DEFAULT`所在行行为`GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on iommu=pt i915.enable_guc=3 i915.max_vfs=7"`
 
 ```shell
-vim /etc/default/grub
-```
-
-+ 找到`GRUB_CMDLINE_LINUX_DEFAULT`行，Intel CPU添加`intel_iommu=on`，AMD CPU应该默认就有
-
-+ `GRUB_CMDLINE_LINUX_DEFAULT`添加`iommu=pt`
-
-```ini
-GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on iommu=pt"
-```
-
-+ 更新grub并重启
-
-```shell
+sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT/c\GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on iommu=pt"' /etc/default/grub
 update-grub
 reboot
 ```
