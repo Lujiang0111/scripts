@@ -104,6 +104,6 @@ lspci | grep VGA
 00:02.7 VGA compatible controller: Intel Corporation Raptor Lake-S GT1 [UHD Graphics 770] (rev 0c)
 ```
 
-+ 可以选择将`00:02.1`至`00:02.7`用于直通，勾选`主要GPU`。
++ 可以选择将`00:02.1`至`00:02.7`用于直通，添加PCI设备时勾选`主要GPU`。
 + **注意:00:02.0不可用于直通**
 + **注意：直通时不可以勾选所有功能**
