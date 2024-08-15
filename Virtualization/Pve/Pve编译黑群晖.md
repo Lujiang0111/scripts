@@ -3,7 +3,7 @@
 ## 目标环境
 
 + 黑群晖版本：SA6400
-+ VM ID：103
++ VM ID：101
 + CPU数量16，绑核0-15
 + SN640直通
 + SRIOV直通核显
@@ -46,7 +46,7 @@
 + 内存
     | 名称 | 设置值 |
     | - | - |
-    | 内存 | 16384 |
+    | 内存 | 32768 |
 
 + 网络
     | 名称 | 设置值 |
@@ -61,7 +61,7 @@
 1. 运行如下命令，将img镜像导入虚拟机
 
 ```shell
-qm importdisk 103 rr.img local-lvm
+qm importdisk 101 rr.img local-lvm
 ```
 
 1. 点击**对应虚拟机** -> **硬件**，双击`未使用的磁盘0`，总线改为`SATA`，点击添加。
@@ -82,6 +82,7 @@ qm importdisk 103 rr.img local-lvm
 1. 选择`Choose a model`，选择`SA6400`。
 1. 选择`Choose a version`，选择安装版本。
 1. 复制pat的url，下载并保存到本地。
+1. 选择`Kernel`，切换成`custom`。
 1. 选择`Addons menu` -> `Add an addon` -> `nvmesystem`。
 1. 选择`Cmdline menu` -> `Define SN/MAC`，设置SN码和MAC地址。
 1. 选择`Build the loader`，开始编译黑群晖引导文件。
