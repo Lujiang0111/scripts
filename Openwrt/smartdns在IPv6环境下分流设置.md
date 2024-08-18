@@ -55,6 +55,7 @@
 ```shell
 force-AAAA-SOA yes
 address /byr.pt/-6
+address /nodenet.cloud/-6
 ```
 
 ## 代理软件设置
