@@ -23,7 +23,7 @@
 
 + 点击**WireGuard**，选择**WireGuard**选项卡，点击+号。
   + Name - `wireguard-lan`
-  + MTU - `1400`
+  + MTU - `1350`
   + Listen Port - `52321`
 
 > MTU设置参考：<https://www.chiphell.com/thread-2601254-1-1.html>
