@@ -153,7 +153,7 @@ import fqip.rsc
     /log/info message="192.168.8.5 down!"
     /ip/route/disable [find where comment="routing to openwrt"]
     /ip/firewall/mangle/disable [find where comment="mark routing !CNIP"]
-    /ip/dns/set servers 223.5.5.5,119.29.29.29
+    /ip/dns/set servers 223.5.5.5,119.29.29.29,114.114.114.114
     /ip/dns/cache/flush
     ```
 
