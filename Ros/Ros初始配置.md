@@ -73,27 +73,6 @@
 + 点击**System**->**Clock**
   + **Time Zone Name** - `Asia/Shanghai`。
 
-### 设置连接属性
-
-```shell
-/ip/firewall/connection/tracking {
-    set tcp-syn-sent-timeout=120s
-    set tcp-syn-received-timeout=60s
-    set tcp-established-timeout=7440s
-    set tcp-fin-wait-timeout=120s
-    set tcp-close-wait-timeout=60s
-    set tcp-last-ack-timeout=30s
-    set tcp-time-wait-timeout=120s
-    set tcp-close-timeout=10s
-    set tcp-max-retrans-timeout=300s
-    set tcp-unacked-timeout=300s
-    set udp-timeout=30s
-    set udp-stream-timeout=120s
-    set icmp-timeout=30s
-    set generic-timeout=600s
-}
-```
-
 ## 防火墙设置
 
 + IPv4防火墙：
@@ -152,27 +131,6 @@
     filter add chain=forward action=accept protocol=ipsec-esp comment="defconf: accept ipsec ESP"
     filter add chain=forward action=accept ipsec-policy=in,ipsec comment="defconf: accept all that matches ipsec policy"
     filter add chain=forward action=drop in-interface-list=!LAN comment="defconf: drop everything else coming from !LAN"
-}
-```
-
-### 设置IPv4黑洞路由
-
-```shell
-/ip/route {
-    add blackhole comment="defconf: RFC6890 - this network" disabled=no dst-address=0.0.0.0/8
-    add blackhole comment="defconf: RFC6890 - private networks" disabled=no dst-address=10.0.0.0/8
-    add blackhole comment="defconf: RFC6890 - shared address" disabled=no dst-address=100.64.0.0/10
-    add blackhole comment="defconf: RFC6890 - link local" disabled=no dst-address=169.254.0.0/16
-    add blackhole comment="defconf: RFC6890 - private networks" disabled=no dst-address=172.16.0.0/12
-    add blackhole comment="defconf: RFC6890 - reserved" disabled=no dst-address=192.0.0.0/24
-    add blackhole comment="defconf: RFC6890 - DS-Lite" disabled=no dst-address=192.0.0.0/29
-    add blackhole comment="defconf: RFC6890 - TEST-NET-1" disabled=no dst-address=192.0.2.0/24
-    add blackhole comment="defconf: RFC6890 - 6to4 relay" disabled=no dst-address=192.88.99.0/24
-    add blackhole comment="defconf: RFC6890 - private networks" disabled=no dst-address=192.168.0.0/16
-    add blackhole comment="defconf: RFC6890 - benchmarking" disabled=no dst-address=198.18.0.0/15
-    add blackhole comment="defconf: RFC6890 - TEST-NET-2" disabled=no dst-address=198.51.100.0/24
-    add blackhole comment="defconf: RFC6890 - TEST-NET-3" disabled=no dst-address=203.0.113.0/24
-    add blackhole comment="defconf: RFC6890 - reserved" disabled=no dst-address=240.0.0.0/4
 }
 ```
 
