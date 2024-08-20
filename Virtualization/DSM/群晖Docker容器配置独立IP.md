@@ -1,4 +1,6 @@
-# 群晖Docker添加macvlan
+# 群晖Docker容器配置独立IP
+
+## 创建macvlan
 
 1. **控制面板** -> **网络** -> **网络界面** -> **管理** -> **Open vSwitch设置**，勾选`启用Open vSwitch`。
 1. 通过ssh连接群晖，查看Open vSwitch的接口名，一般为`ovs_eth0`。
@@ -27,3 +29,16 @@
     -o parent=ovs_eth0 \
     macvlan_ovs_eth0
     ```
+
+## 创建容器，并指定独立IP和IPv6
+
+```shell
+docker run -d \
+    --name=subconverter \
+    --restart=always \
+    --net=macvlan_ovs_eth0 \
+    --ip=192.168.8.42 \
+    --ip6=fd08::42 \
+    -p 25500:25500 \
+    tindy2013/subconverter:latest
+```
