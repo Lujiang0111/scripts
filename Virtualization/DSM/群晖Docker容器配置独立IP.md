@@ -33,7 +33,7 @@
 ## 创建容器，并指定独立IP和IPv6
 
 ```shell
-docker run -d \
+sudo docker run -d \
     --name=subconverter \
     --restart=always \
     --net=macvlan_ovs_eth0 \
