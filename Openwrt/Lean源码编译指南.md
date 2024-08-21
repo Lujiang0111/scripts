@@ -190,6 +190,14 @@ vim feeds/passwall_luci/luci-app-passwall/root/usr/share/passwall/0_default_conf
 option start_delay '5'
 ```
 
+## 修改Makefile
+
++ 去除`automount`和`autosamba`
+
+```shell
+sed -i 's/automount \|autosamba //g' target/linux/x86/Makefile
+```
+
 ## 编译选项
 
 ```shell
@@ -200,13 +208,8 @@ make menuconfig
 ### Target Images
 
 + 勾选(y)`Build PVE/KVM image files`
-+ 取消(n)`Build VMware image files`
 + **Kernel partition size**改为`32`。
 + **Root filesystem partition size**改为`8000`。
-
-### Extra packages
-
-+ 取消(n)`automount`
 
 ### Base system
 

@@ -21,13 +21,13 @@
 
     ```shell
     sudo docker network create -d macvlan \
-    --subnet=192.168.8.0/24 \
-    --gateway=192.168.8.1 \
-    --ipv6 \
-    --subnet=fd08::/64 \
-    --gateway=fd08::1 \
-    -o parent=ovs_eth0 \
-    macvlan_ovs_eth0
+        --subnet=192.168.8.0/24 \
+        --gateway=192.168.8.1 \
+        --ipv6 \
+        --subnet=fd08::/64 \
+        --gateway=fd08::1 \
+        -o parent=ovs_eth0 \
+        macvlan_ovs_eth0
     ```
 
 ## 创建容器，并指定独立IP和IPv6
