@@ -39,6 +39,5 @@ sudo docker run -d \
     --net=macvlan_ovs_eth0 \
     --ip=192.168.8.42 \
     --ip6=fd08::42 \
-    -p 25500:25500 \
     tindy2013/subconverter:latest
 ```
