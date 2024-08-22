@@ -25,6 +25,8 @@
         macvlan_enp6s18
     ```
 
+    + **注意：使用macvlan时端口映射无效！**
+
 ## docker run形式指定IP地址
 
 ```shell
@@ -33,8 +35,7 @@ docker run -d \
     --restart=unless-stopped \
     --net=macvlan_enp6s18 \
     --ip=192.168.8.42 \
-    --ip6=fd08::42 \
-    -p 25500:25500 \
+    --ip6=fd08::42
     tindy2013/subconverter:latest
 ```
 
@@ -46,8 +47,6 @@ services:
   subconverter:
     restart: unless-stopped
     image: tindy2013/subconverter:latest
-    ports:
-      - 25500:25500
     networks:
       macvlan_enp6s18:
         ipv4_address: 192.168.8.42
