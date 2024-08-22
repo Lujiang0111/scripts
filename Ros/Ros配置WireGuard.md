@@ -49,9 +49,11 @@
 ### 设置Peer
 
 + 点击**WireGuard**，选择**Peers**选项卡，点击+号。
+  + Name - `wireguard-peer`
   + Interface - `wireguard-lan`
   + Public Key - `public-key-peer`
   + Allowed Address - `192.168.9.21/32`
+  + Persistent Keepalive - `25`
 
 ### 为WireGuard设置IP
 
