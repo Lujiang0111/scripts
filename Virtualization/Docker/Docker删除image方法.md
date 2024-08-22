@@ -1,4 +1,4 @@
-# docker删除images方法
+# Docker删除image方法
 
 ## 查看所有image
 
