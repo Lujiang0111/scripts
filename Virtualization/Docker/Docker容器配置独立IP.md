@@ -8,11 +8,11 @@
     ip a
     ```
 
-    这里假设是`eth0`。
+    这里假设是`enp6s18`。
 
 1. 创建IPv4和IPv6双栈的macvlan网络
 
-    假设创建的macvlan接口为`macvlan_eth0`
+    假设创建的macvlan接口为`macvlan_enp6s18`
 
     ```shell
     docker network create -d macvlan \
@@ -21,8 +21,8 @@
         --ipv6 \
         --subnet=fd08::/64 \
         --gateway=fd08::1 \
-        -o parent=eth0 \
-        macvlan_eth0
+        -o parent=enp6s18 \
+        macvlan_enp6s18
     ```
 
 ## docker run形式指定IP地址
@@ -30,8 +30,8 @@
 ```shell
 docker run -d \
     --name=subconverter \
-    --restart=always \
-    --net=macvlan_eth0 \
+    --restart=unless-stopped \
+    --net=macvlan_enp6s18 \
     --ip=192.168.8.42 \
     --ip6=fd08::42 \
     -p 25500:25500 \
@@ -44,15 +44,15 @@ docker run -d \
 version: "3.8"
 services:
   subconverter:
-    restart: always
+    restart: unless-stopped
     image: tindy2013/subconverter:latest
     ports:
       - 25500:25500
     networks:
-      macvlan_eth0:
+      macvlan_enp6s18:
         ipv4_address: 192.168.8.42
         ipv6_address: fd08::42
 networks:
-  macvlan_eth0:
+  macvlan_enp6s18:
     external: true
 ```
