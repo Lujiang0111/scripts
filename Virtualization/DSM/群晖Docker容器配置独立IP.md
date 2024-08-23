@@ -32,12 +32,31 @@
 
 ## 创建容器，并指定独立IP和IPv6
 
++ `docker run`格式
+
 ```shell
 sudo docker run -d \
     --name=subconverter \
-    --restart=always \
+    --restart=unless-stopped \
     --net=macvlan_ovs_eth0 \
     --ip=192.168.8.42 \
     --ip6=fd08::42 \
     tindy2013/subconverter:latest
+```
+
++ `docker compose`格式
+
+```yml
+version: "3.8"
+services:
+  subconverter:
+    restart: unless-stopped
+    image: tindy2013/subconverter:latest
+    networks:
+      macvlan_ovs_eth0:
+        ipv4_address: 192.168.8.42
+        ipv6_address: fd08::42
+networks:
+  macvlan_ovs_eth0:
+    external: true
 ```
