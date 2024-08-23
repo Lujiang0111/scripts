@@ -52,6 +52,7 @@ services:
   subconverter:
     restart: unless-stopped
     image: tindy2013/subconverter:latest
+    container_name: subconverter
     networks:
       macvlan_ovs_eth0:
         ipv4_address: 192.168.8.42

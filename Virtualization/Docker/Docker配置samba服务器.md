@@ -19,6 +19,7 @@ services:
   samba:
     restart: unless-stopped
     image: ghcr.io/servercontainers/samba:latest
+    container_name: samba
     cap_add:
       - CAP_NET_ADMIN
     environment:
