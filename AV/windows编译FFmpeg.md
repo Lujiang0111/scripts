@@ -28,11 +28,6 @@
     pacman -S make pkgconf diffutils
     ```
 
-    ```shell
-    # mingw-w64 packages and toolchains
-    pacman -S mingw-w64-x86_64-nasm mingw-w64-x86_64-gcc
-    ```
-
 1. 在msys2根目录下创建一个`msys_visualstudio.bat`的文件，具体内容：
 
     ```powershell
