@@ -48,6 +48,23 @@
 ### 2.1. FFmpeg 4.0以上版本
 
 + 下载地址：<https://www.ffmpeg.org/download.html>
+
++ 修改优化参数：
+  + 修改`configure`文件，在`_type=msvc`分支指定`_cflags_noopt`的优化等级：
+
+  ```configure
+      elif $_cc -nologo- 2>&1 | grep -q Microsoft || { $_cc -v 2>&1 | grep -q clang && $_cc -? > /dev/null 2>&1; }; then
+        _type=msvc
+        
+        ......
+
+        _cflags_speed="-O2"
+        _cflags_size="-O1"
+        _cflags_noopt="-Og" # 从-O1改为-Og
+  ```
+
+  + `-Og`会在将来的版本被删除，暂时先用着。
+
 + 编译命令：
 
     ```shell
