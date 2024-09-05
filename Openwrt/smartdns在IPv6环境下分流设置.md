@@ -4,7 +4,7 @@
 
 ### 添加上游服务器
 
-+ 服务器组分为**default**和**overseas**两组，修改dns所属分组的方法是点击每个dns右端的**修改**按钮，修改**服务器组**为```default```与```overseas```即可。
++ 服务器组分为**default**和**overseas**两组，修改dns所属分组的方法是点击每个dns右端的**修改**按钮，修改**服务器组**为`default`与`overseas`即可。
     | 名称 | IP | 端口 | 协议类型 | 服务器组 | 从默认服务器组排除 |
     | - | - | - | - | - | - |
     | Ali | 223.5.5.5 | 53 | udp | | |
@@ -34,7 +34,7 @@
     | 持久化缓存 | ❌ |
     | 停用IPv6地址解析 | ❌ |
     | 停用Https地址解析 | ✔ |
-+ 如果需要让dnsmasq转发dns，则需要勾选```自动设置dnsmasq```，保存设置。点击luci界面左侧**网络**->**DHCP/DNS**，检查**DNS 转发**项是否被设置为```127.0.0.1#5337```。
++ 如果需要让dnsmasq转发dns，则需要勾选`自动设置dnsmasq`，保存设置。点击luci界面左侧**网络**->**DHCP/DNS**，检查**DNS 转发**项是否被设置为`127.0.0.1#5337`。
 
 ### 配置第二DNS服务器
 
@@ -62,7 +62,7 @@ address /nodenet.cloud/-6
 
 ### ssrp
 
-+ SmartDNS设置页面，勾选```自动设置dnsmasq```。
++ SmartDNS设置页面，勾选`自动设置dnsmasq`。
 
 + ssrp设置页面，按下表所示配置。
     | 名称 | 设置值 |
@@ -72,7 +72,7 @@ address /nodenet.cloud/-6
 
 ### Passwall
 
-+ SmartDNS设置页面，勾选```自动设置dnsmasq```。
++ SmartDNS设置页面，勾选`自动设置dnsmasq`。
 
 + Passwall设置页面，点击**DNS**选项卡，按下表所示配置。
     | 名称 | 设置值 |
@@ -85,7 +85,7 @@ address /nodenet.cloud/-6
 
 ### OpenClash
 
-+ SmartDNS设置页面，**不**勾选```自动设置dnsmasq```。
++ SmartDNS设置页面，**不**勾选`自动设置dnsmasq`。
 
 + OpenClash设置页面，点击**插件设置**->**DNS设置**选项卡，按下表所示配置。
 
