@@ -271,6 +271,8 @@ echo "blacklist i915" >> /etc/modprobe.d/blacklist.conf
 reboot
 ```
 
++ **注意**：直通独显时，勾选`主GPU`，`所有功能`，`ROM-Bar`，`PCI-Express`。
+
 ## 为虚拟机添加PCI设备
 
 + **注意：不要将控制口的网卡给直通了！！**
