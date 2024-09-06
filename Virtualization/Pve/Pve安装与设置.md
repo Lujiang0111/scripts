@@ -42,17 +42,14 @@ source /etc/profile
 ### 屏蔽原有企业版软件源
 
 ```shell
-nano /etc/apt/sources.list.d/pve-enterprise.list
-```
-
-修改为以下内容（把`bookworm`修改为对应版本）
-
-```plain
-# 注释掉原有企业源
-# deb https://enterprise.proxmox.com/debian/pve bookworm pve-enterprise
+sed -i 's/^/# /' /etc/apt/sources.list.d/pve-enterprise.list
 ```
 
 ### ustc软件源
+
+> 参考资料：<https://mirrors.ustc.edu.cn/help/proxmox.html>
+
+运行脚本（将`bookworm`修改为对应版本）
 
 ```shell
 # 修改基础系统（Debian）的源文件
@@ -77,14 +74,7 @@ fi
 + 屏蔽原有企业版软件源
 
 ```shell
-nano /etc/apt/sources.list.d/pve-enterprise.list
-```
-
-修改为以下内容（把`bookworm`修改为对应版本）
-
-```plain
-# 注释掉原有企业源
-# deb https://enterprise.proxmox.com/debian/pve bookworm pve-enterprise
+sed -i 's/^/# /' /etc/apt/sources.list.d/pve-enterprise.list
 ```
 
 + 添加无订阅存储库
@@ -127,6 +117,11 @@ deb http://download.proxmox.com/debian/ceph-reef bookworm no-subscription
 ```shell
 apt update -y
 apt full-upgrade -y
+```
+
+重启系统
+
+```shell
 reboot
 ```
 
@@ -207,7 +202,7 @@ systemctl restart chronyd
 
 ## 设置PCI直通
 
-> 参考资料：<https://pve.proxmox.com/pve-docs/pve-admin-guide.html#qm_pci_passthrough>
+> 参考资料：<https://pve.proxmox.com/wiki/PCI(e)_Passthrough>
 
 ### 修改grub文件
 
@@ -244,7 +239,39 @@ update-initramfs -u -k all
 reboot
 ```
 
-### 为虚拟机添加PCI设备
+## 显卡直通
+
+> 参考资料：<https://pve.proxmox.com/wiki/PCI_Passthrough>
+
+### 将显卡驱动加入很名单
+
++ AMD GPUs
+
+```shell
+echo "blacklist amdgpu" >> /etc/modprobe.d/blacklist.conf
+echo "blacklist radeon" >> /etc/modprobe.d/blacklist.conf
+```
+
++ NVIDIA GPUs
+
+```shell
+echo "blacklist nouveau" >> /etc/modprobe.d/blacklist.conf
+echo "blacklist nvidia*" >> /etc/modprobe.d/blacklist.conf
+```
+
++ Intel GPUs(注意直通后可能导致vnc失效)
+
+```shell
+echo "blacklist i915" >> /etc/modprobe.d/blacklist.conf
+```
+
+重启系统
+
+```shell
+reboot
+```
+
+## 为虚拟机添加PCI设备
 
 + **注意：不要将控制口的网卡给直通了！！**
 
@@ -273,13 +300,13 @@ supports-priv-flags: yes
     + 如果该设备具有多个功能（例如显卡 01:00.0 和 01:00.1），勾选此选项会一起传递。
 
   + 主 GPU (x-vga=on|off)
-    + 标记该设备为虚拟机主显卡，勾选后虚拟机将会忽略配置中的 显示 选项。
+    + 标记该设备为虚拟机主显卡，勾选后虚拟机将会忽略配置中的`显示`选项。
 
   + PCI-Express (pcie=on|off)
-    + 告诉 Proxmox VE 使用 PCIe 还是 PCI 端口。一些设备组合需要 PCIe 而非 PCI。PCIe 只在 q35 机型上有效。
+    + 告诉 Proxmox VE 使用PCIe还是PCI端口。一些设备组合需要PCIe而非PCI。PCIe只在q35机型上有效。
 
   + ROM-Bar (rombar=on|off)
-    + 使固件 ROM 对客户机可见。默认已勾选，有些 PCI(e) 设备需要禁用。
+    + 使固件ROM对客户机可见。默认已勾选，有些PCI(e)设备需要禁用。
 
 ## 设置PVE防火墙
 
