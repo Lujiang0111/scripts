@@ -11,14 +11,14 @@
 ```shell
 wget https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/cuda-keyring_1.1-1_all.deb
 dpkg -i cuda-keyring_1.1-1_all.deb
-apt -y update
-apt -y install cuda-toolkit-12-6
+apt update -y
+apt install -y cuda-toolkit-12-6
 ```
 
 + Driver Installer
 
 ```shell
-apt -y install nvidia-open
+apt install -y nvidia-open
 ```
 
 安装完成后重启系统
@@ -51,3 +51,50 @@ nvidia-smi
 ```
 
 如果正确安装，应该会显示当前的显卡信息和驱动版本。
+
+## 安装NVIDIA Container Toolkit
+
+> 参考资料：<https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html>
+
++ 先安装docker，参考资料：
+
++ 配置生产存储库
+
+```shell
+curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
+  && curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
+    sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
+    sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+```
+
++ （可选）配置存储库以使用实验性软件包
+
+```shell
+sed -i -e '/experimental/ s/^#//g' /etc/apt/sources.list.d/nvidia-container-toolkit.list
+```
+
++ 更新软件源
+
+```shell
+apt update -y
+```
+
++ 安装`NVIDIA Container Toolkit`
+
+```shell
+apt install -y nvidia-container-toolkit
+```
+
+## 配置Docker
+
++ 使用`nvidia-ctk`命令配置容器运行时
+
+```shell
+nvidia-ctk runtime configure --runtime=docker
+```
+
++ 重启Docker
+
+```shell
+systemctl restart docker
+```
