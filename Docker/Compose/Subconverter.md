@@ -25,5 +25,5 @@ networks:
 ## 测试服务器
 
 ```shell
-curl http://192.168.8.42:25500/version
+http://192.168.8.42:25500/version
 ```
