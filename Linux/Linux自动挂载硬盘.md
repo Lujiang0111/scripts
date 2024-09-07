@@ -60,22 +60,17 @@ blkid /dev/nvme0n1p1
 
 ```shell
 mkdir -p /mnt/sn640
-chmod 777 /mnt/sn640
 ```
 
 ### 配置自动挂载
 
-编辑`/etc/fstab`文件：
+在`/etc/fstab`文件末尾添加需要挂载的硬盘：
 
 ```shell
-vim /etc/fstab
-```
-
-在文件末尾添加如下内容：
-
-```shell
+cat <<- EOF >> /etc/fstab
 # SN640
 UUID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx /mnt/sn640 btrfs defaults 0 0
+EOF
 ```
 
 请将`xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`替换为你实际的 UUID。
