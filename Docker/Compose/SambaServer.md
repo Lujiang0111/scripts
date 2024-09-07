@@ -7,6 +7,10 @@
 ```shell
 mkdir -p /mnt/sn640/fastshare
 chmod 777 /mnt/sn640/fastshare
+mkdir -p /mnt/sn640/download
+chmod 777 /mnt/sn640/download
+mkdir -p /mnt/sn640/xvideos
+chmod 777 /mnt/sn640/xvideos
 ```
 
 ## 配置docker容器
@@ -29,8 +33,18 @@ services:
         [fastshare]; path=/shares/fastshare;
         guest ok = no; read only = no; browseable = yes;
         create mask = 0664; directory mask = 0775
+      SAMBA_VOLUME_CONFIG_download: >
+        [download]; path=/shares/download;
+        guest ok = no; read only = no; browseable = yes;
+        create mask = 0664; directory mask = 0775
+      SAMBA_VOLUME_CONFIG_xvideos: >
+        [xvideos]; path=/shares/xvideos;
+        guest ok = no; read only = no; browseable = no;
+        create mask = 0664; directory mask = 0775
     volumes:
       - /mnt/sn640/fastshare:/shares/fastshare
+      - /mnt/sn640/download:/shares/download
+      - /mnt/sn640/xvideos:/shares/xvideos
     ports:
       - 445:445
 ```
