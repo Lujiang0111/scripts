@@ -85,9 +85,9 @@
     filter add chain=input action=drop in-interface-list=!LAN comment="defconf: drop all coming from !LAN"
     filter add chain=forward action=accept ipsec-policy=in,ipsec comment="defconf: accept in ipsec policy"
     filter add chain=forward action=accept ipsec-policy=out,ipsec comment="defconf: accept out ipsec policy"
-    filter add chain=forward in-interface-list=WAN action=fasttrack-connection connection-state=established,related comment="defconf: fasttrack"
+    filter add chain=forward action=fasttrack-connection in-interface-list=WAN connection-state=established,related comment="defconf: fasttrack"
     filter add chain=forward action=accept connection-state=established,related,untracked comment="defconf: accept established,related, untracked"
-    filter add chain=forward in-interface-list=!LAN action=drop connection-state=invalid comment="defconf: drop invalid"
+    filter add chain=forward action=drop in-interface-list=!LAN connection-state=invalid comment="defconf: drop invalid"
     filter add chain=forward action=drop connection-state=new connection-nat-state=!dstnat in-interface-list=!LAN comment="defconf: drop all from !LAN not DSTNATed"
 }
 ```
@@ -120,7 +120,7 @@
     filter add chain=input action=accept ipsec-policy=in,ipsec comment="defconf: accept all that matches ipsec policy"
     filter add chain=input action=drop in-interface-list=!LAN comment="defconf: drop everything else coming from !LAN"
     filter add chain=forward action=accept connection-state=established,related,untracked comment="defconf: accept established,related,untracked"
-    filter add chain=forward action=drop connection-state=invalid comment="defconf: drop invalid"
+    filter add chain=forward action=drop in-interface-list=!LAN connection-state=invalid comment="defconf: drop invalid"
     filter add chain=forward action=drop src-address-list=bad_ipv6 comment="defconf: drop packets with bad src ipv6"
     filter add chain=forward action=drop dst-address-list=bad_ipv6 comment="defconf: drop packets with bad dst ipv6"
     filter add chain=forward action=drop protocol=icmpv6 hop-limit=equal:1 comment="defconf: rfc4890 drop hop-limit=1"
