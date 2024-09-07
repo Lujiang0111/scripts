@@ -25,10 +25,10 @@ services:
     environment:
       ACCOUNT_lujiang: ices0081234
       UID_lujiang: 1000
-      SAMBA_VOLUME_CONFIG_fastshare:
-        "[fastshare]; path=/shares/fastshare;
+      SAMBA_VOLUME_CONFIG_fastshare: >
+        [fastshare]; path=/shares/fastshare;
         guest ok = no; read only = no; browseable = yes;
-        create mask = 0664; directory mask = 0775"
+        create mask = 0664; directory mask = 0775
     volumes:
       - /mnt/sn640/fastshare:/shares/fastshare
     ports:
