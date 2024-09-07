@@ -24,7 +24,7 @@ apt -y install nvidia-open
 安装完成后重启系统
 
 ```shell
-init 6
+reboot
 ```
 
 ## 禁止内核更新

@@ -27,7 +27,7 @@ sudo update-grub
 重启系统
 
 ```shell
-sudo init 6
+sudo reboot
 ```
 
 修改完成
