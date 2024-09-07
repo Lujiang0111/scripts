@@ -56,7 +56,7 @@ nvidia-smi
 
 > 参考资料：<https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html>
 
-+ 先安装docker，参考资料：
++ 先安装docker，参考资料：<https://docs.docker.com/engine/install/debian/>
 
 + 配置生产存储库
 
