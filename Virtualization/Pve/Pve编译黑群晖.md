@@ -82,7 +82,7 @@ qm importdisk 101 rr.img local-lvm
 1. 选择`Choose a model`，选择`SA6400`。
 1. 选择`Choose a version`，选择安装版本。
 1. 复制pat的url，下载并保存到本地。
-1. 选择`Kernel`，切换成`custom`。
+1. 选择`Kernel`，16核以上需要切换成`custom`。
 1. 选择`Addons menu` -> `Add an addon` -> `nvmesystem`。
 1. 选择`Cmdline menu` -> `Define SN/MAC`，设置SN码和MAC地址。
 1. 选择`Build the loader`，开始编译黑群晖引导文件。
