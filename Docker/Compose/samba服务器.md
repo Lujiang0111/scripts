@@ -6,7 +6,7 @@
 
 ```shell
 mkdir -p /mnt/sn640/fastshare
-chmod -R 777 /mnt/sn640/fastshare
+chmod 777 /mnt/sn640/fastshare
 ```
 
 ## 配置docker容器
