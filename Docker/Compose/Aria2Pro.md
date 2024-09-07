@@ -48,3 +48,9 @@ networks:
   macvlan_enp6s18:
     external: true
 ```
+
+## 测试服务器
+
+```shell
+curl http://192.168.8.43:25500/version
+```
