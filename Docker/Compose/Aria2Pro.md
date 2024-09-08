@@ -5,6 +5,7 @@
 ## 创建目录
 
 ```shell
+rm -rf /opt/docker/aria2-pro/config
 mkdir -p /opt/docker/aria2-pro/config
 chmod 777 /opt/docker/aria2-pro/config
 mkdir -p /mnt/sn640/download/aria2
