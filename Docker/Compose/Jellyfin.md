@@ -1,4 +1,4 @@
-# Docker配置Jellyfin服务器
+# Docker配置jellyfin服务器
 
 > 参考资料：<https://hub.docker.com/r/nyanmisaka/jellyfin>
 
@@ -14,6 +14,30 @@ chmod 777 /opt/docker/jellyfin/cache
 rm -rf /opt/docker/jellyfin/media
 mkdir -p /opt/docker/jellyfin/media
 chmod 777 /opt/docker/jellyfin/media
+```
+
+## 挂载SMB远端目录
+
+### 测试挂载
+
+```shell
+mkdir -p /mnt/smb/dsm/video
+mount -t cifs -o username=your_username,password=your_password //server/share /mnt/smb/dsm/video
+```
+
+### 配置自动挂载
+
+```shell
+cat <<- EOF >> /etc/fstab
+# DSM video
+//server/share /mnt/smb/dsm/video cifs x-systemd.automount,username=your_username,password=your_password 0 0
+EOF
+```
+
+测试挂载
+
+```shell
+mount -a
 ```
 
 ## 配置docker容器
@@ -36,6 +60,7 @@ services:
       - /opt/docker/jellyfin/cache:/cache
       - /opt/docker/jellyfin/media:/media
       - /mnt/sn640/download:/nas_download
+      - /mnt/smb:/nas_smb
     ports:
       - 58096:8096
     runtime: nvidia

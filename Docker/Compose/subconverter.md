@@ -1,4 +1,4 @@
-# Docker配置samba服务器
+# Docker配置subconverter
 
 > 参考资料：<https://github.com/tindy2013/subconverter/blob/master/README-docker.md>
 
