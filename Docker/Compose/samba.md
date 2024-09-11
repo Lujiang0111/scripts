@@ -5,6 +5,7 @@
 ## 创建需要共享的目录
 
 ```shell
+# data dir
 mkdir -p /mnt/sn640/fastshare
 chmod 777 /mnt/sn640/fastshare
 mkdir -p /mnt/sn640/download

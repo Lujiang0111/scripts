@@ -5,6 +5,7 @@
 ## 创建目录
 
 ```shell
+# config dir
 rm -rf /opt/docker/jellyfin/config
 mkdir -p /opt/docker/jellyfin/config
 chmod 777 /opt/docker/jellyfin/config
