@@ -29,6 +29,12 @@ reboot
 
 ## 禁止内核更新
 
+### 方法一：安装Debian时选择特定内核版本
+
++ 在Debian系统安装过程中，选择特定内核版本（如`linux-image-6.1.0-25-amd64`）而**不是**`linux-image-amd64`。
+
+### 方法二：使用apt-mark hold命令
+
 1. 查看当前内核版本
 
     ```shell
@@ -38,10 +44,10 @@ reboot
 
     找到类似于`linux-image-X.X.X`的包名。
 
-2. 锁定内核包
+1. 锁定内核包
 
     ```shell
-    sudo apt-mark hold linux-image-X.X.X
+    apt-mark hold linux-image-X.X.X
     ```
 
 ## 验证驱动安装
