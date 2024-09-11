@@ -2,6 +2,10 @@
 
 > 参考资料：<https://blog.csdn.net/whatday/article/details/102473565>
 
+## automake下载地址
+
+<https://ftp.gnu.org/gnu/automake>
+
 ## 错误信息
 
 **automake**在CentOS环境下编译时会提示`help2man: can't get '--help' info from automake`，导致编译失败。
