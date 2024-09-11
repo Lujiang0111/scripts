@@ -29,7 +29,7 @@ services:
       - PUID=1000
       - PGID=1000
       - UMASK_SET=022
-      - RPC_SECRET=ices0081234
+      - RPC_SECRET=your_secret # set your_secret
       - RPC_PORT=56800
       - LISTEN_PORT=56888
       - DISK_CACHE=64M

@@ -28,7 +28,7 @@ services:
     cap_add:
       - CAP_NET_ADMIN
     environment:
-      ACCOUNT_lujiang: ices0081234
+      ACCOUNT_lujiang: your_password # set your_password
       UID_lujiang: 1000
       SAMBA_VOLUME_CONFIG_fastshare: >
         [fastshare]; path=/shares/fastshare;
