@@ -19,6 +19,12 @@ chmod 777 /opt/docker/jellyfin/media
 
 ## 挂载SMB远端目录
 
+### 安装`cifs-utils`软件包
+
+```shell
+apt install cifs-utils
+```
+
 ### 测试挂载
 
 ```shell
