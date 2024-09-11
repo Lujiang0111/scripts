@@ -39,7 +39,7 @@ services:
         create mask = 0664; directory mask = 0775
       SAMBA_VOLUME_CONFIG_xvideos: >
         [xvideos]; path=/shares/xvideos;
-        guest ok = no; read only = no; browseable = no;
+        guest ok = no; read only = no; browseable = yes;
         create mask = 0664; directory mask = 0775
     volumes:
       - /mnt/sn640/fastshare:/shares/fastshare
