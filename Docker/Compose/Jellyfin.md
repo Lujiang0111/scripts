@@ -22,7 +22,7 @@ chmod 777 /opt/docker/jellyfin/media
 ### 测试挂载
 
 ```shell
-# set your_username, your_password
+# set your_username, your_password, //server/share
 mkdir -p /mnt/smb/dsm/video
 mount -t cifs -o username=your_username,password=your_password //server/share /mnt/smb/dsm/video
 ```
@@ -30,7 +30,7 @@ mount -t cifs -o username=your_username,password=your_password //server/share /m
 ### 配置自动挂载
 
 ```shell
-# set your_username, your_password
+# set your_username, your_password, //server/share
 cat <<- EOF >> /etc/fstab
 # DSM video
 //server/share /mnt/smb/dsm/video cifs x-systemd.automount,username=your_username,password=your_password 0 0
