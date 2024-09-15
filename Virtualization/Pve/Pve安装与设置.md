@@ -238,7 +238,7 @@ systemctl restart chronyd
 ### 修改grub文件
 
 + 编辑`/etc/default/grub`文件
-+ 修改`GRUB_CMDLINE_LINUX_DEFAULT`所在行行为`GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on iommu=pt"`
++ 修改`GRUB_CMDLINE_LINUX_DEFAULT`所在行内容为`GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on iommu=pt"`
 
 ```shell
 sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT/c\GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on iommu=pt"' /etc/default/grub
