@@ -36,6 +36,7 @@ mount -t cifs -o 'iocharset=utf8,username=your_username,password=your_password' 
 ### 配置自动挂载
 
 ```shell
+mkdir -p /mnt/smb/dsm/video
 # set your_username, your_password, //server/share
 cat <<- 'EOF' >> /etc/fstab
 # DSM video
