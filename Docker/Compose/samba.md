@@ -21,7 +21,6 @@ chmod 777 /mnt/sn640/storage
 + `docker_compose.yml`
 
 ```yml
-version: "3.8"
 services:
   samba:
     restart: unless-stopped

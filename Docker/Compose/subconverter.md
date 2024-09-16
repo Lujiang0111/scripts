@@ -7,7 +7,6 @@
 + `docker_compose.yml`
 
 ```yml
-version: "3.8"
 services:
   subconverter:
     restart: unless-stopped

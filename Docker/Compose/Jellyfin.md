@@ -55,7 +55,6 @@ mount -a
 + `docker_compose.yml`
 
 ```yaml
-version: "3.8"
 services:
   jellyfin:
     restart: unless-stopped

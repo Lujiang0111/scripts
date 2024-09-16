@@ -20,7 +20,6 @@ chmod 777 /mnt/sn640/download/aria2
 + `docker_compose.yml`
 
 ```yml
-version: "3.8"
 services:
   aria2-Pro:
     container_name: aria2-pro
