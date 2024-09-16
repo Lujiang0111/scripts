@@ -20,7 +20,6 @@ chmod 777 /mnt/sn640/download/qbittorrent
 + `docker_compose.yml`
 
 ```yml
-version: "3.8"
 services:
   qbittorrent:
     container_name: qbittorrent
