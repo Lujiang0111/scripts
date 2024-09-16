@@ -12,6 +12,8 @@ mkdir -p /mnt/sn640/download
 chmod 777 /mnt/sn640/download
 mkdir -p /mnt/sn640/xvideos
 chmod 777 /mnt/sn640/xvideos
+mkdir -p /mnt/sn640/storage
+chmod 777 /mnt/sn640/storage
 ```
 
 ## 配置docker容器
@@ -42,10 +44,15 @@ services:
         [xvideos]; path=/shares/xvideos;
         guest ok = no; read only = no; browseable = yes;
         create mask = 0664; directory mask = 0775
+      SAMBA_VOLUME_CONFIG_storage: >
+        [storage]; path=/shares/storage;
+        guest ok = no; read only = no; browseable = yes;
+        create mask = 0664; directory mask = 0775
     volumes:
       - /mnt/sn640/fastshare:/shares/fastshare
       - /mnt/sn640/download:/shares/download
       - /mnt/sn640/xvideos:/shares/xvideos
+      - /mnt/sn640/storage:/shares/storage
     ports:
       - 445:445
 ```
