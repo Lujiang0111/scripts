@@ -24,7 +24,7 @@ version: "3.8"
 services:
   aria2-Pro:
     container_name: aria2-pro
-    image: p3terx/aria2-pro
+    image: p3terx/aria2-pro:latest
     environment:
       - PUID=1000
       - PGID=1000
