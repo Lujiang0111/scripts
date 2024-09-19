@@ -8,7 +8,7 @@ if not exist %bin_base% (
     goto :error
 )
 
-set src_base=..\..\..\..\
+set src_base=..\..\..\
 
 set lib_name=libflow
 if exist %src_base%%lib_name% (
