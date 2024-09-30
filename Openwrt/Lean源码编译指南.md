@@ -67,11 +67,9 @@ EOF
 
 + [openclash](https://github.com/vernesong/OpenClash/tree/dev)
 
-**注意**：根据反馈，暂时用`v0.46.014`版本而不是最新版
-
 ```shell
 cat <<- EOF >> feeds.conf.default
-src-git openclash https://github.com/vernesong/OpenClash.git^9da968665d72ea99f8906ecfb788779307ed091e
+src-git openclash https://github.com/vernesong/OpenClash.git;dev
 EOF
 ```
 
