@@ -1,5 +1,21 @@
 # Openwrt旁路网关配置
 
+## pve导入镜像
+
++ `img`镜像：
+
+  ```shell
+  qm importdisk 105 /var/lib/vz/template/iso/openwrt-x86-64-generic-squashfs-combined-efi.img local-lvm
+  ```
+
++ `qcow2`镜像：
+
+  ```shell
+  qm importdisk 105 /root/openwrt-x86-64-generic-squashfs-combined-efi.qcow2 local-lvm
+  ```
+
+## 网络配置
+
 - 系统 -> 系统
   - 设置时区
   - 设置NTP服务器地址。
