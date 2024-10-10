@@ -116,7 +116,7 @@
   + 端口选一个其他的，防止wget下载文件
 
   ```shell
-  */2 * * * * wget --timeout=3 --tries=1 http://192.168.8.5:23234/rtp/239.3.1.241:18800 -O /tmp/iptv-keepalive
+  */2 * * * * curl -s --max-time 3 -o /tmp/iptv-keepalive http://192.168.8.5:23234/rtp/239.3.1.241:18800
   ```
 
 ## VLC设置
