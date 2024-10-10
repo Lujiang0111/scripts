@@ -190,12 +190,18 @@ vim feeds/passwall_luci/luci-app-passwall/root/usr/share/passwall/0_default_conf
 option start_delay '5'
 ```
 
-## 修改Makefile
+## 修改编译文件
 
 + 去除`automount`和`autosamba`
 
 ```shell
 sed -i 's/automount \|autosamba //g' target/linux/x86/Makefile
+```
+
++ 去除所有预装application
+
+```shell
+sed -i 's/\<luci-app-[^ ]* \|block-mount \|\<ddns-[^ ]* //g' include/target.mk
 ```
 
 ## 编译选项
@@ -210,10 +216,6 @@ make menuconfig
 + 勾选(y)`Build PVE/KVM image files`
 + **Kernel partition size**改为`32`。
 + **Root filesystem partition size**改为`8000`。
-
-### Base system
-
-+ 取消(n)`block-mount`
 
 ### LuCI -> Applications
 
