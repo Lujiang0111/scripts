@@ -248,7 +248,11 @@ sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT/c\GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_i
 
 #check after
 cat /etc/default/grub | grep GRUB_CMDLINE_LINUX_DEFAULT
+```
 
++ 更新grub
+
+```shell
 update-grub
 reboot
 ```
