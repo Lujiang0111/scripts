@@ -241,7 +241,14 @@ systemctl restart chronyd
 + 修改`GRUB_CMDLINE_LINUX_DEFAULT`所在行内容为`GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on iommu=pt"`
 
 ```shell
+# check before
+cat /etc/default/grub | grep GRUB_CMDLINE_LINUX_DEFAULT
+
 sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT/c\GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on iommu=pt"' /etc/default/grub
+
+#check after
+cat /etc/default/grub | grep GRUB_CMDLINE_LINUX_DEFAULT
+
 update-grub
 reboot
 ```
