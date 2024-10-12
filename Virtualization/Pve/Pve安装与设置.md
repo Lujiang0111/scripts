@@ -262,15 +262,14 @@ reboot
 + 修改`/etc/modules`文件
 
 ```shell
-vim /etc/modules
-```
-
-+ 添加以下几行
-
-```shell
+cat <<- EOF >> /etc/modules
 vfio
 vfio_iommu_type1
 vfio_pci
+EOF
+
+#check after
+cat /etc/modules
 ```
 
 + 应用更改
