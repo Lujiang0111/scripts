@@ -271,7 +271,6 @@ vim /etc/modules
 vfio
 vfio_iommu_type1
 vfio_pci
-vfio_virqfd # not needed if on kernel 6.2 or newer
 ```
 
 + 应用更改
