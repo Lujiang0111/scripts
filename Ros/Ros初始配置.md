@@ -7,7 +7,7 @@
 + 网口分配：
   + 1号口 - 2.5G，做`lan`口。
   + 2号口 - 做`wan`口，接光猫。
-  + 3号口 - 做`iptv`口。
+  + 3号口 - 做`debug`口，以后连接网线调试用。
   + 其余均为`lan`口。
 
 + 地址分配：
@@ -26,7 +26,7 @@
 
 + 1号口 - `ether1-2.5g`
 + 2号口 - `ether2-wan`
-+ 3号口 - `ether3-iptv`
++ 3号口 - `ether3-debug`
 
 ### 设置LAN网桥
 
@@ -36,7 +36,7 @@
 + 点击**Bridge**，选择**Ports**选项卡，创建New Bridge Port：
   + **Interface** - `lan网口`
   + **Bridge** - `bridge-lan`
-  依次将1、4、5、6...口添加至网桥。
+  依次将1、3、4、5、6...口添加至网桥。
 
 ### 添加Interface List
 
@@ -46,7 +46,6 @@
     | List | Interface |
     | - | - |
     | ONU | ether2-wan |
-    | ONU | ether3-iptv |
     | LAN | bridge-lan |
 
 ### 设置lan口IP
