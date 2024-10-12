@@ -32,7 +32,6 @@
 
 + 点击**Bridge**，选择**Bridge**选项卡，创建一个bridge：
   + **Name** - `bridge-lan`
-  + **IGMP Snooping** - ✔
 + 点击**Bridge**，选择**Ports**选项卡，创建New Bridge Port：
   + **Interface** - `lan网口`
   + **Bridge** - `bridge-lan`
