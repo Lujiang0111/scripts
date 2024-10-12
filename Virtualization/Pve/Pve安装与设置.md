@@ -133,34 +133,34 @@ apt install -y vim
 
 ## 设置静态IPv6地址
 
-1. 编辑网络配置文件
++ 编辑网络配置文件
 
-  ```shell
-  vim /etc/network/interfaces
-  ```
+```shell
+vim /etc/network/interfaces
+```
 
-1. 为网络接口配置IPv6地址 找到与你的网络接口（如`vmbr0`）相关的配置，然后添加或修改IPv6 配置。
++ 为网络接口配置IPv6地址 找到与你的网络接口（如`vmbr0`）相关的配置，然后添加或修改IPv6 配置。
 
-  ```config
-  auto vmbr0
-  iface vmbr0 inet static
-    address 192.168.8.3/24
-    gateway 192.168.8.1
-    bridge-ports enp8s0
-    bridge-stp off
-    bridge-fd 0
+```config
+auto vmbr0
+iface vmbr0 inet static
+	address 192.168.8.3/24
+	gateway 192.168.8.1
+	bridge-ports enp8s0
+	bridge-stp off
+	bridge-fd 0
 
-  # IPv6 config
-  iface vmbr0 inet6 static
-    address fd08::3/64
-    gateway fd08::1
-  ```
+# IPv6 config
+iface vmbr0 inet6 static
+	address fd08::3/64
+	gateway fd08::1
+```
 
-1. 重启网络服务
++ 重启网络服务
 
-  ```shell
-  systemctl restart networking
-  ```
+```shell
+systemctl restart networking
+```
 
 ## 去除未订阅提示
 
