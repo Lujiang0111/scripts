@@ -5,13 +5,13 @@
 + `img`镜像：
 
   ```shell
-  qm importdisk 105 /var/lib/vz/template/iso/openwrt-x86-64-generic-squashfs-combined-efi.img local-lvm
+  qm importdisk 111 /var/lib/vz/template/iso/openwrt-x86-64-generic-squashfs-combined-efi.img local-lvm
   ```
 
 + `qcow2`镜像：
 
   ```shell
-  qm importdisk 105 /root/openwrt-x86-64-generic-squashfs-combined-efi.qcow2 local-lvm
+  qm importdisk 111 /root/openwrt-x86-64-generic-squashfs-combined-efi.qcow2 local-lvm
   ```
 
 ## 网络配置
