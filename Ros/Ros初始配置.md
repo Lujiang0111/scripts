@@ -78,7 +78,7 @@
 ```shell
 /ip/firewall {
     filter add chain=input action=accept connection-state=established,related,untracked comment="defconf: accept established,related,untracked"
-    filter add chain=input action=drop connection-state=invalid comment="defconf: drop invalid"
+    filter add chain=input action=drop connection-state=invalid in-interface-list=!LAN comment="defconf: drop invalid"
     filter add chain=input action=accept dst-address=127.0.0.1 comment="defconf: accept to local loopback (for CAPsMAN)"
     filter add chain=input action=drop in-interface-list=!LAN comment="defconf: drop all coming from !LAN"
     filter add chain=forward action=accept ipsec-policy=in,ipsec comment="defconf: accept in ipsec policy"
