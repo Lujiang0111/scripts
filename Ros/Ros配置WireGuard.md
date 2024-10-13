@@ -50,7 +50,7 @@
   + Name - `wireguard-peer`
   + Interface - `wireguard-lan`
   + Public Key - `public-key-peer`
-  + Allowed Address - `192.168.9.21/32`
+  + Allowed Address - `192.168.9.101/32`
   + Persistent Keepalive - `00:00:25`
 
 ### 为WireGuard设置IP
@@ -72,7 +72,7 @@
 ```ini
 [Interface]
 PrivateKey = private-key-peer
-Address = 192.168.9.21/32
+Address = 192.168.9.101/32
 [peer]
 PublicKey = public-key-lan
 Endpoint = 123.45.67.89:52321
