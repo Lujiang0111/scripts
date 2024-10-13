@@ -219,7 +219,7 @@ make menuconfig
 
 ### LuCI -> Applications
 
-+ 勾选(y)`luci-app-argon-config`、`luci-app-aria2`、`luci-app-openclash`、`luci-app-smartdns`、`luci-app-udpxy`、`luci-app-uugamebooster`、`luci-app-vlmcsd`、`luci-app-vsftpd`等插件。
++ 勾选(y)`luci-app-argon-config`、`luci-app-aria2`、`luci-app-openclash`、`luci-app-smartdns`、`luci-app-uugamebooster`、`luci-app-vlmcsd`、`luci-app-vsftpd`等插件。
 
 + 编译ssrp时，如果需要IPv6解析，需要取消勾选(n)`ChinaDNS-NG`。
 
