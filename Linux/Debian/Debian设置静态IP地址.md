@@ -6,13 +6,13 @@
 sudo vim /etc/sysctl.conf
 ```
 
-在文件末尾加入
+在文件末尾加入(将`enp6s18`改为实际网口名）
 
 ```ini
 # disable ipv6 autoconf
-net.ipv6.conf.enp1s0.autoconf=0
-net.ipv6.conf.enp1s0.accept_ra=0
-net.ipv6.conf.enp1s0.use_tempaddr=0
+net.ipv6.conf.enp6s18.autoconf=0
+net.ipv6.conf.enp6s18.accept_ra=0
+net.ipv6.conf.enp6s18.use_tempaddr=0
 ```
 
 重启系统或执行
@@ -36,13 +36,13 @@ sudo vim /etc/network/interfaces
 ```plaintext
 auto eth0
 iface eth0 inet static
-    address 192.168.8.23
+    address 192.168.8.13
     netmask 255.255.255.0
     gateway 192.168.8.1
     dns-nameservers 192.168.8.1
 
 iface eth0 inet6 static
-    address fd08::23/64
+    address fd08::13/64
     gateway fd08::1
     dns-nameservers fd08::1
 ```
