@@ -192,16 +192,17 @@ option start_delay '5'
 
 ## 修改编译文件
 
-+ 去除`automount`和`autosamba`
-
-```shell
-sed -i 's/automount \|autosamba //g' target/linux/x86/Makefile
-```
-
 + 去除所有预装application
 
 ```shell
+# delete automount autosamba
+sed -i 's/automount \|autosamba //g' target/linux/x86/Makefile
+
+# delete luci-app-* block-mount ddns-
 sed -i 's/\<luci-app-[^ ]* \|block-mount \|\<ddns-[^ ]* //g' include/target.mk
+
+# add wget-ssl openssl-util
+sed -i '/curl/ s/curl/curl wget-ssl openssl-util/' include/target.mk
 ```
 
 ## 编译选项
