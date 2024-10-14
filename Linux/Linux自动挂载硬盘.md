@@ -80,6 +80,7 @@ EOF
 你可以使用以下命令重新挂载所有在`/etc/fstab`中定义的文件系统，以验证配置是否正确：
 
 ```shell
+systemctl daemon-reload
 mount -a
 ```
 
