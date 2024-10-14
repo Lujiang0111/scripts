@@ -113,10 +113,10 @@ import fqip.rsc
 
 + 选择Extra标签，Dst. Address Type选择`local`，勾选`local`前面的感叹号（取反）。
 
-+ 选择Action标签，Action选择`mark routing`，取消勾选Log，New Routing Make选择`rtab-fq`，勾选`Passthrough`。
++ 选择Action标签，Action选择`mark routing`，取消勾选Log，New Routing Make选择`rtab-fq`，**取消**勾选`Passthrough`。
 
 ```shell
-/ip/firewall/mangle/add chain=prerouting src-address-list=FQIP dst-address-list=!CNIP dst-address-type=!local action=mark-routing new-routing-mark=rtab-fq passthrough=yes comment="mark routing !CNIP"
+/ip/firewall/mangle/add chain=prerouting src-address-list=FQIP dst-address-list=!CNIP dst-address-type=!local action=mark-routing new-routing-mark=rtab-fq passthrough=no comment="mark routing !CNIP"
 ```
 
 ### 路由器本机代理
@@ -127,10 +127,10 @@ import fqip.rsc
 
 + 选择Extra标签，Dst. Address Type选择`local`，勾选`local`前面的感叹号（取反）。
 
-+ 选择Action标签，Action选择`mark routing`，取消勾选Log，New Routing Make选择`rtab-fq`，勾选`Passthrough`。
++ 选择Action标签，Action选择`mark routing`，取消勾选Log，New Routing Make选择`rtab-fq`，**取消**勾选`Passthrough`。
 
 ```shell
-/ip/firewall/mangle/add chain=output dst-address-list=!CNIP dst-address-type=!local action=mark-routing new-routing-mark=rtab-fq passthrough=yes comment="mark routing !CNIP"
+/ip/firewall/mangle/add chain=output dst-address-list=!CNIP dst-address-type=!local action=mark-routing new-routing-mark=rtab-fq passthrough=no comment="mark routing !CNIP"
 ```
 
 ### 设置Netwatch，根据旁路由启停状况自动切换配置

@@ -254,8 +254,8 @@
 ## 设置 Endpoint-Independent NAT(仅对UDP生效)
 
 ```shell
-/ip/firewall/nat/add action=endpoint-independent-nat chain=srcnat out-interface-list=WAN protocol=udp comment="udp endpoint-independent nat"
-/ip/firewall/nat/add action=endpoint-independent-nat chain=dstnat in-interface-list=WAN protocol=udp comment="udp endpoint-independent nat"
+/ip/firewall/nat/add action=endpoint-independent-nat chain=srcnat out-interface-list=WAN protocol=udp place-before=0 comment="udp endpoint-independent nat"
+/ip/firewall/nat/add action=endpoint-independent-nat chain=dstnat in-interface-list=WAN protocol=udp place-before=0 comment="udp endpoint-independent nat"
 ```
 
 ## 开启UPnP（不建议）
