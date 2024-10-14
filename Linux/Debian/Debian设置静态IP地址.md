@@ -34,14 +34,14 @@ sudo vim /etc/network/interfaces
 在文件中添加类似以下的配置（替换成你的实际网络配置）：
 
 ```plaintext
-auto eth0
-iface eth0 inet static
+auto enp6s18
+iface enp6s18 inet static
     address 192.168.8.13
     netmask 255.255.255.0
     gateway 192.168.8.1
     dns-nameservers 192.168.8.1
 
-iface eth0 inet6 static
+iface enp6s18 inet6 static
     address fd08::13/64
     gateway fd08::1
     dns-nameservers fd08::1
