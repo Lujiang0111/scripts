@@ -262,6 +262,9 @@ reboot
 + 修改`/etc/modules`文件
 
 ```shell
+# delete last blank line
+sed -i '${/^$/d;}' /etc/modules
+
 cat <<- EOF >> /etc/modules
 vfio
 vfio_iommu_type1
