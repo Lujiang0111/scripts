@@ -37,10 +37,18 @@
     ./build.sh win64 nonfree
     ```
 
-## 输出udp-ts流
+## 转封装
+
++ 输出udp-ts流
 
 ```shell
-ffmpeg -re -i input_file -codec copy -f mpegts udp://ip:port?pkt_size=1316
+ffmpeg -re -i input_file -c copy -f mpegts udp://ip:port?pkt_size=1316
+```
+
++ 推送rtmp
+
+```shell
+ffmpeg -re -i input_file -c copy -f flv rtmp://your-rtmp-server/live/stream_key
 ```
 
 ## 只接收不输出
