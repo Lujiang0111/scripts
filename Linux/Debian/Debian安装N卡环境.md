@@ -2,7 +2,7 @@
 
 ## Pve直通设置
 
-+ 选择`主GPU`，`所有功能`，`PCI-Express`
++ 选择`所有功能`，`PCI-Express`
 
 ## 安装Cuda和Nvida驱动
 
