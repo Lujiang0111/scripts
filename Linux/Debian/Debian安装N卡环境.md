@@ -1,5 +1,9 @@
 # Debian安装N卡环境
 
+## Pve直通设置
+
++ 选择`主GPU`，`所有功能`，`PCI-Express`
+
 ## 安装Cuda和Nvida驱动
 
 > 参考资料：<https://developer.nvidia.com/cuda-downloads>
