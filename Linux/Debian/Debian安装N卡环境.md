@@ -4,6 +4,12 @@
 
 + 选择`所有功能`，`PCI-Express`
 
+## 安装内核头文件
+
+```shell
+apt install -y linux-headers-$(uname -r)
+```
+
 ## 安装Cuda和Nvida驱动
 
 > 参考资料：<https://developer.nvidia.com/cuda-downloads>
