@@ -275,18 +275,9 @@ EOF
 cat /etc/modules
 ```
 
-+ 应用更改
-
-```shell
-update-initramfs -u -k all
-reboot
-```
-
-## 显卡直通
+### 将显卡驱动加入黑名单
 
 > 参考资料：<https://pve.proxmox.com/wiki/PCI_Passthrough>
-
-### 将显卡驱动加入很名单
 
 + AMD GPUs
 
@@ -308,13 +299,12 @@ echo "blacklist nvidia*" >> /etc/modprobe.d/blacklist.conf
 echo "blacklist i915" >> /etc/modprobe.d/blacklist.conf
 ```
 
-重启系统
+### 应用更改
 
 ```shell
+update-initramfs -u -k all
 reboot
 ```
-
-+ **注意**：直通独显时，勾选`所有功能`，`ROM-Bar`和`PCI-Express`。
 
 ## 为虚拟机添加PCI设备
 
