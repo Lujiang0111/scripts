@@ -1,5 +1,11 @@
 # Linux自动挂载硬盘
 
+## 安装基础库
+
+```shell
+apt install btrfs-progs
+```
+
 ## 确认硬盘信息
 
 你可以使用以下命令列出所有硬盘和分区：
@@ -31,10 +37,6 @@ fdisk -l
     ```
 
 1. 创建Btrfs文件系统
-
-    ```shell
-    apt install btrfs-progs
-    ```
 
     ```shell
     mkfs.btrfs /dev/nvme0n1p1
