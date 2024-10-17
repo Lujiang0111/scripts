@@ -260,6 +260,16 @@
 /ip/firewall/nat/add action=endpoint-independent-nat chain=dstnat in-interface-list=WAN protocol=udp place-before=0 comment="udp endpoint-independent nat"
 ```
 
+## 屏蔽QUIC
+
++ 由于运营商对UDP的QoS限制，QUIC目前在国内体验不好，可以通过阻止UDP443端口的方式来屏蔽QUIC
+
+```shell
+/ip/firewall/filter/add action=drop chain=forward protocol=udp dst-port=443 comment="disable quic"
+```
+
+**注意**：将该规则移至forward的第一条
+
 ## 开启UPnP（不建议）
 
 + 点击**IP**->**UPnp**，勾选`Enabled`、`Allow To Disable External Interface`、`Show Dummy Rule`。
