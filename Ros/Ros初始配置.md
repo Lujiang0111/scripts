@@ -260,7 +260,7 @@
 /ip/firewall/nat/add action=endpoint-independent-nat chain=dstnat in-interface-list=WAN protocol=udp place-before=0 comment="udp endpoint-independent nat"
 ```
 
-## 屏蔽QUIC
+## 屏蔽QUIC（可选）
 
 + 由于运营商对UDP的QoS限制，QUIC目前在国内体验不好，可以通过阻止UDP443端口的方式来屏蔽QUIC
 
