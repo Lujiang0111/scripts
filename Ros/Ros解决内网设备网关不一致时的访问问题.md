@@ -14,16 +14,31 @@
 
 ## 解决方案
 
-## 方案1：添加静态路由
+## 方案1：内网设备添加静态路由
+
+### debian系统
+
+1. 编辑网络配置文件
+
+    打开`/etc/network/interfaces`文件并编辑（需要root权限）
+
+    ```shell
+    sudo vim /etc/network/interfaces
+    ```
+
+1. 添加静态路由
+
+    在相应的网络接口配置段中添加如下配置：
+
+    ```shell
+    up ip route add 192.168.0.0/16 via 192.168.8.1
+    down ip route del 192.168.0.0/16 via 192.168.8.1
+    ```
+
+## 方案2：ros添加静态路由
 
 添加静态路由，目的地址`192.168.8.22`，网关`192.168.8.11`。
 
 ```shell
 /ip/route/add dst-address=192.168.8.22 gateway=192.168.8.11 comment="routing to 192.168.8.22"
-```
-
-## 方案2：使用分流大陆ip时配置的Routing Table
-
-```shell
-/ip/firewall/mangle/add chain=prerouting in-interface=wireguard-lan dst-address=192.168.8.22 action=mark-routing new-routing-mark=rtab-fq passthrough=yes comment="routing wireguard to 192.168.8.22"
 ```
