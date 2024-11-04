@@ -1,0 +1,48 @@
+# Openwrt配置Wireguard客户端
+
+## 组网环境
+
+### Wireguard服务器
+
++ 设备：RouterOS
++ IP：192.168.8.0/24
++ 公网IP：123.45.67.89
++ Wireguard IP：192.168.9.1
++ Wireguard端口：52321
+
+### Wireguard客户端
+
++ 设备：OpenWrt
++ IP: 192.165.53.33
++ 无公网IP
++ Wireguard IP：192.168.9.33
+
+## 配置Wireguard客户端
+
+1. 进入`网络`->`接口`，点击`添加新接口...`。
+1. 输入接口名称（例如`Wireguard`），协议选择 WireGuard VPN。
+1. 在新页面中，配置以下参数：
+    + `Private Key`：使用wireguard windows客户端生成一个密钥对。将私钥填写在此处。
+    + `Listen Port`：留空，WireGuard客户端通常不需要监听端口。
+1. 在接口配置页面中，添加Peer的配置：
+    + `Public Key`：输入服务器的公钥。
+    + `Allowed IPs`：输入你希望通过WireGuard隧道路由的IP地址范围，这里填写`192.168.8.0/24`，`192.168.9.0/24`和`192.168.100.0/24`。
+    + **勾选**`路由允许的IP`。
+    + `端点主机`：填写Wireguard服务器的IP地址或DDNS域名。
+    + `端点端口`：填写服务器的端口号，这里填写`52321`。
+    + `持续Keep-alive`：填写Keep alive包的发送间隔，这里填写`25`。
+1. 在接口配置页面中，点击`防火墙配置`，将`Wireguard`接口添加到`lan`区域中。
+1. 点击`保存&应用`。
+
+## 建立Wireguard连接
+
+1. 进入`网络`->`接口`，点击`WireGuard`接口右端的`连接`。
+1. 查看是否有接收和发送数据包，或者可以Ping`192.168.8.1`来判断是否连接成功。
+
+## Wireguard服务器访问Wireguard客户端网络
+
+1. 使用Winbox连接到Ros。
+1. 进入`IP`->`Route`，点击+号，添加一个路由规则：
+    + `Dst. Address` - `192.165.53.0/24`
+    + `Gateway` - `192.168.9.33`
+1. 测试ping`192.165.53.33`，查看是否连接成功。
