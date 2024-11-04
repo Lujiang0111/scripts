@@ -50,7 +50,7 @@
   + Name - `wireguard-peer`
   + Interface - `wireguard-lan`
   + Public Key - `public-key-peer`
-  + Allowed Address - `192.168.9.101/32`
+  + Allowed Address - `192.168.9.0/24`
   + Persistent Keepalive - `00:00:25`
 
 ### 为WireGuard设置IP
