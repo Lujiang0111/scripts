@@ -215,12 +215,12 @@ make menuconfig
 ### Target Images
 
 + 勾选(y)`Build PVE/KVM image files`
-+ **Kernel partition size**改为`32`。
-+ **Root filesystem partition size**改为`8000`。
++ **Kernel partition size**改为`32`(依实际情况修改)。
++ **Root filesystem partition size**改为`8000`(依实际情况修改)。
 
 ### LuCI -> Applications
 
-+ 勾选(y)`luci-app-argon-config`、`luci-app-aria2`、`luci-app-openclash`、`luci-app-smartdns`、`luci-app-uugamebooster`、`luci-app-vlmcsd`、`luci-app-vsftpd`等插件。
++ 勾选(y)`luci-app-argon-config`、`luci-app-aria2`、`luci-app-openclash`、`luci-app-smartdns`、`luci-app-uugamebooster`、`luci-app-vlmcsd`、`luci-app-vsftpd`、`luci-app-wireguard`等插件。
 
 + 编译ssrp时，如果需要IPv6解析，需要取消勾选(n)`ChinaDNS-NG`。
 
