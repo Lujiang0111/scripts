@@ -44,6 +44,12 @@
 /interface/list/member/add list=LAN interface=wireguard-lan
 ```
 
+### 为WireGuard设置IP
+
++ 点击**IP**->**Addresses**，点击+号。
+  + Address - `192.168.9.1/24`
+  + Interface - `wireguard-lan`
+
 ### 设置Peer
 
 + 点击**WireGuard**，选择**Peers**选项卡，点击+号。
@@ -52,12 +58,6 @@
   + Public Key - `public-key-peer`
   + Allowed Address - `192.168.9.0/24`
   + Persistent Keepalive - `00:00:25`
-
-### 为WireGuard设置IP
-
-+ 点击**IP**->**Addresses**，点击+号。
-  + Address - `192.168.9.1/24`
-  + Interface - `wireguard-lan`
 
 ## 客户端配置
 
@@ -72,7 +72,7 @@
 ```ini
 [Interface]
 PrivateKey = private-key-peer
-Address = 192.168.9.101/32
+Address = 192.168.9.33/32
 [peer]
 PublicKey = public-key-lan
 Endpoint = 123.45.67.89:52321
