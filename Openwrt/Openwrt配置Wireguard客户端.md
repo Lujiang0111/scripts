@@ -42,7 +42,7 @@
 ## Wireguard服务器访问Wireguard客户端网络
 
 1. 使用Winbox连接到Ros。
-1. 进入`IP`->`Route`，点击+号，添加一个路由规则：
-    + `Dst. Address` - `192.165.53.0/24`
-    + `Gateway` - `192.168.9.33`
+1. 进入`IP`->`Address`，点击+号，添加一个IP地址：
+    + `Address` - `192.165.53.247/16`
+    + `Interface` - `wireguard-lan`
 1. 测试ping`192.165.53.33`，查看是否连接成功。
