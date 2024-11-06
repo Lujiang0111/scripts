@@ -76,6 +76,6 @@ Address = 192.168.9.33/32
 [peer]
 PublicKey = public-key-lan
 Endpoint = 123.45.67.89:52321
-AllowedIPs = 192.168.8.0/21
+AllowedIPs = 192.168.8.0/21, 192.168.100.0/21
 PersistentKeepalive = 25
 ```
