@@ -36,13 +36,13 @@ sudo vim /etc/network/interfaces
 ```plaintext
 auto enp6s18
 iface enp6s18 inet static
-	address 192.168.8.14
+	address 192.168.8.13
 	netmask 255.255.255.0
 	gateway 192.168.8.1
 	dns-nameservers 192.168.8.1
 
 iface enp6s18 inet6 static
-	address fd08::14/64
+	address fd08::13/64
 	gateway fd08::1
 	dns-nameservers fd08::1
 ```
