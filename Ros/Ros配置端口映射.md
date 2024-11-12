@@ -1,12 +1,5 @@
 # Ros配置端口映射(不带回流)
 
-## 明确映射信息
-
-- 协议 - tcp
-- 外网端口 - 56888
-- 内网端口 - 56888
-- 内网ip - 192.168.8.43
-
 ## IPv4
 
 ```shell
@@ -16,7 +9,8 @@
 ## IPv6
 
 ```shell
-/ipv6/firewall/filter/add chain=forward protocol=tcp dst-port=56888 action=accept comment="forward aria2"
+/ipv6/firewall/filter/add chain=forward protocol=tcp dst-port=56881 action=accept comment="forward qbittorrent"
+/ipv6/firewall/filter/add chain=forward protocol=udp dst-port=56881 action=accept comment="forward qbittorrent"
 ```
 
 **注意**：添加规则后需要手动将规则移动至对应drop规则前面！
