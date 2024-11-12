@@ -110,7 +110,7 @@
 ```shell
 /ipv6 firewall {
     filter add chain=input action=accept connection-state=established,related,untracked comment="defconf: accept established,related,untracked"
-    filter add chain=input action=drop connection-state=invalid comment="defconf: drop invalid"
+    filter add chain=input action=drop in-interface-list=!LAN connection-state=invalid comment="defconf: drop invalid"
     filter add chain=input action=accept protocol=udp port=33434-33534 comment="defconf: accept UDP traceroute"
     filter add chain=input action=accept protocol=udp dst-port=546 src-address=fe80::/10 comment="defconf: accept DHCPv6-Client prefix delegation."
     filter add chain=input action=accept protocol=udp dst-port=500,4500 comment="defconf: accept IKE"
