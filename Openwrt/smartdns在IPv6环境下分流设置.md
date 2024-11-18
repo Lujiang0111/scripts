@@ -54,16 +54,6 @@
     | 停用IPV6地址解析 | ✔ |
     | 停用HTTPS记录解析 | ✔ |
 
-### 禁用IPv6并设置例外
-
-+ 点击**自定义设置**选项卡，添加以下内容
-
-```shell
-force-AAAA-SOA yes
-address /byr.pt/-6
-address /nodenet.cloud/-6
-```
-
 ## 代理软件设置
 
 ### ssrp

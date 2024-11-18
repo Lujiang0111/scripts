@@ -41,6 +41,12 @@
 
 + 点击**Interfaces**，选择**Interface List**选项卡，点击**list**按钮，进入**Interface Lists**页面，添加`WAN`、`LAN`和`ONU`。
 
+```shell
+/interface/list/add name=WAN
+/interface/list/add name=LAN
+/interface/list/add name=ONU
+```
+
 + 点击**Interfaces**，选择**Interface List**选项卡，添加一个Interface List：
 
     | List | Interface |
@@ -48,11 +54,20 @@
     | ONU | ether2-wan |
     | LAN | bridge-lan |
 
+```shell
+/interface/list/member/add list=ONU interface=ether2-wan
+/interface/list/member/add list=LAN interface=bridge-lan
+```
+
 ### 设置lan口IP
 
 + 点击**IP**->**Addresses**，添加一个LAN口IP：
   + **Address** - `192.168.8.1/24`
   + **Interface** - `bridge-lan`
+
+```shell
+/ip/address/add address=192.168.8.1/24 interface=bridge-lan
+```
 
 ## 安全设置
 
@@ -69,68 +84,71 @@
   + cn.pool.ntp.org
   + ntp.aliyun.com
   + ntp.tencent.com
+
+```shell
+/system/ntp/client/set enabled=yes servers=cn.ntp.org.cn,cn.pool.ntp.org,ntp.aliyun.com,ntp.tencent.com
+```
+
 + 点击**System**->**Clock**
   + **Time Zone Name** - `Asia/Shanghai`。
+
+```shell
+/system/clock/set time-zone-name=Asia/Shangha
+```
 
 ## 防火墙设置
 
 + IPv4防火墙：
 
 ```shell
-/ip/firewall {
-    filter add chain=input action=accept connection-state=established,related,untracked comment="defconf: accept established,related,untracked"
-    filter add chain=input action=drop connection-state=invalid in-interface-list=!LAN comment="defconf: drop invalid"
-    filter add chain=input action=accept dst-address=127.0.0.1 comment="defconf: accept to local loopback (for CAPsMAN)"
-    filter add chain=input action=drop in-interface-list=!LAN comment="defconf: drop all coming from !LAN"
-    filter add chain=forward action=accept ipsec-policy=in,ipsec comment="defconf: accept in ipsec policy"
-    filter add chain=forward action=accept ipsec-policy=out,ipsec comment="defconf: accept out ipsec policy"
-    filter add chain=forward action=fasttrack-connection in-interface-list=WAN connection-state=established,related comment="defconf: fasttrack"
-    filter add chain=forward action=accept connection-state=established,related,untracked comment="defconf: accept established,related, untracked"
-    filter add chain=forward action=drop in-interface-list=!LAN connection-state=invalid comment="defconf: drop invalid"
-    filter add chain=forward action=drop connection-state=new connection-nat-state=!dstnat in-interface-list=!LAN comment="defconf: drop all from !LAN not DSTNATed"
-}
+/ip/firewall/filter/add chain=input action=accept connection-state=established,related,untracked comment="defconf: accept established,related,untracked"
+/ip/firewall/filter/add chain=input action=drop connection-state=invalid in-interface-list=!LAN comment="defconf: drop invalid from !LAN"
+/ip/firewall/filter/add chain=input action=accept dst-address=127.0.0.1 comment="defconf: accept to local loopback (for CAPsMAN)"
+/ip/firewall/filter/add chain=input action=drop in-interface-list=!LAN comment="defconf: drop all coming from !LAN"
+/ip/firewall/filter/add chain=forward action=accept ipsec-policy=in,ipsec comment="defconf: accept in ipsec policy"
+/ip/firewall/filter/add chain=forward action=accept ipsec-policy=out,ipsec comment="defconf: accept out ipsec policy"
+/ip/firewall/filter/add chain=forward action=fasttrack-connection in-interface-list=WAN connection-state=established,related comment="defconf: fasttrack from WAN"
+/ip/firewall/filter/add chain=forward action=accept connection-state=established,related,untracked comment="defconf: accept established,related, untracked"
+/ip/firewall/filter/add chain=forward action=drop in-interface-list=!LAN connection-state=invalid comment="defconf: drop invalid from !LAN"
+/ip/firewall/filter/add chain=forward action=drop connection-state=new connection-nat-state=!dstnat in-interface-list=!LAN comment="defconf: drop all from !LAN not DSTNATed"
 ```
 
 + IPv6防火墙
 
 ```shell
-/ipv6/firewall {
-    address-list add list=bad_ipv6 address=::/128 comment="defconf: unspecified address"
-    address-list add list=bad_ipv6 address=::1 comment="defconf: lo"
-    address-list add list=bad_ipv6 address=fec0::/10 comment="defconf: site-local"
-    address-list add list=bad_ipv6 address=::ffff:0:0/96 comment="defconf: ipv4-mapped"
-    address-list add list=bad_ipv6 address=::/96 comment="defconf: ipv4 compat"
-    address-list add list=bad_ipv6 address=100::/64 comment="defconf: discard only "
-    address-list add list=bad_ipv6 address=2001:db8::/32 comment="defconf: documentation"
-    address-list add list=bad_ipv6 address=2001:10::/28 comment="defconf: ORCHID"
-    address-list add list=bad_ipv6 address=3ffe::/16 comment="defconf: 6bone"
-}
+/ipv6/firewall/address-list/add list=bad_ipv6 address=::/128 comment="defconf: unspecified address"
+/ipv6/firewall/address-list/add list=bad_ipv6 address=::1 comment="defconf: lo"
+/ipv6/firewall/address-list/add list=bad_ipv6 address=fec0::/10 comment="defconf: site-local"
+/ipv6/firewall/address-list/add list=bad_ipv6 address=::ffff:0:0/96 comment="defconf: ipv4-mapped"
+/ipv6/firewall/address-list/add list=bad_ipv6 address=::/96 comment="defconf: ipv4 compat"
+/ipv6/firewall/address-list/add list=bad_ipv6 address=100::/64 comment="defconf: discard only "
+/ipv6/firewall/address-list/add list=bad_ipv6 address=2001:db8::/32 comment="defconf: documentation"
+/ipv6/firewall/address-list/add list=bad_ipv6 address=2001:10::/28 comment="defconf: ORCHID"
+/ipv6/firewall/address-list/add list=bad_ipv6 address=3ffe::/16 comment="defconf: 6bone"
 ```
 
 ```shell
-/ipv6 firewall {
-    filter add chain=input action=accept connection-state=established,related,untracked comment="defconf: accept established,related,untracked"
-    filter add chain=input action=drop in-interface-list=!LAN connection-state=invalid comment="defconf: drop invalid"
-    filter add chain=input action=accept protocol=udp port=33434-33534 comment="defconf: accept UDP traceroute"
-    filter add chain=input action=accept protocol=udp dst-port=546 src-address=fe80::/10 comment="defconf: accept DHCPv6-Client prefix delegation."
-    filter add chain=input action=accept protocol=udp dst-port=500,4500 comment="defconf: accept IKE"
-    filter add chain=input action=accept protocol=ipsec-ah comment="defconf: accept ipsec AH"
-    filter add chain=input action=accept protocol=ipsec-esp comment="defconf: accept ipsec ESP"
-    filter add chain=input action=accept ipsec-policy=in,ipsec comment="defconf: accept all that matches ipsec policy"
-    filter add chain=input action=drop in-interface-list=!LAN comment="defconf: drop everything else coming from !LAN"
-    filter add chain=forward action=accept connection-state=established,related,untracked comment="defconf: accept established,related,untracked"
-    filter add chain=forward action=drop in-interface-list=!LAN connection-state=invalid comment="defconf: drop invalid"
-    filter add chain=forward action=drop src-address-list=bad_ipv6 comment="defconf: drop packets with bad src ipv6"
-    filter add chain=forward action=drop dst-address-list=bad_ipv6 comment="defconf: drop packets with bad dst ipv6"
-    filter add chain=forward action=drop protocol=icmpv6 hop-limit=equal:1 comment="defconf: rfc4890 drop hop-limit=1"
-    filter add chain=forward action=accept protocol=icmpv6 comment="defconf: accept ICMPv6"
-    filter add chain=forward action=accept protocol=139 comment="defconf: accept HIP"
-    filter add chain=forward action=accept protocol=udp dst-port=500,4500 comment="defconf: accept IKE"
-    filter add chain=forward action=accept protocol=ipsec-ah comment="defconf: accept ipsec AH"
-    filter add chain=forward action=accept protocol=ipsec-esp comment="defconf: accept ipsec ESP"
-    filter add chain=forward action=accept ipsec-policy=in,ipsec comment="defconf: accept all that matches ipsec policy"
-    filter add chain=forward action=drop in-interface-list=!LAN comment="defconf: drop everything else coming from !LAN"
-}
+/ipv6/firewall/filter/add chain=input action=accept connection-state=established,related,untracked comment="defconf: accept established,related,untracked"
+/ipv6/firewall/filter/add chain=input action=drop in-interface-list=!LAN connection-state=invalid comment="defconf: drop invalid from !LAN"
+/ipv6/firewall/filter/add chain=input action=accept protocol=udp port=33434-33534 comment="defconf: accept UDP traceroute"
+/ipv6/firewall/filter/add chain=input action=accept protocol=udp dst-port=546 src-address=fe80::/10 comment="defconf: accept DHCPv6-Client prefix delegation."
+/ipv6/firewall/filter/add chain=input action=accept protocol=udp dst-port=500,4500 comment="defconf: accept IKE"
+/ipv6/firewall/filter/add chain=input action=accept protocol=ipsec-ah comment="defconf: accept ipsec AH"
+/ipv6/firewall/filter/add chain=input action=accept protocol=ipsec-esp comment="defconf: accept ipsec ESP"
+/ipv6/firewall/filter/add chain=input action=accept ipsec-policy=in,ipsec comment="defconf: accept all that matches ipsec policy"
+/ipv6/firewall/filter/add chain=input action=drop in-interface-list=!LAN comment="defconf: drop everything else coming from !LAN"
+/ipv6/firewall/filter/add chain=forward action=accept connection-state=established,related,untracked comment="defconf: accept established,related,untracked"
+/ipv6/firewall/filter/add chain=forward action=drop in-interface-list=!LAN connection-state=invalid comment="defconf: drop invalid from !LAN"
+/ipv6/firewall/filter/add chain=forward action=drop src-address-list=bad_ipv6 comment="defconf: drop packets with bad src ipv6"
+/ipv6/firewall/filter/add chain=forward action=drop dst-address-list=bad_ipv6 comment="defconf: drop packets with bad dst ipv6"
+/ipv6/firewall/filter/add chain=forward action=drop protocol=icmpv6 hop-limit=equal:1 comment="defconf: rfc4890 drop hop-limit=1"
+/ipv6/firewall/filter/add chain=forward action=accept protocol=icmpv6 comment="defconf: accept ICMPv6"
+/ipv6/firewall/filter/add chain=forward action=accept protocol=139 comment="defconf: accept HIP"
+/ipv6/firewall/filter/add chain=forward action=accept protocol=udp dst-port=500,4500 comment="defconf: accept IKE"
+/ipv6/firewall/filter/add chain=forward action=accept protocol=ipsec-ah comment="defconf: accept ipsec AH"
+/ipv6/firewall/filter/add chain=forward action=accept protocol=ipsec-esp comment="defconf: accept ipsec ESP"
+/ipv6/firewall/filter/add chain=forward action=accept ipsec-policy=in,ipsec comment="defconf: accept all that matches ipsec policy"
+/ipv6/firewall/filter/add chain=forward action=drop in-interface-list=!LAN comment="defconf: drop everything else coming from !LAN"
 ```
 
 ## 设置拨号上网
@@ -161,7 +179,7 @@
 ### 设置wan口IP伪装
 
 ```shell
-/ip/firewall/nat/add action=masquerade chain=srcnat out-interface-list=!LAN comment="defconf: masquerade IPv4"
+/ip/firewall/nat/add action=masquerade chain=srcnat out-interface-list=!LAN comment="defconf: masquerade IPv4 form !LAN"
 ```
 
 ## 设置DNS地址与DNS缓存
@@ -170,6 +188,19 @@
   + **Server** - `223.5.5.5`,`119.29.29.29`,`114.114.114.114`
   + **Allow Remote Requests** - ✔
 
+```shell
+/ip/dns/set servers=223.5.5.5,119.29.29.29,114.114.114.114
+/ip/dns/set allow-remote-requests=yes
+/ip/dns/cache/flush
+```
+
+## 设置MSS钳制
+
+```shell
+/ip/firewall/mangle/add chain=forward action=change-mss new-mss=clamp-to-pmtu protocol=tcp tcp-flags=syn out-interface=pppoe-bjlt passthrough=yes comment="IPv4 MSS clamp to PMTU"
+/ipv6/firewall/mangle/add chain=forward action=change-mss new-mss=clamp-to-pmtu protocol=tcp tcp-flags=syn out-interface=pppoe-bjlt passthrough=yes comment="IPv6 MSS clamp to PMTU"
+```
+
 ## 设置DHCP
 
 ### 设置DHCP IP池
@@ -177,6 +208,10 @@
 + 点击**IP**->**Pool**，选择**Pools**选项卡，创建一个IP Pool：
   + **Name** - `pool-ipv4`
   + **Addresses** - `192.168.8.100-192.168.8.239`（想要分配的地址池）
+
+```shell
+/ip/pool/add name=pool-ipv4 ranges=192.168.8.100-192.168.8.239
+```
 
 ### 设置DHCP Server
 
@@ -188,6 +223,11 @@
   + **Name** - `server-ipv4`
   + **Interface** - `bridge-lan`
   + **Address Pool** - `pool-ipv4`
+
+```shell
+/ip/dhcp-server/network/add address=192.168.8.0/24 gateway=192.168.8.1 dns-server=192.168.8.1
+/ip/dhcp-server/add name=server-ipv4 interface=bridge-lan address-pool=pool-ipv4
+```
 
 ## 设置IPv6
 
@@ -204,6 +244,10 @@
     + **Use Peer DNS** - ❌
     点击**Apply**，如果Prefix正确的话会显示状态栏**Status:Bound**，如果不正确就换个**Pool Prefix Length**值再尝试。
 
+```shell
+/ipv6/dhcp-client/add interface=pppoe-bjlt request=prefix pool-name=pool-ipv6 pool-prefix-length=60 use-peer-dns=no
+```
+
 ### 给网桥接口分配公网IPv6地址
 
 + 点击**IPv6**->**Address**,点击+号，添加一个Ipv6 Address：
@@ -213,6 +257,10 @@
   + `EUI64` - ✔
   + `Advertise` - ✔
 
+```shell
+/ipv6/address/add address=::/64 from-pool=pool-ipv6 interface=bridge-lan eui-64=yes advertise=yes
+```
+
 ### 给网桥接口分配私有IPv6地址
 
 + 点击**IPv6**->**Address**,点击+号，添加一个Ipv6 Address：
@@ -220,24 +268,39 @@
   + **Interface** - `bridge-lan`
   + `Advertise` - ✔
 
+```shell
+/ipv6/address/add address=fd08::1/64 interface=bridge-lan advertise=yes
+```
+
 ### 设置IPv6伪装
 
 ```shell
-/ipv6/firewall/nat/add action=masquerade chain=srcnat out-interface-list=!LAN comment="defconf: masquerade IPv6"
+/ipv6/firewall/nat/add action=masquerade chain=srcnat out-interface-list=!LAN comment="defconf: masquerade IPv6 from !LAN"
 ```
 
 ### 设置IPv6 ND
 
 + 点击**IPv6**->**ND**，选择**Interface**选项卡，选择默认的all规则，点击**Disable**禁用。
 
+```shell
+/ipv6/nd/disable numbers=0
+```
+
 + 点击**IPv6**->**ND**，选择**Interface**选项卡，点击+号，添加新的ND：
   + **Interface** - `bridge-lan`
-  + **MTU** - 填写之前查到的实际MTU值`1492`
   + **DNS Servers** - `fd08::1`
+
+```shell
+/ipv6/nd/add interface=bridge-lan dns=fd08::1
+```
 
 + 点击**IPv6**->**ND**，选择**Prefixes**选项卡，点击**Default**：
   + **Valid Lifetime** - `2d 00:00:00`
   + **Preferred Lifetime** - `1d 00:00:00`
+
+```shell
+/ipv6/nd/prefix/default/set preferred-lifetime=24:00:00 valid-lifetime=48:00:00
+```
 
 ## 设置访问光猫网段
 
@@ -246,6 +309,10 @@
 + 点击**IP**->**Address**，添加一个wan口IP（注意wab口IP和光猫需在同一网段,例如`192.168.100.2`）：
   + **Address** - `192.168.100.2/24`
   + **Interface** - `ether2-wan`
+
+```shell
+/ip/address/add address=192.168.100.2/24 interface=ether2-wan
+```
 
 ### 添加防火墙规则
 

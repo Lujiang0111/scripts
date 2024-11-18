@@ -143,7 +143,7 @@ import fqip.rsc
     /log/info message="192.168.8.11 up!"
     /ip/route/enable [find where comment="routing to openwrt"]
     /ip/firewall/mangle/enable [find where comment="mark routing !CNIP"]
-    /ip/dns/set servers 192.168.8.11
+    /ip/dns/set servers=192.168.8.11
     /ip/dns/cache/flush
     ```
 
@@ -153,7 +153,7 @@ import fqip.rsc
     /log/info message="192.168.8.11 down!"
     /ip/route/disable [find where comment="routing to openwrt"]
     /ip/firewall/mangle/disable [find where comment="mark routing !CNIP"]
-    /ip/dns/set servers 223.5.5.5,119.29.29.29,114.114.114.114
+    /ip/dns/set servers=223.5.5.5,119.29.29.29,114.114.114.114
     /ip/dns/cache/flush
     ```
 
