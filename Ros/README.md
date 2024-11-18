@@ -6,5 +6,5 @@
 ## 查看路由器默认配置脚本
 
 ```shell
-/system default-configuration print
+/system/default-configuration/print file=output.rsc
 ```
