@@ -84,7 +84,7 @@ chmod +x configure
 --use-openssl-pc=OFF \
 --openssl-crypto-library="${openssl_lib_path}"libcrypto.so \
 --openssl-include-dir="${openssl_include_path}" \
---openssl-ssl-library="${openssl_lib_path}"libssl.so \
+--openssl-ssl-library="${openssl_lib_path}"libssl.so
 
 make clean && make V=1 -j"$(nproc)" && make install
 
