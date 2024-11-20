@@ -77,14 +77,14 @@ echo -e "\n\033[33m============= installing =============\033[0m\n"
 cd "${src_path}" || exit
 chmod +x configure
 ./configure \
---prefix=${install_version_path} \
---enable-shared \
---disable-static \
---enable-debug=0 \
---use-openssl-pc=OFF \
---openssl-crypto-library="${openssl_lib_path}"libcrypto.so \
---openssl-include-dir="${openssl_include_path}" \
---openssl-ssl-library="${openssl_lib_path}"libssl.so
+	--prefix=${install_version_path} \
+	--enable-shared \
+	--disable-static \
+	--enable-debug=0 \
+	--use-openssl-pc=OFF \
+	--openssl-crypto-library="${openssl_lib_path}"libcrypto.so \
+	--openssl-include-dir="${openssl_include_path}" \
+	--openssl-ssl-library="${openssl_lib_path}"libssl.so
 
 make clean && make V=1 -j"$(nproc)" && make install
 
