@@ -19,3 +19,11 @@ python3 generate_def.py libsvts ../../../../include/
 ```shell
 python3 request_cyclically.py http://192.165.153.207:5656/v0.0/combination '{"2":"3","4":"5"}'
 ```
+
+## 补丁升级脚本
+
++ `patch.sh`
++ 使用方式：
+  + `bash patch.sh [update|rollback]`
+  + update : 备份并升级
+  + rollback : 回滚

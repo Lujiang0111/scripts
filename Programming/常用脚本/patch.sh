@@ -1,0 +1,92 @@
+#!/bin/bash
+shell_path=$(
+    cd "$(dirname "$0")" || exit
+    pwd
+)/
+
+# 定义变量（注意dir变量要以/结尾）
+target_dir="/path/to/target/"     # 目标目录
+source_dir="${shell_path}source/" # 替换文件所在目录
+backup_dir="${shell_path}backup/" # 备份目录
+
+# 函数：备份文件
+backup_files() {
+    echo "Starting backup..."
+
+    rm -rf "${backup_dir}"
+    mkdir -p "${backup_dir}"
+
+    while IFS= read -r -d '' file; do
+        relative_path="${file#"${source_dir}"}"
+        target_file="${target_dir}${relative_path}"
+        backup_file="${backup_dir}${relative_path}"
+
+        if [[ -f "${target_file}" ]]; then
+            mkdir -p "$(dirname "${backup_file}")"
+            cp "${target_file}" "${backup_file}"
+            echo "Backed up: ${target_file} -> ${backup_file}"
+        fi
+    done < <(find "${source_dir}" -type f -print0)
+
+    echo "Backup completed."
+}
+
+# 函数：替换文件
+replace_files() {
+    echo "Starting file replacement..."
+
+    while IFS= read -r -d '' file; do
+        relative_path="${file#"${source_dir}"}"
+        target_file="${target_dir}${relative_path}"
+
+        mkdir -p "$(dirname "${target_file}")"
+        \cp -rf "${file}" "${target_file}"
+        echo "Replaced: ${file} -> ${target_file}"
+    done < <(find "${source_dir}" -type f -print0)
+
+    echo "File replacement completed."
+}
+
+# 函数：回滚文件
+rollback_files() {
+    echo "Starting rollback..."
+
+    while IFS= read -r -d '' file; do
+        relative_path="${file#"${backup_dir}"}"
+        target_file="${target_dir}${relative_path}"
+
+        if [[ -f "${file}" ]]; then
+            \cp -rf "${file}" "${target_file}"
+            echo "Restored: ${file} -> ${target_file}"
+        else
+            echo "File not found in backup: ${file}"
+        fi
+    done < <(find "${backup_dir}" -type f -print0)
+
+    echo "Rollback completed."
+}
+
+help() {
+    echo "使用方法: $0 [update|rollback]"
+    echo "  update      备份并替换目标文件"
+    echo "  rollback    回滚到备份文件"
+    exit 0
+}
+
+# 检查命令是否足够参数
+if [[ $# -lt 1 ]]; then
+    help
+fi
+
+case "$1" in
+update)
+    backup_files
+    replace_files
+    ;;
+rollback)
+    rollback_files
+    ;;
+*)
+    help
+    ;;
+esac
