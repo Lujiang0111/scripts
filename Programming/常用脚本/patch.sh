@@ -9,6 +9,19 @@ target_dir="/path/to/target/"     # 目标目录
 source_dir="${shell_path}source/" # 替换文件所在目录
 backup_dir="${shell_path}backup/" # 备份目录
 
+help() {
+    echo "使用方法: bash $0 [update|rollback]"
+    echo "  update      备份并替换目标文件"
+    echo "  rollback    回滚到备份文件"
+    printf '\033[33m%s\033[0m\n' "  注意:       bash无法省略"
+    exit 0
+}
+
+# 检查命令是否足够参数
+if [[ $# -lt 1 ]]; then
+    help
+fi
+
 # 函数：备份文件
 backup_files() {
     echo "Starting backup..."
@@ -65,18 +78,6 @@ rollback_files() {
 
     echo "Rollback completed."
 }
-
-help() {
-    echo "使用方法: $0 [update|rollback]"
-    echo "  update      备份并替换目标文件"
-    echo "  rollback    回滚到备份文件"
-    exit 0
-}
-
-# 检查命令是否足够参数
-if [[ $# -lt 1 ]]; then
-    help
-fi
 
 case "$1" in
 update)
