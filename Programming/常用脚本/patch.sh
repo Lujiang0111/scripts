@@ -10,7 +10,7 @@ source_dir="${shell_path}source/" # 替换文件所在目录
 backup_dir="${shell_path}backup/" # 备份目录
 
 help() {
-    echo "使用方法: bash $0 [update|rollback]"
+    echo "使用方法: bash $0 [backup|update|rollback]"
     echo "  backup      备份源文件"
     echo "  update      备份并替换目标文件"
     echo "  rollback    回滚到备份文件"
