@@ -11,6 +11,7 @@ backup_dir="${shell_path}backup/" # 备份目录
 
 help() {
     echo "使用方法: bash $0 [update|rollback]"
+    echo "  backup      备份源文件"
     echo "  update      备份并替换目标文件"
     echo "  rollback    回滚到备份文件"
     printf '\033[33m%s\033[0m\n' "  注意:       bash无法省略"
@@ -80,6 +81,9 @@ rollback_files() {
 }
 
 case "$1" in
+backup)
+    backup_files
+    ;;
 update)
     backup_files
     replace_files
