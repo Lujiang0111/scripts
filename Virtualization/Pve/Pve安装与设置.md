@@ -144,7 +144,7 @@ vim /etc/network/interfaces
 ```config
 auto vmbr0
 iface vmbr0 inet static
-	address 192.168.8.3/24
+	address 192.168.8.6/24
 	gateway 192.168.8.1
 	bridge-ports enp8s0
 	bridge-stp off
@@ -152,7 +152,7 @@ iface vmbr0 inet static
 
 # IPv6 config
 iface vmbr0 inet6 static
-	address fd08::3/64
+	address fd08::6/64
 	gateway fd08::1
 ```
 
@@ -205,31 +205,6 @@ reboot
 ```
 
 生效。
-
-## 设置NTP时钟同步
-
-> 参考资料：<https://pve.proxmox.com/wiki/Time_Synchronization>
-
-+ 修改`/etc/chrony/chrony.conf`文件
-
-```shell
-vim /etc/chrony/chrony.conf
-```
-
-用`#`注释掉原有的`pool 2.debian.pool.ntp.org iburst`，在这行下面添加自定义NTP服务器
-
-```conf
-server cn.ntp.org.cn iburst
-server cn.pool.ntp.org iburst
-server ntp.aliyun.com iburst
-server ntp.tencent.com iburst
-```
-
-+ 重启chrony服务
-
-```shell
-systemctl restart chronyd
-```
 
 ## 设置PCI直通
 
