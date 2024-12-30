@@ -34,10 +34,9 @@ sudo vim /etc/network/interfaces
 在文件中添加类似以下的配置（替换成你的实际网络配置）：
 
 ```plaintext
-auto enp6s18
+allow-hotplug enp6s18
 iface enp6s18 inet static
-	address 192.168.8.13
-	netmask 255.255.255.0
+	address 192.168.8.13/24
 	gateway 192.168.8.1
 	dns-nameservers 192.168.8.1
 
