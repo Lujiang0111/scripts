@@ -3,7 +3,7 @@
 1. 打开`/etc/network/interfaces`文件：
 
     ```shell
-    sudo nano /etc/network/interfaces
+    vim /etc/network/interfaces
     ```
 
 1. 在文件中找到你的网络接口配置（例如`eth0`），并在该接口的配置下面添加静态路由。例如，假设你的默认网关是`192.165.52.1`，目标路由是`192.166.0.0/16`，可以按以下方式配置：
