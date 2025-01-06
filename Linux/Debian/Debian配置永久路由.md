@@ -21,7 +21,7 @@
 1. 重启网络服务以应用新配置：
 
     ```shell
-    sudo systemctl restart networking
+    systemctl restart networking
     ```
 
     或重启
