@@ -130,7 +130,7 @@ import fqip.rsc
 + 选择Action标签，Action选择`mark routing`，取消勾选Log，New Routing Make选择`rtab-fq`，**取消**勾选`Passthrough`。
 
 ```shell
-/ip/firewall/mangle/add chain=output dst-address-list=!CNIP dst-address-type=!local action=mark-routing new-routing-mark=rtab-fq passthrough=no comment="mark routing !CNIP"
+/ip/firewall/mangle/add chain=output dst-address-list=!CNIP dst-address-type=!local action=mark-routing new-routing-mark=rtab-fq passthrough=no comment="self mark routing !CNIP"
 ```
 
 ### 设置Netwatch，根据旁路由启停状况自动切换配置
