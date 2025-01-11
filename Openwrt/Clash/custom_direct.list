@@ -6,6 +6,9 @@ IP-CIDR,119.29.29.29/32,no-resolve
 IP-CIDR,114.114.114.114/32,no-resolve
 DOMAIN-SUFFIX,mynetname.net
 
+# mikrotik
+DOMAIN-SUFFIX,mikrotik.com
+
 # Nexitally
 DOMAIN-SUFFIX,nexconvert.com
 
