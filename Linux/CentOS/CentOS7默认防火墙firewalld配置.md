@@ -85,8 +85,9 @@ firewall-cmd --permanent --add-service=http #http换成想要开放的service
         <!-- sd-wan -->
         <port protocol="tcp" port="59300" />
 
-        <!-- udp list -->
-        <port protocol="udp" port="17000-19999" />
+        <!-- custom list -->
+        <port protocol="tcp" port="17000-30000" />
+        <port protocol="udp" port="17000-30000" />
     </service>
     ```
 
