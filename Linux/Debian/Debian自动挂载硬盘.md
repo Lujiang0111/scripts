@@ -3,7 +3,7 @@
 ## 安装基础库
 
 ```shell
-apt install btrfs-progs
+apt install -y btrfs-progs gdisk
 ```
 
 ## 确认硬盘信息
@@ -16,29 +16,35 @@ fdisk -l
 
 确定系统中未使用的硬盘设备名称，例如`/dev/nvme0n1`。
 
-## 清除分区标记
+## 初始化分区
 
-即使硬盘分区被删除，某些文件系统元数据可能仍然存在。可以使用`wipefs`清除这些标记：
+### 删除分区
+
+可以使用`wipefs`删除并清除分区标记：
 
 ```shell
-wipefs --all /dev/nvme0n1
+wipefs -a /dev/nvme0n1
 ```
 
-## 创建btrfs分区
+### 创建分区
 
-1. 如果该硬盘尚未分区，你可以使用`fdisk`或`parted`创建一个新的分区。以下是使用`fdisk`的步骤：
+1. 启动`gdisk`
 
     ```shell
-    fdisk /dev/nvme0n1
+    gdisk /dev/nvme0n1
     ```
 
-    在`fdisk`交互界面中：
+1. 创建`GPT`分区表
+    1. 输入`o`清空并创建新的分区表。
+1. 添加新分区
     1. 输入`n`创建新分区。
-    1. 选择分区号（通常选择默认即可）。
-    1. 选择起始扇区和结束扇区（通常使用默认值以创建整个硬盘的分区）。
-    1. 输入`w`写入分区表并退出。
+    1. 按提示选择分区号、起始扇区和结束扇区。
+    1. 选择文件系统类型（一般默认即可）。
+1. 输入`w`写入更改。
 
-1. 查看新分区的名称，例如`/dev/nvme0n1p1`。
+### 创建btrfs文件系统
+
+1. 使用`fdisk`查看新分区的名称，例如`/dev/nvme0n1p1`。
 
     ```shell
     fdisk -l
