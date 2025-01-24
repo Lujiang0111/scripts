@@ -7,7 +7,7 @@
 在`/etc/netplan/`目录中寻找或创建`.yaml` 格式的文件，比如 `00-installer-config.yaml`，使用你喜欢的文本编辑器进行编辑。
 
 ```shell
-sudo vim /etc/netplan/00-installer-config.yaml
+vim /etc/netplan/00-installer-config.yaml
 ```
 
 编辑文件以包含类似以下内容的配置（替换成你的实际网络配置）：
@@ -45,5 +45,5 @@ network:
 保存文件后，使用以下命令应用配置：
 
 ```shell
-sudo netplan apply
+netplan apply
 ```

@@ -17,7 +17,7 @@ echo -e "Backup old CentOS-Base.repo file..."
 cp ${repo_file} "${repo_file}.bak"
 
 # ustc mirror
-sudo sed -i.bak \
+sed -i.bak \
   -e 's|^mirrorlist=|#mirrorlist=|g' \
   -e 's|^#baseurl=http://mirror.centos.org/centos|baseurl=https://mirrors.ustc.edu.cn/centos-vault/centos|g' \
   ${repo_file}

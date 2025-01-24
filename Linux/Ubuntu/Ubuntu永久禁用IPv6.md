@@ -3,7 +3,7 @@
 使用root权限编辑```/etc/default/grub```文件
 
 ```shell
-sudo vim /etc/default/grub
+vim /etc/default/grub
 ```
 
 寻找```GRUB_CMDLINE_LINUX_DEFAULT```配置项
@@ -21,13 +21,13 @@ GRUB_CMDLINE_LINUX_DEFAULT="ipv6.disable=1"
 更新grub
 
 ```shell
-sudo update-grub
+update-grub
 ```
 
 重启系统
 
 ```shell
-sudo reboot
+reboot
 ```
 
 修改完成

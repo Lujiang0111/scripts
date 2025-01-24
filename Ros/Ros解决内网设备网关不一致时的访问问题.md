@@ -23,7 +23,7 @@
     打开`/etc/network/interfaces`文件并编辑（需要root权限）
 
     ```shell
-    sudo vim /etc/network/interfaces
+    vim /etc/network/interfaces
     ```
 
 1. 添加静态路由

@@ -15,7 +15,7 @@
 2. 切换为root用户
 
     ```shell
-    sudo -i
+    sudo su
     ```
 
 3. clone源码

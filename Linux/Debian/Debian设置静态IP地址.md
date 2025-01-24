@@ -3,7 +3,7 @@
 ## 禁止系统自动获取IPv6
 
 ```shell
-sudo vim /etc/sysctl.conf
+vim /etc/sysctl.conf
 ```
 
 在文件末尾加入(将`enp6s18`改为实际网口名）
@@ -28,7 +28,7 @@ sysctl -p
 以管理员权限编辑网络配置文件。
 
 ```shell
-sudo vim /etc/network/interfaces
+vim /etc/network/interfaces
 ```
 
 在文件中添加类似以下的配置（替换成你的实际网络配置）：
@@ -51,5 +51,5 @@ iface enp6s18 inet6 static
 完成更改后，重新启动网络服务以应用新的配置。
 
 ```shell
-sudo systemctl restart networking
+systemctl restart networking
 ```

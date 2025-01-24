@@ -21,7 +21,7 @@ fdisk -l
 即使硬盘分区被删除，某些文件系统元数据可能仍然存在。可以使用`wipefs`清除这些标记：
 
 ```shell
-sudo wipefs --all /dev/nvme0n1
+wipefs --all /dev/nvme0n1
 ```
 
 ## 创建btrfs分区

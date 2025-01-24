@@ -3,5 +3,5 @@
 ## 切换默认sh为dash/bash
 
 ```shell
-sudo dpkg-reconfigure dash
+dpkg-reconfigure dash
 ```
