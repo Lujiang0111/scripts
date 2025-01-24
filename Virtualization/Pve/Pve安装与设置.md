@@ -225,13 +225,6 @@ sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT/c\GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_i
 cat /etc/default/grub | grep GRUB_CMDLINE_LINUX_DEFAULT
 ```
 
-+ 更新grub
-
-```shell
-update-grub
-reboot
-```
-
 ### 添加Kernel Modules
 
 + 修改`/etc/modules`文件
@@ -257,24 +250,33 @@ cat /etc/modules
 + AMD GPUs
 
 ```shell
-echo "blacklist amdgpu" >> /etc/modprobe.d/blacklist.conf
-echo "blacklist radeon" >> /etc/modprobe.d/blacklist.conf
+echo "blacklist amdgpu" >> /etc/modprobe.d/pve-blacklist.conf
+echo "blacklist radeon" >> /etc/modprobe.d/pve-blacklist.conf
 ```
 
 + NVIDIA GPUs
 
 ```shell
-echo "blacklist nouveau" >> /etc/modprobe.d/blacklist.conf
-echo "blacklist nvidia*" >> /etc/modprobe.d/blacklist.conf
+echo "blacklist nouveau" >> /etc/modprobe.d/pve-blacklist.conf
+echo "blacklist nvidia*" >> /etc/modprobe.d/pve-blacklist.conf
 ```
 
 + Intel GPUs(注意直通后可能导致vnc失效)
 
 ```shell
-echo "blacklist i915" >> /etc/modprobe.d/blacklist.conf
+echo "blacklist i915" >> /etc/modprobe.d/pve-blacklist.conf
 ```
 
 ### 应用更改
+
++ 更新grub
+
+```shell
+update-grub
+reboot
+```
+
++ 刷新initramfs
 
 ```shell
 update-initramfs -u -k all

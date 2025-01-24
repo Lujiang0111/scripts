@@ -44,6 +44,6 @@ network:
 
 保存文件后，使用以下命令应用配置：
 
-```bash
+```shell
 sudo netplan apply
 ```
