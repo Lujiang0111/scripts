@@ -68,7 +68,7 @@ services:
       - /opt/docker/jellyfin/config:/config
       - /opt/docker/jellyfin/cache:/cache
       - /opt/docker/jellyfin/media:/media
-      - /mnt/sn640/download:/nas_download
+      - /mnt/ssd/download:/nas_download
       - /mnt/smb:/nas_smb
     ports:
       - 58096:8096

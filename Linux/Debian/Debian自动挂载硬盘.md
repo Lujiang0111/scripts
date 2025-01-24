@@ -61,7 +61,7 @@ blkid /dev/nvme0n1p1
 ### 新建挂载目的文件夹
 
 ```shell
-mkdir -p /mnt/sn640
+mkdir -p /mnt/ssd
 ```
 
 ### 配置自动挂载
@@ -70,8 +70,8 @@ mkdir -p /mnt/sn640
 
 ```shell
 cat <<- EOF >> /etc/fstab
-# SN640
-UUID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx /mnt/sn640 btrfs defaults 0 0
+# SSD
+UUID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx /mnt/ssd btrfs defaults 0 0
 EOF
 ```
 

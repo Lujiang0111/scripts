@@ -11,8 +11,8 @@ mkdir -p /opt/docker/aria2-pro/config
 chmod 777 /opt/docker/aria2-pro/config
 
 # data dir
-mkdir -p /mnt/sn640/download/aria2
-chmod 777 /mnt/sn640/download/aria2
+mkdir -p /mnt/ssd/download/aria2
+chmod 777 /mnt/ssd/download/aria2
 ```
 
 ## 配置docker容器
@@ -37,7 +37,7 @@ services:
       - TZ=Asia/Shanghai
     volumes:
       - /opt/docker/aria2-pro/config:/config
-      - /mnt/sn640/download/aria2:/downloads
+      - /mnt/ssd/download/aria2:/downloads
     networks:
       macvlan_enp6s18:
         ipv4_address: 192.168.8.43

@@ -11,8 +11,8 @@ mkdir -p /opt/docker/qbittorrent/config
 chmod 777 /opt/docker/qbittorrent/config
 
 # data dir
-mkdir -p /mnt/sn640/download/qbittorrent
-chmod 777 /mnt/sn640/download/qbittorrent
+mkdir -p /mnt/ssd/download/qbittorrent
+chmod 777 /mnt/ssd/download/qbittorrent
 ```
 
 ## 配置docker容器
@@ -32,7 +32,7 @@ services:
       - TORRENTING_PORT=56881
     volumes:
       - /opt/docker/qbittorrent/config:/config
-      - /mnt/sn640/download/qbittorrent:/downloads
+      - /mnt/ssd/download/qbittorrent:/downloads
     networks:
       macvlan_enp6s18:
         ipv4_address: 192.168.8.41

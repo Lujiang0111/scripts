@@ -6,14 +6,14 @@
 
 ```shell
 # data dir
-mkdir -p /mnt/sn640/fastshare
-chmod 777 /mnt/sn640/fastshare
-mkdir -p /mnt/sn640/download
-chmod 777 /mnt/sn640/download
-mkdir -p /mnt/sn640/xvideos
-chmod 777 /mnt/sn640/xvideos
-mkdir -p /mnt/sn640/storage
-chmod 777 /mnt/sn640/storage
+mkdir -p /mnt/ssd/fastshare
+chmod 777 /mnt/ssd/fastshare
+mkdir -p /mnt/ssd/download
+chmod 777 /mnt/ssd/download
+mkdir -p /mnt/ssd/xvideos
+chmod 777 /mnt/ssd/xvideos
+mkdir -p /mnt/ssd/storage
+chmod 777 /mnt/ssd/storage
 ```
 
 ## 配置docker容器
@@ -48,10 +48,10 @@ services:
         guest ok = no; read only = no; browseable = yes;
         create mask = 0664; directory mask = 0775
     volumes:
-      - /mnt/sn640/fastshare:/shares/fastshare
-      - /mnt/sn640/download:/shares/download
-      - /mnt/sn640/xvideos:/shares/xvideos
-      - /mnt/sn640/storage:/shares/storage
+      - /mnt/ssd/fastshare:/shares/fastshare
+      - /mnt/ssd/download:/shares/download
+      - /mnt/ssd/xvideos:/shares/xvideos
+      - /mnt/ssd/storage:/shares/storage
     ports:
       - 445:445
 ```
